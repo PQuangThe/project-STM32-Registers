@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "stm32f4xx_hal.h": "c",
+        "stm32f4xx_hal_cortex.h": "c",
+        "stm32f4xx_hal_def.h": "c",
+        "systick_delay.h": "c",
+        "cstdint": "c"
+    }
+}

@@ -47,9 +47,11 @@
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
-void SystemClock_Config(void);
-/* USER CODE BEGIN PFP */
 
+/* USER CODE BEGIN PFP */
+//__weak void SystemClock_Config(void);
+
+void SystemClock_Config(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -71,7 +73,8 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+  //HAL_Init();
+  //Init_Tick();
 
   /* USER CODE BEGIN Init */
 
@@ -87,13 +90,19 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    GPIOA->ODR &= ~((1UL << 6U)|(1UL << 7U));
+    GPIOA->ODR |=  (1UL << 7U);
+    s_delay(300);
+    GPIOA->ODR &= ~((1UL << 6U)|(1UL << 7U));
+    GPIOA->ODR |=  (1UL << 6U);
+    s_delay(300);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -105,49 +114,114 @@ int main(void)
   * @brief System Clock Configuration
   * @retval None
   */
-void SystemClock_Config(void)
-{
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+// __weak void SystemClock_Config(void)
+// {
+//   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+//   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-  /** Configure the main internal regulator output voltage
-  */
-  __HAL_RCC_PWR_CLK_ENABLE();
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+//   /** Configure the main internal regulator output voltage
+//   */
+//   __HAL_RCC_PWR_CLK_ENABLE();
+//   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
-  /** Initializes the RCC Oscillators according to the specified parameters
-  * in the RCC_OscInitTypeDef structure.
-  */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 4;
-  RCC_OscInitStruct.PLL.PLLN = 168;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
+//   /** Initializes the RCC Oscillators according to the specified parameters
+//   * in the RCC_OscInitTypeDef structure.
+//   */
+//   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+//   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+//   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+//   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+//   RCC_OscInitStruct.PLL.PLLM = 4;
+//   RCC_OscInitStruct.PLL.PLLN = 168;
+//   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+//   RCC_OscInitStruct.PLL.PLLQ = 4;
+//   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+//   {
+//     Error_Handler();
+//   }
 
-  /** Initializes the CPU, AHB and APB buses clocks
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+//   /** Initializes the CPU, AHB and APB buses clocks
+//   */
+//   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+//                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+//   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+//   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+//   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+//   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
-  {
-    Error_Handler();
-  }
-}
+//   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
+//   {
+//     Error_Handler();
+//   }
+// }
 
 /* USER CODE BEGIN 4 */
+void SystemClock_Config(void){
 
+  /* Configure Flash prefetch, Instruction cache, Data cache */ 
+  FLASH->ACR |= (0x1UL << 9U) ;
+
+  FLASH->ACR |= (0x1UL << 10U);
+
+  FLASH->ACR |= (0x1UL << 8U);
+
+  NVIC_SetPriorityGrouping(3U);
+
+  RCC->APB2ENR |= (0x1UL << 14U);
+
+
+  //Enable Power interface clock
+  RCC->APB1ENR |= (1UL << 28);
+
+  // Set regulator voltage scaling output is Scale 1 mode
+  PWR->CR      |= (1UL << 14);
+
+  //Enable HSE clock
+  RCC->CR      |= (1UL << 16);
+
+  //wait HSE ready
+  while( !(RCC->CR & (1U << 17)));
+
+  //disable PLL 
+  RCC->CR     &= ~(1UL << 24);
+
+  //Wait PLL disabled
+  while( RCC->CR & (1UL << 25));
+
+  /*Config PLL
+    PLLN = 168
+    PLLM = 4
+    PLLP = 0 (Divide 2)
+    PLLQ = 4
+    PLL clock source is HSE
+
+  */
+  RCC->PLLCFGR = (0X00000000U  | (1UL << 22) | 4UL | (168UL << 6) | (4UL << 24) );
+
+  //Enable PLL 
+  RCC->CR     |= (1UL << 24);
+
+  //Wait PLL ready
+  while( !(RCC->CR & (1UL << 25)));
+
+  //SET wait states to the LATENCY bits
+  FLASH->ACR   = (FLASH->ACR & (~(0x00000007U))) | (5UL);
+
+  //APB high-speed prescaler (APB2)
+  RCC->CFGR    = (RCC->CFGR & (~(0x0000E000U))) | (4UL);
+
+  //SET APB Low speed prescaler APB1
+  RCC->CFGR    = (RCC->CFGR & (~(0x00001C00U))) | (5UL);
+
+  //SET AHB prescaler
+  RCC->CFGR    &= (~(0xFFUL << 4));
+
+  //set pll is SYSCLK source
+  RCC->CFGR    = (RCC->CFGR & (~(0x00000003U))) | (2UL);
+
+  SystemCoreClock = 168000000;
+  Init_Tick();
+}
 /* USER CODE END 4 */
 
 /**
