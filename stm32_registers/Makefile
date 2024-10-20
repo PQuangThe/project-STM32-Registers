@@ -39,10 +39,19 @@ C_SOURCES =  \
 Src/main.c \
 Src/gpio.c \
 Src/stm32f4xx_it.c \
-Src/systick_delay.c \
+Src/sys_delay.c \
 Src/system_stm32f4xx.c \
 Src/sysmem.c \
-Src/syscalls.c  
+Src/syscalls.c  \
+FreeRTOS/croutine.c \
+FreeRTOS/event_groups.c \
+FreeRTOS/list.c \
+FreeRTOS/queue.c \
+FreeRTOS/stream_buffer.c \
+FreeRTOS/tasks.c \
+FreeRTOS/timers.c \
+FreeRTOS/portable/MemMang/heap_4.c \
+FreeRTOS/portable/GCC/ARM_CM4F/port.c 
 
 # ASM sources
 ASM_SOURCES =  \
@@ -103,7 +112,9 @@ AS_INCLUDES =
 C_INCLUDES =  \
 -IInc \
 -IDrivers/CMSIS/Device/ST/STM32F4xx/Include \
--IDrivers/CMSIS/Include
+-IDrivers/CMSIS/Include \
+-IFreeRTOS/include \
+-IFreeRTOS/portable/GCC/ARM_CM4F 
 
 
 # compile gcc flags

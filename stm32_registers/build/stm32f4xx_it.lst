@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s 			page 1
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s 			page 1
   60 0000 80B4     		push	{r7}
   61 0002 00AF     		add	r7, sp, #0
   62              	.L6:
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s 			page 2
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s 			page 2
 
 
   63 0004 FEE7     		b	.L6
@@ -90,13 +90,13 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s 			page 1
   93 0002 00AF     		add	r7, sp, #0
   94              	.L10:
   95 0004 FEE7     		b	.L10
-  97              		.section	.text.SVC_Handler,"ax",%progbits
+  97              		.section	.text.DebugMon_Handler,"ax",%progbits
   98              		.align	1
-  99              		.global	SVC_Handler
+  99              		.global	DebugMon_Handler
  100              		.syntax unified
  101              		.thumb
  102              		.thumb_func
- 104              	SVC_Handler:
+ 104              	DebugMon_Handler:
  105              		@ args = 0, pretend = 0, frame = 0
  106              		@ frame_needed = 1, uses_anonymous_args = 0
  107              		@ link register save eliminated.
@@ -107,81 +107,48 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s 			page 1
  112              		@ sp needed
  113 0008 5DF8047B 		ldr	r7, [sp], #4
  114 000c 7047     		bx	lr
- 116              		.section	.text.DebugMon_Handler,"ax",%progbits
+ 116              		.section	.text.TIM2_IRQHandler,"ax",%progbits
  117              		.align	1
- 118              		.global	DebugMon_Handler
+ 118              		.global	TIM2_IRQHandler
  119              		.syntax unified
  120              		.thumb
  121              		.thumb_func
- 123              	DebugMon_Handler:
+ 123              	TIM2_IRQHandler:
  124              		@ args = 0, pretend = 0, frame = 0
  125              		@ frame_needed = 1, uses_anonymous_args = 0
- 126              		@ link register save eliminated.
- 127 0000 80B4     		push	{r7}
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s 			page 3
+ 126 0000 80B5     		push	{r7, lr}
+ 127 0002 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s 			page 3
 
 
- 128 0002 00AF     		add	r7, sp, #0
- 129 0004 00BF     		nop
- 130 0006 BD46     		mov	sp, r7
- 131              		@ sp needed
- 132 0008 5DF8047B 		ldr	r7, [sp], #4
- 133 000c 7047     		bx	lr
- 135              		.section	.text.PendSV_Handler,"ax",%progbits
- 136              		.align	1
- 137              		.global	PendSV_Handler
- 138              		.syntax unified
- 139              		.thumb
- 140              		.thumb_func
- 142              	PendSV_Handler:
- 143              		@ args = 0, pretend = 0, frame = 0
- 144              		@ frame_needed = 1, uses_anonymous_args = 0
- 145              		@ link register save eliminated.
- 146 0000 80B4     		push	{r7}
- 147 0002 00AF     		add	r7, sp, #0
- 148 0004 00BF     		nop
- 149 0006 BD46     		mov	sp, r7
- 150              		@ sp needed
- 151 0008 5DF8047B 		ldr	r7, [sp], #4
- 152 000c 7047     		bx	lr
- 154              		.section	.text.SysTick_Handler,"ax",%progbits
- 155              		.align	1
- 156              		.global	SysTick_Handler
- 157              		.syntax unified
- 158              		.thumb
- 159              		.thumb_func
- 161              	SysTick_Handler:
- 162              		@ args = 0, pretend = 0, frame = 0
- 163              		@ frame_needed = 1, uses_anonymous_args = 0
- 164 0000 80B5     		push	{r7, lr}
- 165 0002 00AF     		add	r7, sp, #0
- 166 0004 FFF7FEFF 		bl	Inc_Tick
- 167 0008 00BF     		nop
- 168 000a 80BD     		pop	{r7, pc}
- 170              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s 			page 4
+ 128 0004 4FF08043 		mov	r3, #1073741824
+ 129 0008 1B69     		ldr	r3, [r3, #16]
+ 130 000a 4FF08042 		mov	r2, #1073741824
+ 131 000e 23F00103 		bic	r3, r3, #1
+ 132 0012 1361     		str	r3, [r2, #16]
+ 133 0014 FFF7FEFF 		bl	Inc_Tick
+ 134 0018 00BF     		nop
+ 135 001a 80BD     		pop	{r7, pc}
+ 137              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_it.c
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:18     .text.NMI_Handler:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:24     .text.NMI_Handler:00000000 NMI_Handler
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:34     .text.HardFault_Handler:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:40     .text.HardFault_Handler:00000000 HardFault_Handler
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:50     .text.MemManage_Handler:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:56     .text.MemManage_Handler:00000000 MemManage_Handler
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:66     .text.BusFault_Handler:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:72     .text.BusFault_Handler:00000000 BusFault_Handler
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:82     .text.UsageFault_Handler:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:88     .text.UsageFault_Handler:00000000 UsageFault_Handler
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:98     .text.SVC_Handler:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:104    .text.SVC_Handler:00000000 SVC_Handler
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:117    .text.DebugMon_Handler:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:123    .text.DebugMon_Handler:00000000 DebugMon_Handler
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:136    .text.PendSV_Handler:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:142    .text.PendSV_Handler:00000000 PendSV_Handler
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:155    .text.SysTick_Handler:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cchpB5XI.s:161    .text.SysTick_Handler:00000000 SysTick_Handler
+C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s:18     .text.NMI_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s:24     .text.NMI_Handler:00000000 NMI_Handler
+C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s:34     .text.HardFault_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s:40     .text.HardFault_Handler:00000000 HardFault_Handler
+C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s:50     .text.MemManage_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s:56     .text.MemManage_Handler:00000000 MemManage_Handler
+C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s:66     .text.BusFault_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s:72     .text.BusFault_Handler:00000000 BusFault_Handler
+C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s:82     .text.UsageFault_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s:88     .text.UsageFault_Handler:00000000 UsageFault_Handler
+C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s:98     .text.DebugMon_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s:104    .text.DebugMon_Handler:00000000 DebugMon_Handler
+C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s:117    .text.TIM2_IRQHandler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc4YvU1f.s:123    .text.TIM2_IRQHandler:00000000 TIM2_IRQHandler
 
 UNDEFINED SYMBOLS
 Inc_Tick

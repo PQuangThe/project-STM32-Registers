@@ -18,45 +18,36 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "gpio.h"
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 
-/* USER CODE END Includes */
-
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
-
-/* USER CODE BEGIN PFP */
-//__weak void SystemClock_Config(void);
 
 void SystemClock_Config(void);
-/* USER CODE END PFP */
 
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
+//Task 1
+void vTask1 (void *pvParameters)
+{
+  uint32_t reg_o;
+	while(1)
+	{
+    reg_o = GPIOA->ODR;
 
+		GPIOA->BSRR = ((reg_o & (0x1UL << 6U)) << 16U) | (~reg_o & (0x1UL << 6U));
+		vTaskDelay(2000);
+	}
+}
+
+//task 2
+void vTask2 (void *pvParameters)
+{
+	uint32_t reg_b;
+	while(1)
+	{
+    reg_b = GPIOA->ODR;
+
+		GPIOA->BSRR = ((reg_b & (0x1UL << 7U)) << 16U) | (~reg_b & (0x1UL << 7U));
+		vTaskDelay(3000);
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -66,43 +57,28 @@ void SystemClock_Config(void);
 int main(void)
 {
 
-  /* USER CODE BEGIN 1 */
-
-  /* USER CODE END 1 */
-
-  /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  //HAL_Init();
-  //Init_Tick();
-
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
   /* Configure the system clock */
   SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
-
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  /* USER CODE BEGIN 2 */
-  
-  /* USER CODE END 2 */
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
+
+
+  xTaskCreate(vTask1, "Task_1", 256, NULL, 1, NULL);
+	xTaskCreate(vTask2, "Task_2", 256, NULL, 2, NULL);
+	// Start the Scheduler
+	vTaskStartScheduler();
+  
+
   while (1)
   {
-    GPIOA->ODR &= ~((1UL << 6U)|(1UL << 7U));
-    GPIOA->ODR |=  (1UL << 7U);
-    s_delay(300);
-    GPIOA->ODR &= ~((1UL << 6U)|(1UL << 7U));
-    GPIOA->ODR |=  (1UL << 6U);
-    s_delay(300);
+    // GPIOA->ODR &= ~((1UL << 6U)|(1UL << 7U));
+    // GPIOA->ODR |=  (1UL << 7U);
+    // s_delay(3000);
+    // GPIOA->ODR &= ~((1UL << 6U)|(1UL << 7U));
+    // GPIOA->ODR |=  (1UL << 6U);
+    // s_delay(3000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -207,20 +183,25 @@ void SystemClock_Config(void){
   //SET wait states to the LATENCY bits
   FLASH->ACR   = (FLASH->ACR & (~(0x00000007U))) | (5UL);
 
-  //APB high-speed prescaler (APB2)
-  RCC->CFGR    = (RCC->CFGR & (~(0x0000E000U))) | (4UL);
+  //APB high-speed prescaler (APB2)  /2
+  RCC->CFGR    = (RCC->CFGR & (~(0x0000E000U))) | (4UL << 13U);
 
-  //SET APB Low speed prescaler APB1
-  RCC->CFGR    = (RCC->CFGR & (~(0x00001C00U))) | (5UL);
+  //SET APB Low speed prescaler APB1 /4
+  RCC->CFGR    = (RCC->CFGR & (~(0x00001C00U))) | (5UL << 10U);
 
   //SET AHB prescaler
-  RCC->CFGR    &= (~(0xFFUL << 4));
+  RCC->CFGR    &= (~(0xFUL << 4));
 
   //set pll is SYSCLK source
   RCC->CFGR    = (RCC->CFGR & (~(0x00000003U))) | (2UL);
 
   SystemCoreClock = 168000000;
-  Init_Tick();
+#if (USE_TIM_TICK_DEF == 1)
+    Init_Tick_Tim();
+#else
+    Init_Tick();
+#endif
+
 }
 /* USER CODE END 4 */
 
