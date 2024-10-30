@@ -1,0 +1,257 @@
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"w25qxx.c"
+  16              		.text
+  17              		.section	.text.W25Q_Delay,"ax",%progbits
+  18              		.align	1
+  19              		.global	W25Q_Delay
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	W25Q_Delay:
+  25              		@ args = 0, pretend = 0, frame = 8
+  26              		@ frame_needed = 1, uses_anonymous_args = 0
+  27 0000 80B5     		push	{r7, lr}
+  28 0002 82B0     		sub	sp, sp, #8
+  29 0004 00AF     		add	r7, sp, #0
+  30 0006 7860     		str	r0, [r7, #4]
+  31 0008 7868     		ldr	r0, [r7, #4]
+  32 000a FFF7FEFF 		bl	s_delay
+  33 000e 00BF     		nop
+  34 0010 0837     		adds	r7, r7, #8
+  35 0012 BD46     		mov	sp, r7
+  36              		@ sp needed
+  37 0014 80BD     		pop	{r7, pc}
+  39              		.section	.text.csLOW,"ax",%progbits
+  40              		.align	1
+  41              		.global	csLOW
+  42              		.syntax unified
+  43              		.thumb
+  44              		.thumb_func
+  46              	csLOW:
+  47              		@ args = 0, pretend = 0, frame = 0
+  48              		@ frame_needed = 1, uses_anonymous_args = 0
+  49 0000 80B5     		push	{r7, lr}
+  50 0002 00AF     		add	r7, sp, #0
+  51 0004 0022     		movs	r2, #0
+  52 0006 0021     		movs	r1, #0
+  53 0008 0248     		ldr	r0, .L3
+  54 000a FFF7FEFF 		bl	gpio_write
+  55 000e 00BF     		nop
+  56 0010 80BD     		pop	{r7, pc}
+  57              	.L4:
+  58 0012 00BF     		.align	2
+  59              	.L3:
+  60 0014 00040240 		.word	1073873920
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s 			page 2
+
+
+  62              		.section	.text.csHIGH,"ax",%progbits
+  63              		.align	1
+  64              		.global	csHIGH
+  65              		.syntax unified
+  66              		.thumb
+  67              		.thumb_func
+  69              	csHIGH:
+  70              		@ args = 0, pretend = 0, frame = 0
+  71              		@ frame_needed = 1, uses_anonymous_args = 0
+  72 0000 80B5     		push	{r7, lr}
+  73 0002 00AF     		add	r7, sp, #0
+  74 0004 0122     		movs	r2, #1
+  75 0006 0021     		movs	r1, #0
+  76 0008 0248     		ldr	r0, .L6
+  77 000a FFF7FEFF 		bl	gpio_write
+  78 000e 00BF     		nop
+  79 0010 80BD     		pop	{r7, pc}
+  80              	.L7:
+  81 0012 00BF     		.align	2
+  82              	.L6:
+  83 0014 00040240 		.word	1073873920
+  85              		.section	.text.SPI_Write,"ax",%progbits
+  86              		.align	1
+  87              		.global	SPI_Write
+  88              		.syntax unified
+  89              		.thumb
+  90              		.thumb_func
+  92              	SPI_Write:
+  93              		@ args = 0, pretend = 0, frame = 8
+  94              		@ frame_needed = 1, uses_anonymous_args = 0
+  95 0000 80B5     		push	{r7, lr}
+  96 0002 82B0     		sub	sp, sp, #8
+  97 0004 00AF     		add	r7, sp, #0
+  98 0006 7860     		str	r0, [r7, #4]
+  99 0008 0B46     		mov	r3, r1
+ 100 000a FB70     		strb	r3, [r7, #3]
+ 101 000c FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 102 000e 9BB2     		uxth	r3, r3
+ 103 0010 4FF4FA62 		mov	r2, #2000
+ 104 0014 1946     		mov	r1, r3
+ 105 0016 7868     		ldr	r0, [r7, #4]
+ 106 0018 FFF7FEFF 		bl	SPI1_Transmit
+ 107 001c 00BF     		nop
+ 108 001e 0837     		adds	r7, r7, #8
+ 109 0020 BD46     		mov	sp, r7
+ 110              		@ sp needed
+ 111 0022 80BD     		pop	{r7, pc}
+ 113              		.section	.text.SPI_Read,"ax",%progbits
+ 114              		.align	1
+ 115              		.global	SPI_Read
+ 116              		.syntax unified
+ 117              		.thumb
+ 118              		.thumb_func
+ 120              	SPI_Read:
+ 121              		@ args = 0, pretend = 0, frame = 8
+ 122              		@ frame_needed = 1, uses_anonymous_args = 0
+ 123 0000 80B5     		push	{r7, lr}
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s 			page 3
+
+
+ 124 0002 82B0     		sub	sp, sp, #8
+ 125 0004 00AF     		add	r7, sp, #0
+ 126 0006 7860     		str	r0, [r7, #4]
+ 127 0008 0B46     		mov	r3, r1
+ 128 000a FB70     		strb	r3, [r7, #3]
+ 129 000c FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 130 000e 9BB2     		uxth	r3, r3
+ 131 0010 41F28832 		movw	r2, #5000
+ 132 0014 1946     		mov	r1, r3
+ 133 0016 7868     		ldr	r0, [r7, #4]
+ 134 0018 FFF7FEFF 		bl	SPI1_Receive
+ 135 001c 00BF     		nop
+ 136 001e 0837     		adds	r7, r7, #8
+ 137 0020 BD46     		mov	sp, r7
+ 138              		@ sp needed
+ 139 0022 80BD     		pop	{r7, pc}
+ 141              		.section	.text.W25Q_Reset,"ax",%progbits
+ 142              		.align	1
+ 143              		.global	W25Q_Reset
+ 144              		.syntax unified
+ 145              		.thumb
+ 146              		.thumb_func
+ 148              	W25Q_Reset:
+ 149              		@ args = 0, pretend = 0, frame = 8
+ 150              		@ frame_needed = 1, uses_anonymous_args = 0
+ 151 0000 80B5     		push	{r7, lr}
+ 152 0002 82B0     		sub	sp, sp, #8
+ 153 0004 00AF     		add	r7, sp, #0
+ 154 0006 6623     		movs	r3, #102
+ 155 0008 3B71     		strb	r3, [r7, #4]
+ 156 000a 9923     		movs	r3, #153
+ 157 000c 7B71     		strb	r3, [r7, #5]
+ 158 000e FFF7FEFF 		bl	csLOW
+ 159 0012 3B1D     		adds	r3, r7, #4
+ 160 0014 0221     		movs	r1, #2
+ 161 0016 1846     		mov	r0, r3
+ 162 0018 FFF7FEFF 		bl	SPI_Write
+ 163 001c FFF7FEFF 		bl	csHIGH
+ 164 0020 6420     		movs	r0, #100
+ 165 0022 FFF7FEFF 		bl	W25Q_Delay
+ 166 0026 00BF     		nop
+ 167 0028 0837     		adds	r7, r7, #8
+ 168 002a BD46     		mov	sp, r7
+ 169              		@ sp needed
+ 170 002c 80BD     		pop	{r7, pc}
+ 172              		.section	.rodata
+ 173              		.align	2
+ 174              	.LC0:
+ 175 0000 49443A20 		.ascii	"ID: 0x%02X%02X%02X%02X\015\012\000"
+ 175      30782530 
+ 175      32582530 
+ 175      32582530 
+ 175      32582530 
+ 176              		.section	.text.W25Q_ReadID,"ax",%progbits
+ 177              		.align	1
+ 178              		.global	W25Q_ReadID
+ 179              		.syntax unified
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s 			page 4
+
+
+ 180              		.thumb
+ 181              		.thumb_func
+ 183              	W25Q_ReadID:
+ 184              		@ args = 0, pretend = 0, frame = 16
+ 185              		@ frame_needed = 1, uses_anonymous_args = 0
+ 186 0000 80B5     		push	{r7, lr}
+ 187 0002 86B0     		sub	sp, sp, #24
+ 188 0004 02AF     		add	r7, sp, #8
+ 189 0006 7860     		str	r0, [r7, #4]
+ 190 0008 6FF06003 		mvn	r3, #96
+ 191 000c FB60     		str	r3, [r7, #12]
+ 192 000e FFF7FEFF 		bl	csLOW
+ 193 0012 07F10801 		add	r1, r7, #8
+ 194 0016 07F10C00 		add	r0, r7, #12
+ 195 001a 4FF47A73 		mov	r3, #1000
+ 196 001e 0093     		str	r3, [sp]
+ 197 0020 0423     		movs	r3, #4
+ 198 0022 0422     		movs	r2, #4
+ 199 0024 FFF7FEFF 		bl	SPI1_TransmitReceive
+ 200 0028 FFF7FEFF 		bl	csHIGH
+ 201 002c 3B7A     		ldrb	r3, [r7, #8]	@ zero_extendqisi2
+ 202 002e 1946     		mov	r1, r3
+ 203 0030 7B7A     		ldrb	r3, [r7, #9]	@ zero_extendqisi2
+ 204 0032 1846     		mov	r0, r3
+ 205 0034 BB7A     		ldrb	r3, [r7, #10]	@ zero_extendqisi2
+ 206 0036 FA7A     		ldrb	r2, [r7, #11]	@ zero_extendqisi2
+ 207 0038 0192     		str	r2, [sp, #4]
+ 208 003a 0093     		str	r3, [sp]
+ 209 003c 0346     		mov	r3, r0
+ 210 003e 0A46     		mov	r2, r1
+ 211 0040 0349     		ldr	r1, .L12
+ 212 0042 7868     		ldr	r0, [r7, #4]
+ 213 0044 FFF7FEFF 		bl	sprintf
+ 214 0048 00BF     		nop
+ 215 004a 1037     		adds	r7, r7, #16
+ 216 004c BD46     		mov	sp, r7
+ 217              		@ sp needed
+ 218 004e 80BD     		pop	{r7, pc}
+ 219              	.L13:
+ 220              		.align	2
+ 221              	.L12:
+ 222 0050 00000000 		.word	.LC0
+ 224              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 w25qxx.c
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:18     .text.W25Q_Delay:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:24     .text.W25Q_Delay:00000000 W25Q_Delay
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:40     .text.csLOW:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:46     .text.csLOW:00000000 csLOW
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:60     .text.csLOW:00000014 $d
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:63     .text.csHIGH:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:69     .text.csHIGH:00000000 csHIGH
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:83     .text.csHIGH:00000014 $d
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:86     .text.SPI_Write:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:92     .text.SPI_Write:00000000 SPI_Write
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:114    .text.SPI_Read:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:120    .text.SPI_Read:00000000 SPI_Read
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:142    .text.W25Q_Reset:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:148    .text.W25Q_Reset:00000000 W25Q_Reset
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:173    .rodata:00000000 $d
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:177    .text.W25Q_ReadID:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:183    .text.W25Q_ReadID:00000000 W25Q_ReadID
+C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:222    .text.W25Q_ReadID:00000050 $d
+
+UNDEFINED SYMBOLS
+s_delay
+gpio_write
+SPI1_Transmit
+SPI1_Receive
+SPI1_TransmitReceive
+sprintf

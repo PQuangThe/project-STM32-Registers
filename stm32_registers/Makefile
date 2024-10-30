@@ -38,11 +38,14 @@ BUILD_DIR = build
 C_SOURCES =  \
 Src/main.c \
 Src/gpio.c \
+Src/uart.c \
+Src/spi.c \
 Src/stm32f4xx_it.c \
-Src/sys_delay.c \
+Src/sys_clock.c \
 Src/system_stm32f4xx.c \
 Src/sysmem.c \
 Src/syscalls.c  \
+Src/w25qxx.c \
 FreeRTOS/croutine.c \
 FreeRTOS/event_groups.c \
 FreeRTOS/list.c \

@@ -15,40 +15,57 @@
   *
   ******************************************************************************
   */
-/* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
+
 #include "main.h"
 
 
 
-void SystemClock_Config(void);
-
-//Task 1
-void vTask1 (void *pvParameters)
+void vTaskLED (void *pvParameters)
 {
-  uint32_t reg_o;
+  uint32_t pa = (uint32_t)pvParameters;
+  uint16_t LDelay_[2]={2000,500};
 	while(1)
 	{
-    reg_o = GPIOA->ODR;
+    gpio_tog(GPIOA,pa+6);
+		vTaskDelay(LDelay_[pa]);
+	}
+}
 
-		GPIOA->BSRR = ((reg_o & (0x1UL << 6U)) << 16U) | (~reg_o & (0x1UL << 6U));
+void vTask1 (void *pvParameters)
+{
+	while(1)
+	{
+    uint8_t *dynamicArray = (uint8_t *)pvPortMalloc(24 * sizeof(uint8_t));
+    memset(dynamicArray, 0, 24 * sizeof(uint8_t));
+    if (dynamicArray != NULL) {
+      GetFromBuff_DMA(dynamicArray);
+      Usart_Send_Char('\n');
+      Usart_Send_String(dynamicArray);
+      Usart_Send_Char('\n');
+      vPortFree(dynamicArray);
+    }
+    
+		vTaskDelay(100);
+	}
+}
+/*
+
+*/
+void vTaskFlash_W25(void *pvParameters)
+{
+  while(1)
+	{
+    uint8_t *Array = (uint8_t *)pvPortMalloc(40 * sizeof(uint8_t));
+    if (Array != NULL) {
+      W25Q_ReadID((char *)Array);
+      Usart_Transmit(Array,strlen((char *)Array),1000);
+      vPortFree(Array);
+    }
+    // W25Q_ReadID(buff);
+    // Usart_Transmit((uint8_t*)buff,strlen(buff),1000);
 		vTaskDelay(2000);
 	}
 }
-
-//task 2
-void vTask2 (void *pvParameters)
-{
-	uint32_t reg_b;
-	while(1)
-	{
-    reg_b = GPIOA->ODR;
-
-		GPIOA->BSRR = ((reg_b & (0x1UL << 7U)) << 16U) | (~reg_b & (0x1UL << 7U));
-		vTaskDelay(3000);
-	}
-}
-/* USER CODE END 0 */
 
 /**
   * @brief  The application entry point.
@@ -62,147 +79,28 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  USART1_Init();
+  SPI_Init();
+  //Uart1_Receive_DMA();
+  W25Q_Reset();
 
+  xTaskCreate(vTaskLED, "Led_blink" , 64 , (void *)0, 0, NULL);
+  xTaskCreate(vTaskLED, "Led_blink1", 64 , (void *)1, 1, NULL);
+  //xTaskCreate(vTask1  , "Task_1"    , 1024, NULL     , 3, NULL);
 
-
-  xTaskCreate(vTask1, "Task_1", 256, NULL, 1, NULL);
-	xTaskCreate(vTask2, "Task_2", 256, NULL, 2, NULL);
+  xTaskCreate(vTaskFlash_W25,"Task_flash_w25", 2048 , NULL, 2, NULL);
 	// Start the Scheduler
 	vTaskStartScheduler();
   
 
   while (1)
   {
-    // GPIOA->ODR &= ~((1UL << 6U)|(1UL << 7U));
-    // GPIOA->ODR |=  (1UL << 7U);
-    // s_delay(3000);
-    // GPIOA->ODR &= ~((1UL << 6U)|(1UL << 7U));
-    // GPIOA->ODR |=  (1UL << 6U);
-    // s_delay(3000);
-    /* USER CODE END WHILE */
 
-    /* USER CODE BEGIN 3 */
   }
-  /* USER CODE END 3 */
+
+  return 1;
 }
 
-/**
-  * @brief System Clock Configuration
-  * @retval None
-  */
-// __weak void SystemClock_Config(void)
-// {
-//   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-//   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-
-//   /** Configure the main internal regulator output voltage
-//   */
-//   __HAL_RCC_PWR_CLK_ENABLE();
-//   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-
-//   /** Initializes the RCC Oscillators according to the specified parameters
-//   * in the RCC_OscInitTypeDef structure.
-//   */
-//   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-//   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-//   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-//   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-//   RCC_OscInitStruct.PLL.PLLM = 4;
-//   RCC_OscInitStruct.PLL.PLLN = 168;
-//   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-//   RCC_OscInitStruct.PLL.PLLQ = 4;
-//   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-//   {
-//     Error_Handler();
-//   }
-
-//   /** Initializes the CPU, AHB and APB buses clocks
-//   */
-//   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-//                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-//   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-//   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-//   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
-//   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
-
-//   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
-//   {
-//     Error_Handler();
-//   }
-// }
-
-/* USER CODE BEGIN 4 */
-void SystemClock_Config(void){
-
-  /* Configure Flash prefetch, Instruction cache, Data cache */ 
-  FLASH->ACR |= (0x1UL << 9U) ;
-
-  FLASH->ACR |= (0x1UL << 10U);
-
-  FLASH->ACR |= (0x1UL << 8U);
-
-  NVIC_SetPriorityGrouping(3U);
-
-  RCC->APB2ENR |= (0x1UL << 14U);
-
-
-  //Enable Power interface clock
-  RCC->APB1ENR |= (1UL << 28);
-
-  // Set regulator voltage scaling output is Scale 1 mode
-  PWR->CR      |= (1UL << 14);
-
-  //Enable HSE clock
-  RCC->CR      |= (1UL << 16);
-
-  //wait HSE ready
-  while( !(RCC->CR & (1U << 17)));
-
-  //disable PLL 
-  RCC->CR     &= ~(1UL << 24);
-
-  //Wait PLL disabled
-  while( RCC->CR & (1UL << 25));
-
-  /*Config PLL
-    PLLN = 168
-    PLLM = 4
-    PLLP = 0 (Divide 2)
-    PLLQ = 4
-    PLL clock source is HSE
-
-  */
-  RCC->PLLCFGR = (0X00000000U  | (1UL << 22) | 4UL | (168UL << 6) | (4UL << 24) );
-
-  //Enable PLL 
-  RCC->CR     |= (1UL << 24);
-
-  //Wait PLL ready
-  while( !(RCC->CR & (1UL << 25)));
-
-  //SET wait states to the LATENCY bits
-  FLASH->ACR   = (FLASH->ACR & (~(0x00000007U))) | (5UL);
-
-  //APB high-speed prescaler (APB2)  /2
-  RCC->CFGR    = (RCC->CFGR & (~(0x0000E000U))) | (4UL << 13U);
-
-  //SET APB Low speed prescaler APB1 /4
-  RCC->CFGR    = (RCC->CFGR & (~(0x00001C00U))) | (5UL << 10U);
-
-  //SET AHB prescaler
-  RCC->CFGR    &= (~(0xFUL << 4));
-
-  //set pll is SYSCLK source
-  RCC->CFGR    = (RCC->CFGR & (~(0x00000003U))) | (2UL);
-
-  SystemCoreClock = 168000000;
-#if (USE_TIM_TICK_DEF == 1)
-    Init_Tick_Tim();
-#else
-    Init_Tick();
-#endif
-
-}
 /* USER CODE END 4 */
 
 /**

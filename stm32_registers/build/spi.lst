@@ -1,0 +1,437 @@
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"spi.c"
+  16              		.text
+  17              		.section	.text.SPI_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	SPI_Init
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	SPI_Init:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 1, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 80B4     		push	{r7}
+  29 0002 00AF     		add	r7, sp, #0
+  30 0004 214B     		ldr	r3, .L2
+  31 0006 1B68     		ldr	r3, [r3]
+  32 0008 204A     		ldr	r2, .L2
+  33 000a 23F00103 		bic	r3, r3, #1
+  34 000e 1360     		str	r3, [r2]
+  35 0010 1E4B     		ldr	r3, .L2
+  36 0012 1B68     		ldr	r3, [r3]
+  37 0014 1D4A     		ldr	r2, .L2
+  38 0016 23F00103 		bic	r3, r3, #1
+  39 001a 1360     		str	r3, [r2]
+  40 001c 1B4B     		ldr	r3, .L2
+  41 001e 1B68     		ldr	r3, [r3]
+  42 0020 1A4A     		ldr	r2, .L2
+  43 0022 23F00203 		bic	r3, r3, #2
+  44 0026 1360     		str	r3, [r2]
+  45 0028 184B     		ldr	r3, .L2
+  46 002a 1B68     		ldr	r3, [r3]
+  47 002c 174A     		ldr	r2, .L2
+  48 002e 43F00403 		orr	r3, r3, #4
+  49 0032 1360     		str	r3, [r2]
+  50 0034 154B     		ldr	r3, .L2
+  51 0036 1B68     		ldr	r3, [r3]
+  52 0038 23F03803 		bic	r3, r3, #56
+  53 003c 134A     		ldr	r2, .L2
+  54 003e 43F01803 		orr	r3, r3, #24
+  55 0042 1360     		str	r3, [r2]
+  56 0044 114B     		ldr	r3, .L2
+  57 0046 1B68     		ldr	r3, [r3]
+  58 0048 104A     		ldr	r2, .L2
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s 			page 2
+
+
+  59 004a 23F08003 		bic	r3, r3, #128
+  60 004e 1360     		str	r3, [r2]
+  61 0050 0E4B     		ldr	r3, .L2
+  62 0052 1B68     		ldr	r3, [r3]
+  63 0054 0D4A     		ldr	r2, .L2
+  64 0056 43F40073 		orr	r3, r3, #512
+  65 005a 1360     		str	r3, [r2]
+  66 005c 0B4B     		ldr	r3, .L2
+  67 005e 1B68     		ldr	r3, [r3]
+  68 0060 0A4A     		ldr	r2, .L2
+  69 0062 43F48073 		orr	r3, r3, #256
+  70 0066 1360     		str	r3, [r2]
+  71 0068 084B     		ldr	r3, .L2
+  72 006a 1B68     		ldr	r3, [r3]
+  73 006c 074A     		ldr	r2, .L2
+  74 006e 23F08003 		bic	r3, r3, #128
+  75 0072 1360     		str	r3, [r2]
+  76 0074 054B     		ldr	r3, .L2
+  77 0076 1B68     		ldr	r3, [r3]
+  78 0078 044A     		ldr	r2, .L2
+  79 007a 43F04003 		orr	r3, r3, #64
+  80 007e 1360     		str	r3, [r2]
+  81 0080 00BF     		nop
+  82 0082 BD46     		mov	sp, r7
+  83              		@ sp needed
+  84 0084 5DF8047B 		ldr	r7, [sp], #4
+  85 0088 7047     		bx	lr
+  86              	.L3:
+  87 008a 00BF     		.align	2
+  88              	.L2:
+  89 008c 00300140 		.word	1073819648
+  91              		.section	.text.SPI1_Transmit,"ax",%progbits
+  92              		.align	1
+  93              		.global	SPI1_Transmit
+  94              		.syntax unified
+  95              		.thumb
+  96              		.thumb_func
+  98              	SPI1_Transmit:
+  99              		@ args = 0, pretend = 0, frame = 16
+ 100              		@ frame_needed = 1, uses_anonymous_args = 0
+ 101 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 102 0004 87B0     		sub	sp, sp, #28
+ 103 0006 02AF     		add	r7, sp, #8
+ 104 0008 7860     		str	r0, [r7, #4]
+ 105 000a 0B46     		mov	r3, r1
+ 106 000c 7B80     		strh	r3, [r7, #2]	@ movhi
+ 107 000e 1346     		mov	r3, r2	@ movhi
+ 108 0010 3B80     		strh	r3, [r7]	@ movhi
+ 109 0012 6B46     		mov	r3, sp
+ 110 0014 1E46     		mov	r6, r3
+ 111 0016 7988     		ldrh	r1, [r7, #2]
+ 112 0018 0B46     		mov	r3, r1
+ 113 001a 013B     		subs	r3, r3, #1
+ 114 001c FB60     		str	r3, [r7, #12]
+ 115 001e 8BB2     		uxth	r3, r1
+ 116 0020 0022     		movs	r2, #0
+ 117 0022 9846     		mov	r8, r3
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s 			page 3
+
+
+ 118 0024 9146     		mov	r9, r2
+ 119 0026 4FF00002 		mov	r2, #0
+ 120 002a 4FF00003 		mov	r3, #0
+ 121 002e 4FEAC903 		lsl	r3, r9, #3
+ 122 0032 43EA5873 		orr	r3, r3, r8, lsr #29
+ 123 0036 4FEAC802 		lsl	r2, r8, #3
+ 124 003a 8BB2     		uxth	r3, r1
+ 125 003c 0022     		movs	r2, #0
+ 126 003e 1C46     		mov	r4, r3
+ 127 0040 1546     		mov	r5, r2
+ 128 0042 4FF00002 		mov	r2, #0
+ 129 0046 4FF00003 		mov	r3, #0
+ 130 004a EB00     		lsls	r3, r5, #3
+ 131 004c 43EA5473 		orr	r3, r3, r4, lsr #29
+ 132 0050 E200     		lsls	r2, r4, #3
+ 133 0052 0B46     		mov	r3, r1
+ 134 0054 0733     		adds	r3, r3, #7
+ 135 0056 DB08     		lsrs	r3, r3, #3
+ 136 0058 DB00     		lsls	r3, r3, #3
+ 137 005a ADEB030D 		sub	sp, sp, r3
+ 138 005e 02AB     		add	r3, sp, #8
+ 139 0060 0033     		adds	r3, r3, #0
+ 140 0062 BB60     		str	r3, [r7, #8]
+ 141 0064 7988     		ldrh	r1, [r7, #2]
+ 142 0066 7A88     		ldrh	r2, [r7, #2]
+ 143 0068 3B88     		ldrh	r3, [r7]
+ 144 006a 0093     		str	r3, [sp]
+ 145 006c 0B46     		mov	r3, r1
+ 146 006e B968     		ldr	r1, [r7, #8]
+ 147 0070 7868     		ldr	r0, [r7, #4]
+ 148 0072 FFF7FEFF 		bl	SPI1_TransmitReceive
+ 149 0076 B546     		mov	sp, r6
+ 150 0078 00BF     		nop
+ 151 007a 1437     		adds	r7, r7, #20
+ 152 007c BD46     		mov	sp, r7
+ 153              		@ sp needed
+ 154 007e BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 156              		.section	.text.SPI1_Receive,"ax",%progbits
+ 157              		.align	1
+ 158              		.global	SPI1_Receive
+ 159              		.syntax unified
+ 160              		.thumb
+ 161              		.thumb_func
+ 163              	SPI1_Receive:
+ 164              		@ args = 0, pretend = 0, frame = 24
+ 165              		@ frame_needed = 1, uses_anonymous_args = 0
+ 166 0000 80B5     		push	{r7, lr}
+ 167 0002 86B0     		sub	sp, sp, #24
+ 168 0004 00AF     		add	r7, sp, #0
+ 169 0006 7860     		str	r0, [r7, #4]
+ 170 0008 0B46     		mov	r3, r1
+ 171 000a 7B80     		strh	r3, [r7, #2]	@ movhi
+ 172 000c 1346     		mov	r3, r2	@ movhi
+ 173 000e 3B80     		strh	r3, [r7]	@ movhi
+ 174 0010 FFF7FEFF 		bl	Get_Tick
+ 175 0014 F860     		str	r0, [r7, #12]
+ 176 0016 7B68     		ldr	r3, [r7, #4]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s 			page 4
+
+
+ 177 0018 7B61     		str	r3, [r7, #20]
+ 178 001a 7B88     		ldrh	r3, [r7, #2]	@ movhi
+ 179 001c 7B82     		strh	r3, [r7, #18]	@ movhi
+ 180 001e FF23     		movs	r3, #255
+ 181 0020 FB72     		strb	r3, [r7, #11]
+ 182 0022 0123     		movs	r3, #1
+ 183 0024 7B74     		strb	r3, [r7, #17]
+ 184 0026 27E0     		b	.L6
+ 185              	.L10:
+ 186 0028 184B     		ldr	r3, .L13
+ 187 002a 9B68     		ldr	r3, [r3, #8]
+ 188 002c 03F00203 		and	r3, r3, #2
+ 189 0030 022B     		cmp	r3, #2
+ 190 0032 07D1     		bne	.L7
+ 191 0034 7B7C     		ldrb	r3, [r7, #17]	@ zero_extendqisi2
+ 192 0036 012B     		cmp	r3, #1
+ 193 0038 04D1     		bne	.L7
+ 194 003a 144A     		ldr	r2, .L13
+ 195 003c FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
+ 196 003e D360     		str	r3, [r2, #12]
+ 197 0040 0023     		movs	r3, #0
+ 198 0042 7B74     		strb	r3, [r7, #17]
+ 199              	.L7:
+ 200 0044 114B     		ldr	r3, .L13
+ 201 0046 9B68     		ldr	r3, [r3, #8]
+ 202 0048 03F00103 		and	r3, r3, #1
+ 203 004c 012B     		cmp	r3, #1
+ 204 004e 0BD1     		bne	.L8
+ 205 0050 0F4B     		ldr	r3, .L13+4
+ 206 0052 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 207 0054 7B69     		ldr	r3, [r7, #20]
+ 208 0056 1A70     		strb	r2, [r3]
+ 209 0058 7B69     		ldr	r3, [r7, #20]
+ 210 005a 0133     		adds	r3, r3, #1
+ 211 005c 7B61     		str	r3, [r7, #20]
+ 212 005e 7B8A     		ldrh	r3, [r7, #18]
+ 213 0060 013B     		subs	r3, r3, #1
+ 214 0062 7B82     		strh	r3, [r7, #18]	@ movhi
+ 215 0064 0123     		movs	r3, #1
+ 216 0066 7B74     		strb	r3, [r7, #17]
+ 217              	.L8:
+ 218 0068 FFF7FEFF 		bl	Get_Tick
+ 219 006c 0246     		mov	r2, r0
+ 220 006e FB68     		ldr	r3, [r7, #12]
+ 221 0070 D21A     		subs	r2, r2, r3
+ 222 0072 3B88     		ldrh	r3, [r7]
+ 223 0074 9A42     		cmp	r2, r3
+ 224 0076 03D2     		bcs	.L11
+ 225              	.L6:
+ 226 0078 7B8A     		ldrh	r3, [r7, #18]
+ 227 007a 002B     		cmp	r3, #0
+ 228 007c D4D1     		bne	.L10
+ 229 007e 00E0     		b	.L12
+ 230              	.L11:
+ 231 0080 00BF     		nop
+ 232              	.L12:
+ 233 0082 00BF     		nop
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s 			page 5
+
+
+ 234 0084 1837     		adds	r7, r7, #24
+ 235 0086 BD46     		mov	sp, r7
+ 236              		@ sp needed
+ 237 0088 80BD     		pop	{r7, pc}
+ 238              	.L14:
+ 239 008a 00BF     		.align	2
+ 240              	.L13:
+ 241 008c 00300140 		.word	1073819648
+ 242 0090 0C300140 		.word	1073819660
+ 244              		.section	.text.SPI1_TransmitReceive,"ax",%progbits
+ 245              		.align	1
+ 246              		.global	SPI1_TransmitReceive
+ 247              		.syntax unified
+ 248              		.thumb
+ 249              		.thumb_func
+ 251              	SPI1_TransmitReceive:
+ 252              		@ args = 4, pretend = 0, frame = 40
+ 253              		@ frame_needed = 1, uses_anonymous_args = 0
+ 254 0000 80B5     		push	{r7, lr}
+ 255 0002 8AB0     		sub	sp, sp, #40
+ 256 0004 00AF     		add	r7, sp, #0
+ 257 0006 F860     		str	r0, [r7, #12]
+ 258 0008 B960     		str	r1, [r7, #8]
+ 259 000a 1146     		mov	r1, r2
+ 260 000c 1A46     		mov	r2, r3
+ 261 000e 0B46     		mov	r3, r1	@ movhi
+ 262 0010 FB80     		strh	r3, [r7, #6]	@ movhi
+ 263 0012 1346     		mov	r3, r2	@ movhi
+ 264 0014 BB80     		strh	r3, [r7, #4]	@ movhi
+ 265 0016 FFF7FEFF 		bl	Get_Tick
+ 266 001a 7861     		str	r0, [r7, #20]
+ 267 001c FB68     		ldr	r3, [r7, #12]
+ 268 001e 7B62     		str	r3, [r7, #36]
+ 269 0020 FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 270 0022 7B84     		strh	r3, [r7, #34]	@ movhi
+ 271 0024 BB68     		ldr	r3, [r7, #8]
+ 272 0026 FB61     		str	r3, [r7, #28]
+ 273 0028 BB88     		ldrh	r3, [r7, #4]	@ movhi
+ 274 002a 7B83     		strh	r3, [r7, #26]	@ movhi
+ 275 002c 0123     		movs	r3, #1
+ 276 002e 7B76     		strb	r3, [r7, #25]
+ 277 0030 34E0     		b	.L16
+ 278              	.L20:
+ 279 0032 204B     		ldr	r3, .L23
+ 280 0034 9B68     		ldr	r3, [r3, #8]
+ 281 0036 03F00203 		and	r3, r3, #2
+ 282 003a 022B     		cmp	r3, #2
+ 283 003c 11D1     		bne	.L17
+ 284 003e 7B8C     		ldrh	r3, [r7, #34]
+ 285 0040 002B     		cmp	r3, #0
+ 286 0042 0ED0     		beq	.L17
+ 287 0044 7B7E     		ldrb	r3, [r7, #25]	@ zero_extendqisi2
+ 288 0046 012B     		cmp	r3, #1
+ 289 0048 0BD1     		bne	.L17
+ 290 004a 7B6A     		ldr	r3, [r7, #36]
+ 291 004c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 292 004e 194B     		ldr	r3, .L23
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s 			page 6
+
+
+ 293 0050 DA60     		str	r2, [r3, #12]
+ 294 0052 7B6A     		ldr	r3, [r7, #36]
+ 295 0054 0133     		adds	r3, r3, #1
+ 296 0056 7B62     		str	r3, [r7, #36]
+ 297 0058 7B8C     		ldrh	r3, [r7, #34]
+ 298 005a 013B     		subs	r3, r3, #1
+ 299 005c 7B84     		strh	r3, [r7, #34]	@ movhi
+ 300 005e 0023     		movs	r3, #0
+ 301 0060 7B76     		strb	r3, [r7, #25]
+ 302              	.L17:
+ 303 0062 144B     		ldr	r3, .L23
+ 304 0064 9B68     		ldr	r3, [r3, #8]
+ 305 0066 03F00103 		and	r3, r3, #1
+ 306 006a 012B     		cmp	r3, #1
+ 307 006c 0ED1     		bne	.L18
+ 308 006e 7B8B     		ldrh	r3, [r7, #26]
+ 309 0070 002B     		cmp	r3, #0
+ 310 0072 0BD0     		beq	.L18
+ 311 0074 104B     		ldr	r3, .L23+4
+ 312 0076 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 313 0078 FB69     		ldr	r3, [r7, #28]
+ 314 007a 1A70     		strb	r2, [r3]
+ 315 007c FB69     		ldr	r3, [r7, #28]
+ 316 007e 0133     		adds	r3, r3, #1
+ 317 0080 FB61     		str	r3, [r7, #28]
+ 318 0082 7B8B     		ldrh	r3, [r7, #26]
+ 319 0084 013B     		subs	r3, r3, #1
+ 320 0086 7B83     		strh	r3, [r7, #26]	@ movhi
+ 321 0088 0123     		movs	r3, #1
+ 322 008a 7B76     		strb	r3, [r7, #25]
+ 323              	.L18:
+ 324 008c FFF7FEFF 		bl	Get_Tick
+ 325 0090 0246     		mov	r2, r0
+ 326 0092 7B69     		ldr	r3, [r7, #20]
+ 327 0094 D21A     		subs	r2, r2, r3
+ 328 0096 3B8E     		ldrh	r3, [r7, #48]
+ 329 0098 9A42     		cmp	r2, r3
+ 330 009a 06D2     		bcs	.L21
+ 331              	.L16:
+ 332 009c 7B8C     		ldrh	r3, [r7, #34]
+ 333 009e 002B     		cmp	r3, #0
+ 334 00a0 C7D1     		bne	.L20
+ 335 00a2 7B8B     		ldrh	r3, [r7, #26]
+ 336 00a4 002B     		cmp	r3, #0
+ 337 00a6 C4D1     		bne	.L20
+ 338 00a8 00E0     		b	.L22
+ 339              	.L21:
+ 340 00aa 00BF     		nop
+ 341              	.L22:
+ 342 00ac 00BF     		nop
+ 343 00ae 2837     		adds	r7, r7, #40
+ 344 00b0 BD46     		mov	sp, r7
+ 345              		@ sp needed
+ 346 00b2 80BD     		pop	{r7, pc}
+ 347              	.L24:
+ 348              		.align	2
+ 349              	.L23:
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s 			page 7
+
+
+ 350 00b4 00300140 		.word	1073819648
+ 351 00b8 0C300140 		.word	1073819660
+ 353              		.section	.text.SPI1_Receive_Byte,"ax",%progbits
+ 354              		.align	1
+ 355              		.global	SPI1_Receive_Byte
+ 356              		.syntax unified
+ 357              		.thumb
+ 358              		.thumb_func
+ 360              	SPI1_Receive_Byte:
+ 361              		@ args = 0, pretend = 0, frame = 16
+ 362              		@ frame_needed = 1, uses_anonymous_args = 0
+ 363              		@ link register save eliminated.
+ 364 0000 80B4     		push	{r7}
+ 365 0002 85B0     		sub	sp, sp, #20
+ 366 0004 00AF     		add	r7, sp, #0
+ 367 0006 0346     		mov	r3, r0
+ 368 0008 FB71     		strb	r3, [r7, #7]
+ 369 000a 0F4B     		ldr	r3, .L29
+ 370 000c DB68     		ldr	r3, [r3, #12]
+ 371 000e FB73     		strb	r3, [r7, #15]
+ 372 0010 00BF     		nop
+ 373              	.L26:
+ 374 0012 0D4B     		ldr	r3, .L29
+ 375 0014 9B68     		ldr	r3, [r3, #8]
+ 376 0016 03F00203 		and	r3, r3, #2
+ 377 001a 022B     		cmp	r3, #2
+ 378 001c F9D1     		bne	.L26
+ 379 001e 0A4A     		ldr	r2, .L29
+ 380 0020 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 381 0022 D360     		str	r3, [r2, #12]
+ 382 0024 00BF     		nop
+ 383              	.L27:
+ 384 0026 084B     		ldr	r3, .L29
+ 385 0028 9B68     		ldr	r3, [r3, #8]
+ 386 002a 03F00103 		and	r3, r3, #1
+ 387 002e 012B     		cmp	r3, #1
+ 388 0030 F9D1     		bne	.L27
+ 389 0032 054B     		ldr	r3, .L29
+ 390 0034 DB68     		ldr	r3, [r3, #12]
+ 391 0036 FB73     		strb	r3, [r7, #15]
+ 392 0038 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 393 003a 1846     		mov	r0, r3
+ 394 003c 1437     		adds	r7, r7, #20
+ 395 003e BD46     		mov	sp, r7
+ 396              		@ sp needed
+ 397 0040 5DF8047B 		ldr	r7, [sp], #4
+ 398 0044 7047     		bx	lr
+ 399              	.L30:
+ 400 0046 00BF     		.align	2
+ 401              	.L29:
+ 402 0048 00300140 		.word	1073819648
+ 404              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 spi.c
+C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s:18     .text.SPI_Init:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s:24     .text.SPI_Init:00000000 SPI_Init
+C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s:89     .text.SPI_Init:0000008c $d
+C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s:92     .text.SPI1_Transmit:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s:98     .text.SPI1_Transmit:00000000 SPI1_Transmit
+C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s:251    .text.SPI1_TransmitReceive:00000000 SPI1_TransmitReceive
+C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s:157    .text.SPI1_Receive:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s:163    .text.SPI1_Receive:00000000 SPI1_Receive
+C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s:241    .text.SPI1_Receive:0000008c $d
+C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s:245    .text.SPI1_TransmitReceive:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s:350    .text.SPI1_TransmitReceive:000000b4 $d
+C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s:354    .text.SPI1_Receive_Byte:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s:360    .text.SPI1_Receive_Byte:00000000 SPI1_Receive_Byte
+C:\Users\phamt\AppData\Local\Temp\ccyC9o5z.s:402    .text.SPI1_Receive_Byte:00000048 $d
+
+UNDEFINED SYMBOLS
+Get_Tick

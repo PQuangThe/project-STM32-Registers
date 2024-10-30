@@ -28,8 +28,13 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 //#include "stm32f4xx_hal.h"
-#include "sys_delay.h"
+#include "sys_clock.h"
 #include "gpio.h"
+#include "uart.h"
+#include "spi.h"
+
+#include "w25qxx.h"
+#include <string.h>
 
 #include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
@@ -39,6 +44,7 @@ extern "C" {
 #include "queue.h"
 #include "event_groups.h"
 #include "stream_buffer.h"
+
 
 
 /* Exported functions prototypes ---------------------------------------------*/

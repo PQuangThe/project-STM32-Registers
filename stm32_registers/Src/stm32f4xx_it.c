@@ -168,4 +168,20 @@ void TIM2_IRQHandler(void)
   TIM2->SR  &= ~(0x0001);
   Inc_Tick();
 }
+
+void USART1_IRQHandler(void)
+{
+  UART1_IRQHandlerRxCallback();
+  
+}
+
+void DMA2_Stream2_IRQHandler(void)
+{
+  UART1_DMA2_RX_IRQHandler();
+}
+
+void DMA2_Stream7_IRQHandler(void)
+{
+  UART1_DMA2_Tx_IRQHandler();
+}
 /* USER CODE END 1 */

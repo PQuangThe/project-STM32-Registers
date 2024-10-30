@@ -26,15 +26,15 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
+#include "stm32f407xx.h"
 
 
 
 void MX_GPIO_Init(void);
 
-/* USER CODE BEGIN Prototypes */
+void gpio_tog(GPIO_TypeDef * _gpio, uint16_t Pin);
+void gpio_write(GPIO_TypeDef * _gpio, uint16_t Pin, uint8_t val);
 
-/* USER CODE END Prototypes */
 
 #ifdef __cplusplus
 }

@@ -21,45 +21,15 @@
 /* Includes ------------------------------------------------------------------*/
 #include "gpio.h"
 
-/* USER CODE BEGIN 0 */
-
-/* USER CODE END 0 */
-
-/*----------------------------------------------------------------------------*/
-/* Configure GPIO                                                             */
-/*----------------------------------------------------------------------------*/
-/* USER CODE BEGIN 1 */
-
-/* USER CODE END 1 */
-
-/** Configure pins as
-        * Analog
-        * Input
-        * Output
-        * EVENT_OUT
-        * EXTI
-*/
 void MX_GPIO_Init(void)
 {
-
-//   GPIO_InitTypeDef GPIO_InitStruct = {0};
-
-//   /* GPIO Ports Clock Enable */
-//   __HAL_RCC_GPIOH_CLK_ENABLE();
-//   __HAL_RCC_GPIOA_CLK_ENABLE();
-
-//   /*Configure GPIO pin Output Level */
-//   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6|GPIO_PIN_7, GPIO_PIN_RESET);
-
-//   /*Configure GPIO pins : PA6 PA7 */
-//   GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
-//   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-//   GPIO_InitStruct.Pull = GPIO_NOPULL;
-//   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-//   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
+  //RCC_AHB1_Clock_Enable_Disable AHB1 Peripheral Clock Enable Disable
   RCC->AHB1ENR  |= 1UL;
+  
 
+  /*
+   Init gpio output PA6 PA7
+  */
   GPIOA->MODER  |= (1<<12);
   GPIOA->MODER  |= (1<<14);
 
@@ -71,8 +41,85 @@ void MX_GPIO_Init(void)
 
   GPIOA->ODR |=((1<<6)|(1<<7));
 
+  /*
+  USART1 GPIO Configuration
+    PA9     ------> USART1_TX
+    PA10     ------> USART1_RX
+  */
+  
+  //USART1 clock enable
+  RCC->APB2ENR  |=  (0x1UL << 4U);
+
+  //Select Alternate function mode
+  GPIOA->MODER  = ((GPIOA->MODER & ~(0x3UL << 18U)) | (0x2UL << 18U));
+  GPIOA->MODER  = ((GPIOA->MODER & ~(0x3UL << 20U)) | (0x2UL << 20U));
+
+  //configure the output type of the I/O port (Output push-pul)
+  GPIOA->OTYPER &=~((1<<9)|(1<<10));
+
+  //configure the I/O output speed (Very high speed)
+  GPIOA->OSPEEDR = ((GPIOA->OSPEEDR & ~(0x3UL << 18U)) | (0x3UL << 18U));
+  GPIOA->OSPEEDR = ((GPIOA->OSPEEDR & ~(0x3UL << 20U)) | (0x3UL << 20U));
+
+  //configure the I/O pull-up or pull-down (No pull-up, pull-down)
+  GPIOA->PUPDR = ((GPIOA->PUPDR & ~(0x3UL << 18U)) | (0x0UL << 18U));
+  GPIOA->PUPDR = ((GPIOA->PUPDR & ~(0x3UL << 20U)) | (0x0UL << 20U));
+
+  // Selecting an alternate function
+  GPIOA->AFR[1] =
+  GPIOA->AFR[1] = ((GPIOA->AFR[1] & ~(0xFUL << 4U)) | (0x7UL << 4U));
+  GPIOA->AFR[1] = ((GPIOA->AFR[1] & ~(0xFUL << 8U)) | (0x7UL << 8U));
+/*
+
+
+
+*/
+  //GPIOB clock enable
+  RCC->AHB1ENR  |= (0x1UL << 1U);
+  //SPI clock enable
+  RCC->APB2ENR  |= (0x1UL << 12U);
+
+  //Select Alternate function mode
+  GPIOB->MODER  = ((GPIOB->MODER & ~(0x3UL << 6U)) | (0x2UL << 6U));
+  GPIOB->MODER  = ((GPIOB->MODER & ~(0x3UL << 8U)) | (0x2UL << 8U));
+  GPIOB->MODER  = ((GPIOB->MODER & ~(0x3UL << 10U)) | (0x2UL << 10U));
+
+  //configure the output type of the I/O port (Output push-pul)
+  GPIOA->OTYPER &=~((1<<3)|(1<<4)|(1<<5));
+
+  //configure the I/O output speed (Very high speed)
+  GPIOB->OSPEEDR = ((GPIOB->OSPEEDR & ~(0x3UL << 6U)) | (0x3UL << 6U));
+  GPIOB->OSPEEDR = ((GPIOB->OSPEEDR & ~(0x3UL << 8U)) | (0x3UL << 8U));
+  GPIOB->OSPEEDR = ((GPIOB->OSPEEDR & ~(0x3UL << 10U)) | (0x3UL << 10U));
+
+  //configure the I/O pull-up or pull-down (No pull-up, pull-down)
+  GPIOB->PUPDR = ((GPIOB->PUPDR & ~(0x3UL << 6U)) | (0x0UL << 6U));
+  GPIOB->PUPDR = ((GPIOB->PUPDR & ~(0x3UL << 8U)) | (0x0UL << 8U));
+  GPIOB->PUPDR = ((GPIOB->PUPDR & ~(0x3UL << 10U)) | (0x0UL << 10U));
+
+  // Selecting an alternate function
+  GPIOB->AFR[0] = ((GPIOB->AFR[0] & ~(0xFUL << 12U)) | (0x5UL << 12U));
+  GPIOB->AFR[0] = ((GPIOB->AFR[0] & ~(0xFUL << 16U)) | (0x5UL << 16U));
+  GPIOB->AFR[0] = ((GPIOB->AFR[0] & ~(0xFUL << 20U)) | (0x5UL << 20U));
+
+    /*
+   Init gpio output PB0
+  */
+  GPIOB->MODER  |= (0x1UL << 0U);
+  GPIOB->OTYPER &=~(0x1UL << 0U);
+  GPIOB->OSPEEDR = ((GPIOB->OSPEEDR & ~(0x3UL << 0U)) | (0x3UL << 0U));
+  GPIOB->PUPDR = ((GPIOB->PUPDR & ~(0x3UL << 0U)) | (0x0UL << 0U));
+  GPIOB->ODR |=(1<<0);
+
 }
-
-/* USER CODE BEGIN 2 */
-
-/* USER CODE END 2 */
+void gpio_tog(GPIO_TypeDef * _gpio, uint16_t Pin)
+{
+  uint32_t reg_b;
+  reg_b = _gpio->ODR;
+  _gpio->BSRR = ((reg_b & (0x1UL << Pin)) << 16U) | (~reg_b & (0x1UL << Pin));
+}
+void gpio_write(GPIO_TypeDef * _gpio, uint16_t Pin, uint8_t val)
+{
+  if(val == 0U)  {_gpio->ODR &= ~(0x1UL << Pin);}
+  else           {_gpio->ODR |=  (0x1UL << Pin);}
+}

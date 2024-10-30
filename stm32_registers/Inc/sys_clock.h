@@ -1,13 +1,15 @@
-#ifndef __SYS_DELAY_H__
-#define __SYS_DELAY_H__
+#ifndef __SYS_CLOCK_H__
+#define __SYS_CLOCK_H__
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "stm32f407xx.h"
+#include "stm32f4xx.h"
 
 #define USE_TIM_TICK_DEF    1
+
+void SystemClock_Config(void);
 
 void Init_Tick_Tim(void);
 
