@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s 			page 1
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s 			page 1
   56 0034 EDE7     		b	.L2
   57              	.L4:
   58 0036 00BF     		.align	2
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s 			page 2
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s 			page 2
 
 
   59              	.L3:
@@ -102,159 +102,200 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s 			page 1
   99 003e 6420     		movs	r0, #100
  100 0040 FFF7FEFF 		bl	vTaskDelay
  101 0044 E0E7     		b	.L7
- 103              		.section	.text.vTaskFlash_W25,"ax",%progbits
- 104              		.align	1
- 105              		.global	vTaskFlash_W25
- 106              		.syntax unified
- 107              		.thumb
- 108              		.thumb_func
- 110              	vTaskFlash_W25:
- 111              		@ args = 0, pretend = 0, frame = 16
- 112              		@ frame_needed = 1, uses_anonymous_args = 0
- 113 0000 80B5     		push	{r7, lr}
- 114 0002 84B0     		sub	sp, sp, #16
- 115 0004 00AF     		add	r7, sp, #0
- 116 0006 7860     		str	r0, [r7, #4]
- 117              	.L10:
- 118 0008 2820     		movs	r0, #40
- 119 000a FFF7FEFF 		bl	pvPortMalloc
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s 			page 3
+ 103              		.section	.rodata
+ 104              		.align	2
+ 105              	.LC1:
+ 106 0004 20307825 		.ascii	" 0x%02X%02X%02X%02X \015\012\000"
+ 106      30325825 
+ 106      30325825 
+ 106      30325825 
+ 106      30325820 
+ 107              		.section	.text.vTaskFlash_W25,"ax",%progbits
+ 108              		.align	1
+ 109              		.global	vTaskFlash_W25
+ 110              		.syntax unified
+ 111              		.thumb
+ 112              		.thumb_func
+ 114              	vTaskFlash_W25:
+ 115              		@ args = 0, pretend = 0, frame = 16
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s 			page 3
 
 
- 120 000e F860     		str	r0, [r7, #12]
- 121 0010 FB68     		ldr	r3, [r7, #12]
- 122 0012 002B     		cmp	r3, #0
- 123 0014 0FD0     		beq	.L9
- 124 0016 F868     		ldr	r0, [r7, #12]
- 125 0018 FFF7FEFF 		bl	W25Q_ReadID
- 126 001c F868     		ldr	r0, [r7, #12]
- 127 001e FFF7FEFF 		bl	strlen
- 128 0022 0346     		mov	r3, r0
- 129 0024 4FF47A72 		mov	r2, #1000
- 130 0028 1946     		mov	r1, r3
- 131 002a F868     		ldr	r0, [r7, #12]
- 132 002c FFF7FEFF 		bl	Usart_Transmit
- 133 0030 F868     		ldr	r0, [r7, #12]
- 134 0032 FFF7FEFF 		bl	vPortFree
- 135              	.L9:
- 136 0036 4FF4FA60 		mov	r0, #2000
- 137 003a FFF7FEFF 		bl	vTaskDelay
- 138 003e E3E7     		b	.L10
- 140              		.section	.rodata
- 141              		.align	2
- 142              	.LC1:
- 143 0004 4C65645F 		.ascii	"Led_blink\000"
- 143      626C696E 
- 143      6B00
- 144 000e 0000     		.align	2
- 145              	.LC2:
- 146 0010 4C65645F 		.ascii	"Led_blink1\000"
- 146      626C696E 
- 146      6B3100
- 147 001b 00       		.align	2
- 148              	.LC3:
- 149 001c 5461736B 		.ascii	"Task_flash_w25\000"
- 149      5F666C61 
- 149      73685F77 
- 149      323500
- 150              		.section	.text.main,"ax",%progbits
- 151              		.align	1
- 152              		.global	main
- 153              		.syntax unified
- 154              		.thumb
- 155              		.thumb_func
- 157              	main:
- 158              		@ args = 0, pretend = 0, frame = 0
- 159              		@ frame_needed = 1, uses_anonymous_args = 0
- 160 0000 80B5     		push	{r7, lr}
- 161 0002 82B0     		sub	sp, sp, #8
- 162 0004 02AF     		add	r7, sp, #8
- 163 0006 FFF7FEFF 		bl	SystemClock_Config
- 164 000a FFF7FEFF 		bl	MX_GPIO_Init
- 165 000e FFF7FEFF 		bl	USART1_Init
- 166 0012 FFF7FEFF 		bl	SPI_Init
- 167 0016 FFF7FEFF 		bl	W25Q_Reset
- 168 001a 0023     		movs	r3, #0
- 169 001c 0193     		str	r3, [sp, #4]
- 170 001e 0023     		movs	r3, #0
- 171 0020 0093     		str	r3, [sp]
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s 			page 4
+ 116              		@ frame_needed = 1, uses_anonymous_args = 0
+ 117 0000 80B5     		push	{r7, lr}
+ 118 0002 86B0     		sub	sp, sp, #24
+ 119 0004 02AF     		add	r7, sp, #8
+ 120 0006 7860     		str	r0, [r7, #4]
+ 121              	.L9:
+ 122 0008 2820     		movs	r0, #40
+ 123 000a FFF7FEFF 		bl	pvPortMalloc
+ 124 000e F860     		str	r0, [r7, #12]
+ 125 0010 1020     		movs	r0, #16
+ 126 0012 FFF7FEFF 		bl	pvPortMalloc
+ 127 0016 B860     		str	r0, [r7, #8]
+ 128 0018 4FF47A73 		mov	r3, #1000
+ 129 001c 1022     		movs	r2, #16
+ 130 001e B968     		ldr	r1, [r7, #8]
+ 131 0020 0020     		movs	r0, #0
+ 132 0022 FFF7FEFF 		bl	W25Q_Read_Byte
+ 133 0026 BB68     		ldr	r3, [r7, #8]
+ 134 0028 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 135 002a 1946     		mov	r1, r3
+ 136 002c BB68     		ldr	r3, [r7, #8]
+ 137 002e 0133     		adds	r3, r3, #1
+ 138 0030 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 139 0032 1846     		mov	r0, r3
+ 140 0034 BB68     		ldr	r3, [r7, #8]
+ 141 0036 0233     		adds	r3, r3, #2
+ 142 0038 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 143 003a 1A46     		mov	r2, r3
+ 144 003c BB68     		ldr	r3, [r7, #8]
+ 145 003e 0333     		adds	r3, r3, #3
+ 146 0040 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 147 0042 0193     		str	r3, [sp, #4]
+ 148 0044 0092     		str	r2, [sp]
+ 149 0046 0346     		mov	r3, r0
+ 150 0048 0A46     		mov	r2, r1
+ 151 004a 0C49     		ldr	r1, .L10
+ 152 004c F868     		ldr	r0, [r7, #12]
+ 153 004e FFF7FEFF 		bl	sprintf
+ 154 0052 F868     		ldr	r0, [r7, #12]
+ 155 0054 FFF7FEFF 		bl	strlen
+ 156 0058 0346     		mov	r3, r0
+ 157 005a 4FF47A72 		mov	r2, #1000
+ 158 005e 1946     		mov	r1, r3
+ 159 0060 F868     		ldr	r0, [r7, #12]
+ 160 0062 FFF7FEFF 		bl	Usart_Transmit
+ 161 0066 F868     		ldr	r0, [r7, #12]
+ 162 0068 FFF7FEFF 		bl	vPortFree
+ 163 006c B868     		ldr	r0, [r7, #8]
+ 164 006e FFF7FEFF 		bl	vPortFree
+ 165 0072 4FF4FA60 		mov	r0, #2000
+ 166 0076 FFF7FEFF 		bl	vTaskDelay
+ 167 007a C5E7     		b	.L9
+ 168              	.L11:
+ 169              		.align	2
+ 170              	.L10:
+ 171 007c 04000000 		.word	.LC1
+ 173              		.section	.rodata
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s 			page 4
 
 
- 172 0022 0023     		movs	r3, #0
- 173 0024 4022     		movs	r2, #64
- 174 0026 0E49     		ldr	r1, .L13
- 175 0028 0E48     		ldr	r0, .L13+4
- 176 002a FFF7FEFF 		bl	xTaskCreate
- 177 002e 0023     		movs	r3, #0
- 178 0030 0193     		str	r3, [sp, #4]
- 179 0032 0123     		movs	r3, #1
- 180 0034 0093     		str	r3, [sp]
- 181 0036 0123     		movs	r3, #1
- 182 0038 4022     		movs	r2, #64
- 183 003a 0B49     		ldr	r1, .L13+8
- 184 003c 0948     		ldr	r0, .L13+4
- 185 003e FFF7FEFF 		bl	xTaskCreate
- 186 0042 0023     		movs	r3, #0
- 187 0044 0193     		str	r3, [sp, #4]
- 188 0046 0223     		movs	r3, #2
- 189 0048 0093     		str	r3, [sp]
- 190 004a 0023     		movs	r3, #0
- 191 004c 4FF40062 		mov	r2, #2048
- 192 0050 0649     		ldr	r1, .L13+12
- 193 0052 0748     		ldr	r0, .L13+16
- 194 0054 FFF7FEFF 		bl	xTaskCreate
- 195 0058 FFF7FEFF 		bl	vTaskStartScheduler
- 196              	.L12:
- 197 005c FEE7     		b	.L12
- 198              	.L14:
- 199 005e 00BF     		.align	2
- 200              	.L13:
- 201 0060 04000000 		.word	.LC1
- 202 0064 00000000 		.word	vTaskLED
- 203 0068 10000000 		.word	.LC2
- 204 006c 1C000000 		.word	.LC3
- 205 0070 00000000 		.word	vTaskFlash_W25
- 207              		.section	.text.Error_Handler,"ax",%progbits
- 208              		.align	1
- 209              		.global	Error_Handler
- 210              		.syntax unified
- 211              		.thumb
- 212              		.thumb_func
- 214              	Error_Handler:
- 215              		@ args = 0, pretend = 0, frame = 0
- 216              		@ frame_needed = 1, uses_anonymous_args = 0
- 217              		@ link register save eliminated.
- 218 0000 80B4     		push	{r7}
- 219 0002 00AF     		add	r7, sp, #0
- 220              		.syntax unified
- 221              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
- 222 0004 72B6     		cpsid i
- 223              	@ 0 "" 2
- 224              		.thumb
- 225              		.syntax unified
- 226 0006 00BF     		nop
- 227              	.L16:
- 228 0008 FEE7     		b	.L16
- 230              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s 			page 5
+ 174 001b 00       		.align	2
+ 175              	.LC2:
+ 176 001c 4C65645F 		.ascii	"Led_blink\000"
+ 176      626C696E 
+ 176      6B00
+ 177 0026 0000     		.align	2
+ 178              	.LC3:
+ 179 0028 4C65645F 		.ascii	"Led_blink1\000"
+ 179      626C696E 
+ 179      6B3100
+ 180 0033 00       		.align	2
+ 181              	.LC4:
+ 182 0034 5461736B 		.ascii	"Task_flash_w25\000"
+ 182      5F666C61 
+ 182      73685F77 
+ 182      323500
+ 183              		.section	.text.main,"ax",%progbits
+ 184              		.align	1
+ 185              		.global	main
+ 186              		.syntax unified
+ 187              		.thumb
+ 188              		.thumb_func
+ 190              	main:
+ 191              		@ args = 0, pretend = 0, frame = 0
+ 192              		@ frame_needed = 1, uses_anonymous_args = 0
+ 193 0000 80B5     		push	{r7, lr}
+ 194 0002 82B0     		sub	sp, sp, #8
+ 195 0004 02AF     		add	r7, sp, #8
+ 196 0006 FFF7FEFF 		bl	SystemClock_Config
+ 197 000a FFF7FEFF 		bl	MX_GPIO_Init
+ 198 000e FFF7FEFF 		bl	USART1_Init
+ 199 0012 FFF7FEFF 		bl	SPI_Init
+ 200 0016 FFF7FEFF 		bl	W25Q_Reset
+ 201 001a 0023     		movs	r3, #0
+ 202 001c 0193     		str	r3, [sp, #4]
+ 203 001e 0023     		movs	r3, #0
+ 204 0020 0093     		str	r3, [sp]
+ 205 0022 0023     		movs	r3, #0
+ 206 0024 4022     		movs	r2, #64
+ 207 0026 0E49     		ldr	r1, .L14
+ 208 0028 0E48     		ldr	r0, .L14+4
+ 209 002a FFF7FEFF 		bl	xTaskCreate
+ 210 002e 0023     		movs	r3, #0
+ 211 0030 0193     		str	r3, [sp, #4]
+ 212 0032 0123     		movs	r3, #1
+ 213 0034 0093     		str	r3, [sp]
+ 214 0036 0123     		movs	r3, #1
+ 215 0038 4022     		movs	r2, #64
+ 216 003a 0B49     		ldr	r1, .L14+8
+ 217 003c 0948     		ldr	r0, .L14+4
+ 218 003e FFF7FEFF 		bl	xTaskCreate
+ 219 0042 0023     		movs	r3, #0
+ 220 0044 0193     		str	r3, [sp, #4]
+ 221 0046 0223     		movs	r3, #2
+ 222 0048 0093     		str	r3, [sp]
+ 223 004a 0023     		movs	r3, #0
+ 224 004c 4FF40062 		mov	r2, #2048
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s 			page 5
+
+
+ 225 0050 0649     		ldr	r1, .L14+12
+ 226 0052 0748     		ldr	r0, .L14+16
+ 227 0054 FFF7FEFF 		bl	xTaskCreate
+ 228 0058 FFF7FEFF 		bl	vTaskStartScheduler
+ 229              	.L13:
+ 230 005c FEE7     		b	.L13
+ 231              	.L15:
+ 232 005e 00BF     		.align	2
+ 233              	.L14:
+ 234 0060 1C000000 		.word	.LC2
+ 235 0064 00000000 		.word	vTaskLED
+ 236 0068 28000000 		.word	.LC3
+ 237 006c 34000000 		.word	.LC4
+ 238 0070 00000000 		.word	vTaskFlash_W25
+ 240              		.section	.text.Error_Handler,"ax",%progbits
+ 241              		.align	1
+ 242              		.global	Error_Handler
+ 243              		.syntax unified
+ 244              		.thumb
+ 245              		.thumb_func
+ 247              	Error_Handler:
+ 248              		@ args = 0, pretend = 0, frame = 0
+ 249              		@ frame_needed = 1, uses_anonymous_args = 0
+ 250              		@ link register save eliminated.
+ 251 0000 80B4     		push	{r7}
+ 252 0002 00AF     		add	r7, sp, #0
+ 253              		.syntax unified
+ 254              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 255 0004 72B6     		cpsid i
+ 256              	@ 0 "" 2
+ 257              		.thumb
+ 258              		.syntax unified
+ 259 0006 00BF     		nop
+ 260              	.L17:
+ 261 0008 FEE7     		b	.L17
+ 263              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s 			page 6
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s:18     .rodata:00000000 $d
-C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s:23     .text.vTaskLED:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s:29     .text.vTaskLED:00000000 vTaskLED
-C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s:60     .text.vTaskLED:00000038 $d
-C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s:64     .text.vTask1:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s:70     .text.vTask1:00000000 vTask1
-C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s:104    .text.vTaskFlash_W25:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s:110    .text.vTaskFlash_W25:00000000 vTaskFlash_W25
-C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s:151    .text.main:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s:157    .text.main:00000000 main
-C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s:201    .text.main:00000060 $d
-C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s:208    .text.Error_Handler:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccDij2IR.s:214    .text.Error_Handler:00000000 Error_Handler
+C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s:18     .rodata:00000000 $d
+C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s:23     .text.vTaskLED:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s:29     .text.vTaskLED:00000000 vTaskLED
+C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s:60     .text.vTaskLED:00000038 $d
+C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s:64     .text.vTask1:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s:70     .text.vTask1:00000000 vTask1
+C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s:108    .text.vTaskFlash_W25:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s:114    .text.vTaskFlash_W25:00000000 vTaskFlash_W25
+C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s:171    .text.vTaskFlash_W25:0000007c $d
+C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s:184    .text.main:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s:190    .text.main:00000000 main
+C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s:234    .text.main:00000060 $d
+C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s:241    .text.Error_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccFGvpoi.s:247    .text.Error_Handler:00000000 Error_Handler
 
 UNDEFINED SYMBOLS
 gpio_tog
@@ -265,7 +306,8 @@ GetFromBuff_DMA
 Usart_Send_Char
 Usart_Send_String
 vPortFree
-W25Q_ReadID
+W25Q_Read_Byte
+sprintf
 strlen
 Usart_Transmit
 SystemClock_Config

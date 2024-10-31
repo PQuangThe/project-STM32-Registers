@@ -1,0 +1,1041 @@
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"uart.c"
+  16              		.text
+  17              		.section	.text.__NVIC_EnableIRQ,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	__NVIC_EnableIRQ:
+  24              		@ args = 0, pretend = 0, frame = 8
+  25              		@ frame_needed = 1, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 80B4     		push	{r7}
+  28 0002 83B0     		sub	sp, sp, #12
+  29 0004 00AF     		add	r7, sp, #0
+  30 0006 0346     		mov	r3, r0
+  31 0008 FB71     		strb	r3, [r7, #7]
+  32 000a 97F90730 		ldrsb	r3, [r7, #7]
+  33 000e 002B     		cmp	r3, #0
+  34 0010 0BDB     		blt	.L3
+  35 0012 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  36 0014 03F01F02 		and	r2, r3, #31
+  37 0018 0749     		ldr	r1, .L4
+  38 001a 97F90730 		ldrsb	r3, [r7, #7]
+  39 001e 5B09     		lsrs	r3, r3, #5
+  40 0020 0120     		movs	r0, #1
+  41 0022 00FA02F2 		lsl	r2, r0, r2
+  42 0026 41F82320 		str	r2, [r1, r3, lsl #2]
+  43              	.L3:
+  44 002a 00BF     		nop
+  45 002c 0C37     		adds	r7, r7, #12
+  46 002e BD46     		mov	sp, r7
+  47              		@ sp needed
+  48 0030 5DF8047B 		ldr	r7, [sp], #4
+  49 0034 7047     		bx	lr
+  50              	.L5:
+  51 0036 00BF     		.align	2
+  52              	.L4:
+  53 0038 00E100E0 		.word	-536813312
+  55              		.section	.text.__NVIC_SetPriority,"ax",%progbits
+  56              		.align	1
+  57              		.syntax unified
+  58              		.thumb
+  59              		.thumb_func
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 2
+
+
+  61              	__NVIC_SetPriority:
+  62              		@ args = 0, pretend = 0, frame = 8
+  63              		@ frame_needed = 1, uses_anonymous_args = 0
+  64              		@ link register save eliminated.
+  65 0000 80B4     		push	{r7}
+  66 0002 83B0     		sub	sp, sp, #12
+  67 0004 00AF     		add	r7, sp, #0
+  68 0006 0346     		mov	r3, r0
+  69 0008 3960     		str	r1, [r7]
+  70 000a FB71     		strb	r3, [r7, #7]
+  71 000c 97F90730 		ldrsb	r3, [r7, #7]
+  72 0010 002B     		cmp	r3, #0
+  73 0012 0ADB     		blt	.L7
+  74 0014 3B68     		ldr	r3, [r7]
+  75 0016 DAB2     		uxtb	r2, r3
+  76 0018 0C49     		ldr	r1, .L10
+  77 001a 97F90730 		ldrsb	r3, [r7, #7]
+  78 001e 1201     		lsls	r2, r2, #4
+  79 0020 D2B2     		uxtb	r2, r2
+  80 0022 0B44     		add	r3, r3, r1
+  81 0024 83F80023 		strb	r2, [r3, #768]
+  82 0028 0AE0     		b	.L9
+  83              	.L7:
+  84 002a 3B68     		ldr	r3, [r7]
+  85 002c DAB2     		uxtb	r2, r3
+  86 002e 0849     		ldr	r1, .L10+4
+  87 0030 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  88 0032 03F00F03 		and	r3, r3, #15
+  89 0036 043B     		subs	r3, r3, #4
+  90 0038 1201     		lsls	r2, r2, #4
+  91 003a D2B2     		uxtb	r2, r2
+  92 003c 0B44     		add	r3, r3, r1
+  93 003e 1A76     		strb	r2, [r3, #24]
+  94              	.L9:
+  95 0040 00BF     		nop
+  96 0042 0C37     		adds	r7, r7, #12
+  97 0044 BD46     		mov	sp, r7
+  98              		@ sp needed
+  99 0046 5DF8047B 		ldr	r7, [sp], #4
+ 100 004a 7047     		bx	lr
+ 101              	.L11:
+ 102              		.align	2
+ 103              	.L10:
+ 104 004c 00E100E0 		.word	-536813312
+ 105 0050 00ED00E0 		.word	-536810240
+ 107              		.section	.text.NVIC_EncodePriority,"ax",%progbits
+ 108              		.align	1
+ 109              		.syntax unified
+ 110              		.thumb
+ 111              		.thumb_func
+ 113              	NVIC_EncodePriority:
+ 114              		@ args = 0, pretend = 0, frame = 32
+ 115              		@ frame_needed = 1, uses_anonymous_args = 0
+ 116              		@ link register save eliminated.
+ 117 0000 80B4     		push	{r7}
+ 118 0002 89B0     		sub	sp, sp, #36
+ 119 0004 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 3
+
+
+ 120 0006 F860     		str	r0, [r7, #12]
+ 121 0008 B960     		str	r1, [r7, #8]
+ 122 000a 7A60     		str	r2, [r7, #4]
+ 123 000c FB68     		ldr	r3, [r7, #12]
+ 124 000e 03F00703 		and	r3, r3, #7
+ 125 0012 FB61     		str	r3, [r7, #28]
+ 126 0014 FB69     		ldr	r3, [r7, #28]
+ 127 0016 C3F10703 		rsb	r3, r3, #7
+ 128 001a 042B     		cmp	r3, #4
+ 129 001c 28BF     		it	cs
+ 130 001e 0423     		movcs	r3, #4
+ 131 0020 BB61     		str	r3, [r7, #24]
+ 132 0022 FB69     		ldr	r3, [r7, #28]
+ 133 0024 0433     		adds	r3, r3, #4
+ 134 0026 062B     		cmp	r3, #6
+ 135 0028 02D9     		bls	.L13
+ 136 002a FB69     		ldr	r3, [r7, #28]
+ 137 002c 033B     		subs	r3, r3, #3
+ 138 002e 00E0     		b	.L14
+ 139              	.L13:
+ 140 0030 0023     		movs	r3, #0
+ 141              	.L14:
+ 142 0032 7B61     		str	r3, [r7, #20]
+ 143 0034 4FF0FF32 		mov	r2, #-1
+ 144 0038 BB69     		ldr	r3, [r7, #24]
+ 145 003a 02FA03F3 		lsl	r3, r2, r3
+ 146 003e DA43     		mvns	r2, r3
+ 147 0040 BB68     		ldr	r3, [r7, #8]
+ 148 0042 1A40     		ands	r2, r2, r3
+ 149 0044 7B69     		ldr	r3, [r7, #20]
+ 150 0046 9A40     		lsls	r2, r2, r3
+ 151 0048 4FF0FF31 		mov	r1, #-1
+ 152 004c 7B69     		ldr	r3, [r7, #20]
+ 153 004e 01FA03F3 		lsl	r3, r1, r3
+ 154 0052 D943     		mvns	r1, r3
+ 155 0054 7B68     		ldr	r3, [r7, #4]
+ 156 0056 0B40     		ands	r3, r3, r1
+ 157 0058 1343     		orrs	r3, r3, r2
+ 158 005a 1846     		mov	r0, r3
+ 159 005c 2437     		adds	r7, r7, #36
+ 160 005e BD46     		mov	sp, r7
+ 161              		@ sp needed
+ 162 0060 5DF8047B 		ldr	r7, [sp], #4
+ 163 0064 7047     		bx	lr
+ 165              		.global	buff_rx_it
+ 166              		.section	.bss.buff_rx_it,"aw",%nobits
+ 167              		.align	2
+ 170              	buff_rx_it:
+ 171 0000 00000000 		.space	64
+ 171      00000000 
+ 171      00000000 
+ 171      00000000 
+ 171      00000000 
+ 172              		.global	_posdata
+ 173              		.section	.bss._posdata,"aw",%nobits
+ 174              		.align	2
+ 177              	_posdata:
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 4
+
+
+ 178 0000 00000000 		.space	6
+ 178      0000
+ 179              		.section	.text.USART1_Init,"ax",%progbits
+ 180              		.align	1
+ 181              		.global	USART1_Init
+ 182              		.syntax unified
+ 183              		.thumb
+ 184              		.thumb_func
+ 186              	USART1_Init:
+ 187              		@ args = 0, pretend = 0, frame = 8
+ 188              		@ frame_needed = 1, uses_anonymous_args = 0
+ 189 0000 80B5     		push	{r7, lr}
+ 190 0002 82B0     		sub	sp, sp, #8
+ 191 0004 00AF     		add	r7, sp, #0
+ 192 0006 0023     		movs	r3, #0
+ 193 0008 7B60     		str	r3, [r7, #4]
+ 194 000a 0022     		movs	r2, #0
+ 195 000c 0521     		movs	r1, #5
+ 196 000e 7868     		ldr	r0, [r7, #4]
+ 197 0010 FFF7FEFF 		bl	NVIC_EncodePriority
+ 198 0014 0346     		mov	r3, r0
+ 199 0016 1946     		mov	r1, r3
+ 200 0018 2520     		movs	r0, #37
+ 201 001a FFF7FEFF 		bl	__NVIC_SetPriority
+ 202 001e 2520     		movs	r0, #37
+ 203 0020 FFF7FEFF 		bl	__NVIC_EnableIRQ
+ 204 0024 454B     		ldr	r3, .L21
+ 205 0026 DB68     		ldr	r3, [r3, #12]
+ 206 0028 444A     		ldr	r2, .L21
+ 207 002a 23F40053 		bic	r3, r3, #8192
+ 208 002e D360     		str	r3, [r2, #12]
+ 209 0030 424B     		ldr	r3, .L21
+ 210 0032 1B69     		ldr	r3, [r3, #16]
+ 211 0034 414A     		ldr	r2, .L21
+ 212 0036 23F44053 		bic	r3, r3, #12288
+ 213 003a 1361     		str	r3, [r2, #16]
+ 214 003c 3F4B     		ldr	r3, .L21
+ 215 003e DB68     		ldr	r3, [r3, #12]
+ 216 0040 3E4A     		ldr	r2, .L21
+ 217 0042 23F40043 		bic	r3, r3, #32768
+ 218 0046 D360     		str	r3, [r2, #12]
+ 219 0048 3C4B     		ldr	r3, .L21
+ 220 004a DB68     		ldr	r3, [r3, #12]
+ 221 004c 3B4A     		ldr	r2, .L21
+ 222 004e 23F48053 		bic	r3, r3, #4096
+ 223 0052 D360     		str	r3, [r2, #12]
+ 224 0054 394B     		ldr	r3, .L21
+ 225 0056 DB68     		ldr	r3, [r3, #12]
+ 226 0058 384A     		ldr	r2, .L21
+ 227 005a 23F48063 		bic	r3, r3, #1024
+ 228 005e D360     		str	r3, [r2, #12]
+ 229 0060 364B     		ldr	r3, .L21
+ 230 0062 DB68     		ldr	r3, [r3, #12]
+ 231 0064 354A     		ldr	r2, .L21
+ 232 0066 43F00803 		orr	r3, r3, #8
+ 233 006a D360     		str	r3, [r2, #12]
+ 234 006c 334B     		ldr	r3, .L21
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 5
+
+
+ 235 006e DB68     		ldr	r3, [r3, #12]
+ 236 0070 324A     		ldr	r2, .L21
+ 237 0072 43F00403 		orr	r3, r3, #4
+ 238 0076 D360     		str	r3, [r2, #12]
+ 239 0078 304B     		ldr	r3, .L21
+ 240 007a 5B69     		ldr	r3, [r3, #20]
+ 241 007c 2F4A     		ldr	r2, .L21
+ 242 007e 23F44073 		bic	r3, r3, #768
+ 243 0082 5361     		str	r3, [r2, #20]
+ 244 0084 2D4B     		ldr	r3, .L21
+ 245 0086 40F2D922 		movw	r2, #729
+ 246 008a 9A60     		str	r2, [r3, #8]
+ 247 008c 2B4B     		ldr	r3, .L21
+ 248 008e 1B69     		ldr	r3, [r3, #16]
+ 249 0090 2A4A     		ldr	r2, .L21
+ 250 0092 23F49043 		bic	r3, r3, #18432
+ 251 0096 1361     		str	r3, [r2, #16]
+ 252 0098 284B     		ldr	r3, .L21
+ 253 009a 5B69     		ldr	r3, [r3, #20]
+ 254 009c 274A     		ldr	r2, .L21
+ 255 009e 23F02A03 		bic	r3, r3, #42
+ 256 00a2 5361     		str	r3, [r2, #20]
+ 257 00a4 254B     		ldr	r3, .L21
+ 258 00a6 5B69     		ldr	r3, [r3, #20]
+ 259 00a8 244A     		ldr	r2, .L21
+ 260 00aa 43F04003 		orr	r3, r3, #64
+ 261 00ae 5361     		str	r3, [r2, #20]
+ 262 00b0 234B     		ldr	r3, .L21+4
+ 263 00b2 1B6B     		ldr	r3, [r3, #48]
+ 264 00b4 224A     		ldr	r2, .L21+4
+ 265 00b6 43F48003 		orr	r3, r3, #4194304
+ 266 00ba 1363     		str	r3, [r2, #48]
+ 267 00bc 214B     		ldr	r3, .L21+8
+ 268 00be 0022     		movs	r2, #0
+ 269 00c0 1A60     		str	r2, [r3]
+ 270 00c2 FFF7FEFF 		bl	Get_Tick
+ 271 00c6 3860     		str	r0, [r7]
+ 272 00c8 07E0     		b	.L17
+ 273              	.L19:
+ 274 00ca FFF7FEFF 		bl	Get_Tick
+ 275 00ce 0246     		mov	r2, r0
+ 276 00d0 3B68     		ldr	r3, [r7]
+ 277 00d2 D31A     		subs	r3, r2, r3
+ 278 00d4 B3F57A7F 		cmp	r3, #1000
+ 279 00d8 06D8     		bhi	.L20
+ 280              	.L17:
+ 281 00da 1A4B     		ldr	r3, .L21+8
+ 282 00dc 1B68     		ldr	r3, [r3]
+ 283 00de 03F00103 		and	r3, r3, #1
+ 284 00e2 002B     		cmp	r3, #0
+ 285 00e4 F1D1     		bne	.L19
+ 286 00e6 00E0     		b	.L18
+ 287              	.L20:
+ 288 00e8 00BF     		nop
+ 289              	.L18:
+ 290 00ea 164B     		ldr	r3, .L21+8
+ 291 00ec 1B68     		ldr	r3, [r3]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 6
+
+
+ 292 00ee 154A     		ldr	r2, .L21+8
+ 293 00f0 43F4A063 		orr	r3, r3, #1280
+ 294 00f4 1360     		str	r3, [r2]
+ 295 00f6 134B     		ldr	r3, .L21+8
+ 296 00f8 1B68     		ldr	r3, [r3]
+ 297 00fa 124A     		ldr	r2, .L21+8
+ 298 00fc 43F00063 		orr	r3, r3, #134217728
+ 299 0100 1360     		str	r3, [r2]
+ 300 0102 104B     		ldr	r3, .L21+8
+ 301 0104 1B68     		ldr	r3, [r3]
+ 302 0106 0F4A     		ldr	r2, .L21+8
+ 303 0108 43F44033 		orr	r3, r3, #196608
+ 304 010c 1360     		str	r3, [r2]
+ 305 010e 0022     		movs	r2, #0
+ 306 0110 0521     		movs	r1, #5
+ 307 0112 7868     		ldr	r0, [r7, #4]
+ 308 0114 FFF7FEFF 		bl	NVIC_EncodePriority
+ 309 0118 0346     		mov	r3, r0
+ 310 011a 1946     		mov	r1, r3
+ 311 011c 3A20     		movs	r0, #58
+ 312 011e FFF7FEFF 		bl	__NVIC_SetPriority
+ 313 0122 3A20     		movs	r0, #58
+ 314 0124 FFF7FEFF 		bl	__NVIC_EnableIRQ
+ 315 0128 044B     		ldr	r3, .L21
+ 316 012a DB68     		ldr	r3, [r3, #12]
+ 317 012c 034A     		ldr	r2, .L21
+ 318 012e 43F40053 		orr	r3, r3, #8192
+ 319 0132 D360     		str	r3, [r2, #12]
+ 320 0134 00BF     		nop
+ 321 0136 0837     		adds	r7, r7, #8
+ 322 0138 BD46     		mov	sp, r7
+ 323              		@ sp needed
+ 324 013a 80BD     		pop	{r7, pc}
+ 325              	.L22:
+ 326              		.align	2
+ 327              	.L21:
+ 328 013c 00100140 		.word	1073811456
+ 329 0140 00380240 		.word	1073887232
+ 330 0144 40640240 		.word	1073898560
+ 332              		.section	.text.Usart_Send_Char,"ax",%progbits
+ 333              		.align	1
+ 334              		.global	Usart_Send_Char
+ 335              		.syntax unified
+ 336              		.thumb
+ 337              		.thumb_func
+ 339              	Usart_Send_Char:
+ 340              		@ args = 0, pretend = 0, frame = 8
+ 341              		@ frame_needed = 1, uses_anonymous_args = 0
+ 342              		@ link register save eliminated.
+ 343 0000 80B4     		push	{r7}
+ 344 0002 83B0     		sub	sp, sp, #12
+ 345 0004 00AF     		add	r7, sp, #0
+ 346 0006 0346     		mov	r3, r0
+ 347 0008 FB71     		strb	r3, [r7, #7]
+ 348 000a 00BF     		nop
+ 349              	.L24:
+ 350 000c 0B4B     		ldr	r3, .L26
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 7
+
+
+ 351 000e 1B68     		ldr	r3, [r3]
+ 352 0010 03F08003 		and	r3, r3, #128
+ 353 0014 002B     		cmp	r3, #0
+ 354 0016 F9D0     		beq	.L24
+ 355 0018 084A     		ldr	r2, .L26
+ 356 001a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 357 001c 5360     		str	r3, [r2, #4]
+ 358 001e 00BF     		nop
+ 359              	.L25:
+ 360 0020 064B     		ldr	r3, .L26
+ 361 0022 1B68     		ldr	r3, [r3]
+ 362 0024 03F08003 		and	r3, r3, #128
+ 363 0028 002B     		cmp	r3, #0
+ 364 002a F9D0     		beq	.L25
+ 365 002c 00BF     		nop
+ 366 002e 00BF     		nop
+ 367 0030 0C37     		adds	r7, r7, #12
+ 368 0032 BD46     		mov	sp, r7
+ 369              		@ sp needed
+ 370 0034 5DF8047B 		ldr	r7, [sp], #4
+ 371 0038 7047     		bx	lr
+ 372              	.L27:
+ 373 003a 00BF     		.align	2
+ 374              	.L26:
+ 375 003c 00100140 		.word	1073811456
+ 377              		.section	.text.Usart_Send_String,"ax",%progbits
+ 378              		.align	1
+ 379              		.global	Usart_Send_String
+ 380              		.syntax unified
+ 381              		.thumb
+ 382              		.thumb_func
+ 384              	Usart_Send_String:
+ 385              		@ args = 0, pretend = 0, frame = 16
+ 386              		@ frame_needed = 1, uses_anonymous_args = 0
+ 387 0000 80B5     		push	{r7, lr}
+ 388 0002 84B0     		sub	sp, sp, #16
+ 389 0004 00AF     		add	r7, sp, #0
+ 390 0006 7860     		str	r0, [r7, #4]
+ 391 0008 0023     		movs	r3, #0
+ 392 000a FB81     		strh	r3, [r7, #14]	@ movhi
+ 393 000c 09E0     		b	.L29
+ 394              	.L30:
+ 395 000e FB89     		ldrh	r3, [r7, #14]
+ 396 0010 7A68     		ldr	r2, [r7, #4]
+ 397 0012 1344     		add	r3, r3, r2
+ 398 0014 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 399 0016 1846     		mov	r0, r3
+ 400 0018 FFF7FEFF 		bl	Usart_Send_Char
+ 401 001c FB89     		ldrh	r3, [r7, #14]
+ 402 001e 0133     		adds	r3, r3, #1
+ 403 0020 FB81     		strh	r3, [r7, #14]	@ movhi
+ 404              	.L29:
+ 405 0022 FB89     		ldrh	r3, [r7, #14]
+ 406 0024 7A68     		ldr	r2, [r7, #4]
+ 407 0026 1344     		add	r3, r3, r2
+ 408 0028 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 409 002a 002B     		cmp	r3, #0
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 8
+
+
+ 410 002c EFD1     		bne	.L30
+ 411 002e 00BF     		nop
+ 412 0030 00BF     		nop
+ 413 0032 1037     		adds	r7, r7, #16
+ 414 0034 BD46     		mov	sp, r7
+ 415              		@ sp needed
+ 416 0036 80BD     		pop	{r7, pc}
+ 418              		.section	.text.Usart_Transmit,"ax",%progbits
+ 419              		.align	1
+ 420              		.global	Usart_Transmit
+ 421              		.syntax unified
+ 422              		.thumb
+ 423              		.thumb_func
+ 425              	Usart_Transmit:
+ 426              		@ args = 0, pretend = 0, frame = 24
+ 427              		@ frame_needed = 1, uses_anonymous_args = 0
+ 428 0000 80B5     		push	{r7, lr}
+ 429 0002 86B0     		sub	sp, sp, #24
+ 430 0004 00AF     		add	r7, sp, #0
+ 431 0006 F860     		str	r0, [r7, #12]
+ 432 0008 B960     		str	r1, [r7, #8]
+ 433 000a 7A60     		str	r2, [r7, #4]
+ 434 000c FFF7FEFF 		bl	Get_Tick
+ 435 0010 3861     		str	r0, [r7, #16]
+ 436 0012 0023     		movs	r3, #0
+ 437 0014 7B61     		str	r3, [r7, #20]
+ 438 0016 21E0     		b	.L32
+ 439              	.L38:
+ 440 0018 FFF7FEFF 		bl	Get_Tick
+ 441 001c 0246     		mov	r2, r0
+ 442 001e 3B69     		ldr	r3, [r7, #16]
+ 443 0020 D31A     		subs	r3, r2, r3
+ 444 0022 7A68     		ldr	r2, [r7, #4]
+ 445 0024 9A42     		cmp	r2, r3
+ 446 0026 1ED3     		bcc	.L39
+ 447 0028 07E0     		b	.L35
+ 448              	.L37:
+ 449 002a FFF7FEFF 		bl	Get_Tick
+ 450 002e 0246     		mov	r2, r0
+ 451 0030 3B69     		ldr	r3, [r7, #16]
+ 452 0032 D31A     		subs	r3, r2, r3
+ 453 0034 7A68     		ldr	r2, [r7, #4]
+ 454 0036 9A42     		cmp	r2, r3
+ 455 0038 06D3     		bcc	.L40
+ 456              	.L35:
+ 457 003a 0D4B     		ldr	r3, .L42
+ 458 003c 1B68     		ldr	r3, [r3]
+ 459 003e 03F08003 		and	r3, r3, #128
+ 460 0042 002B     		cmp	r3, #0
+ 461 0044 F1D0     		beq	.L37
+ 462 0046 00E0     		b	.L36
+ 463              	.L40:
+ 464 0048 00BF     		nop
+ 465              	.L36:
+ 466 004a FA68     		ldr	r2, [r7, #12]
+ 467 004c 7B69     		ldr	r3, [r7, #20]
+ 468 004e 1344     		add	r3, r3, r2
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 9
+
+
+ 469 0050 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 470 0052 074B     		ldr	r3, .L42
+ 471 0054 5A60     		str	r2, [r3, #4]
+ 472 0056 7B69     		ldr	r3, [r7, #20]
+ 473 0058 0133     		adds	r3, r3, #1
+ 474 005a 7B61     		str	r3, [r7, #20]
+ 475              	.L32:
+ 476 005c 7A69     		ldr	r2, [r7, #20]
+ 477 005e BB68     		ldr	r3, [r7, #8]
+ 478 0060 9A42     		cmp	r2, r3
+ 479 0062 D9D3     		bcc	.L38
+ 480 0064 00E0     		b	.L41
+ 481              	.L39:
+ 482 0066 00BF     		nop
+ 483              	.L41:
+ 484 0068 00BF     		nop
+ 485 006a 1837     		adds	r7, r7, #24
+ 486 006c BD46     		mov	sp, r7
+ 487              		@ sp needed
+ 488 006e 80BD     		pop	{r7, pc}
+ 489              	.L43:
+ 490              		.align	2
+ 491              	.L42:
+ 492 0070 00100140 		.word	1073811456
+ 494              		.section	.text.ProcessNewData,"ax",%progbits
+ 495              		.align	1
+ 496              		.global	ProcessNewData
+ 497              		.syntax unified
+ 498              		.thumb
+ 499              		.thumb_func
+ 501              	ProcessNewData:
+ 502              		@ args = 0, pretend = 0, frame = 24
+ 503              		@ frame_needed = 1, uses_anonymous_args = 0
+ 504              		@ link register save eliminated.
+ 505 0000 80B4     		push	{r7}
+ 506 0002 87B0     		sub	sp, sp, #28
+ 507 0004 00AF     		add	r7, sp, #0
+ 508 0006 F860     		str	r0, [r7, #12]
+ 509 0008 0846     		mov	r0, r1
+ 510 000a 1146     		mov	r1, r2
+ 511 000c 1A46     		mov	r2, r3
+ 512 000e 0346     		mov	r3, r0	@ movhi
+ 513 0010 7B81     		strh	r3, [r7, #10]	@ movhi
+ 514 0012 0B46     		mov	r3, r1	@ movhi
+ 515 0014 3B81     		strh	r3, [r7, #8]	@ movhi
+ 516 0016 1346     		mov	r3, r2	@ movhi
+ 517 0018 FB80     		strh	r3, [r7, #6]	@ movhi
+ 518 001a 0023     		movs	r3, #0
+ 519 001c FB82     		strh	r3, [r7, #22]	@ movhi
+ 520 001e 11E0     		b	.L45
+ 521              	.L46:
+ 522 0020 3A89     		ldrh	r2, [r7, #8]
+ 523 0022 FB8A     		ldrh	r3, [r7, #22]
+ 524 0024 1344     		add	r3, r3, r2
+ 525 0026 03F03F02 		and	r2, r3, #63
+ 526 002a 7B89     		ldrh	r3, [r7, #10]
+ 527 002c F968     		ldr	r1, [r7, #12]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 10
+
+
+ 528 002e 0B44     		add	r3, r3, r1
+ 529 0030 0A49     		ldr	r1, .L48
+ 530 0032 8A5C     		ldrb	r2, [r1, r2]
+ 531 0034 D2B2     		uxtb	r2, r2
+ 532 0036 1A70     		strb	r2, [r3]
+ 533 0038 7B89     		ldrh	r3, [r7, #10]
+ 534 003a 0133     		adds	r3, r3, #1
+ 535 003c 7B81     		strh	r3, [r7, #10]	@ movhi
+ 536 003e FB8A     		ldrh	r3, [r7, #22]
+ 537 0040 0133     		adds	r3, r3, #1
+ 538 0042 FB82     		strh	r3, [r7, #22]	@ movhi
+ 539              	.L45:
+ 540 0044 FA8A     		ldrh	r2, [r7, #22]
+ 541 0046 FB88     		ldrh	r3, [r7, #6]
+ 542 0048 9A42     		cmp	r2, r3
+ 543 004a E9D3     		bcc	.L46
+ 544 004c 7B89     		ldrh	r3, [r7, #10]
+ 545 004e 1846     		mov	r0, r3
+ 546 0050 1C37     		adds	r7, r7, #28
+ 547 0052 BD46     		mov	sp, r7
+ 548              		@ sp needed
+ 549 0054 5DF8047B 		ldr	r7, [sp], #4
+ 550 0058 7047     		bx	lr
+ 551              	.L49:
+ 552 005a 00BF     		.align	2
+ 553              	.L48:
+ 554 005c 00000000 		.word	buff_rx_it
+ 556              		.section	.text.HandleDMAData,"ax",%progbits
+ 557              		.align	1
+ 558              		.global	HandleDMAData
+ 559              		.syntax unified
+ 560              		.thumb
+ 561              		.thumb_func
+ 563              	HandleDMAData:
+ 564              		@ args = 0, pretend = 0, frame = 24
+ 565              		@ frame_needed = 1, uses_anonymous_args = 0
+ 566 0000 80B5     		push	{r7, lr}
+ 567 0002 86B0     		sub	sp, sp, #24
+ 568 0004 00AF     		add	r7, sp, #0
+ 569 0006 F860     		str	r0, [r7, #12]
+ 570 0008 0846     		mov	r0, r1
+ 571 000a 1146     		mov	r1, r2
+ 572 000c 1A46     		mov	r2, r3
+ 573 000e 0346     		mov	r3, r0	@ movhi
+ 574 0010 7B81     		strh	r3, [r7, #10]	@ movhi
+ 575 0012 0B46     		mov	r3, r1	@ movhi
+ 576 0014 3B81     		strh	r3, [r7, #8]	@ movhi
+ 577 0016 1346     		mov	r3, r2	@ movhi
+ 578 0018 FB80     		strh	r3, [r7, #6]	@ movhi
+ 579 001a 3A89     		ldrh	r2, [r7, #8]
+ 580 001c 7B89     		ldrh	r3, [r7, #10]
+ 581 001e 9A42     		cmp	r2, r3
+ 582 0020 09D3     		bcc	.L51
+ 583 0022 3A89     		ldrh	r2, [r7, #8]	@ movhi
+ 584 0024 7B89     		ldrh	r3, [r7, #10]	@ movhi
+ 585 0026 D31A     		subs	r3, r2, r3
+ 586 0028 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 11
+
+
+ 587 002a 7A89     		ldrh	r2, [r7, #10]
+ 588 002c 0021     		movs	r1, #0
+ 589 002e F868     		ldr	r0, [r7, #12]
+ 590 0030 FFF7FEFF 		bl	ProcessNewData
+ 591 0034 10E0     		b	.L53
+ 592              	.L51:
+ 593 0036 FA88     		ldrh	r2, [r7, #6]	@ movhi
+ 594 0038 7B89     		ldrh	r3, [r7, #10]	@ movhi
+ 595 003a D31A     		subs	r3, r2, r3
+ 596 003c 9BB2     		uxth	r3, r3
+ 597 003e 7A89     		ldrh	r2, [r7, #10]
+ 598 0040 0021     		movs	r1, #0
+ 599 0042 F868     		ldr	r0, [r7, #12]
+ 600 0044 FFF7FEFF 		bl	ProcessNewData
+ 601 0048 0346     		mov	r3, r0
+ 602 004a FB82     		strh	r3, [r7, #22]	@ movhi
+ 603 004c 3B89     		ldrh	r3, [r7, #8]
+ 604 004e F98A     		ldrh	r1, [r7, #22]
+ 605 0050 0022     		movs	r2, #0
+ 606 0052 F868     		ldr	r0, [r7, #12]
+ 607 0054 FFF7FEFF 		bl	ProcessNewData
+ 608              	.L53:
+ 609 0058 00BF     		nop
+ 610 005a 1837     		adds	r7, r7, #24
+ 611 005c BD46     		mov	sp, r7
+ 612              		@ sp needed
+ 613 005e 80BD     		pop	{r7, pc}
+ 615              		.section	.text.GetFromBuff_DMA,"ax",%progbits
+ 616              		.align	1
+ 617              		.global	GetFromBuff_DMA
+ 618              		.syntax unified
+ 619              		.thumb
+ 620              		.thumb_func
+ 622              	GetFromBuff_DMA:
+ 623              		@ args = 0, pretend = 0, frame = 16
+ 624              		@ frame_needed = 1, uses_anonymous_args = 0
+ 625 0000 80B5     		push	{r7, lr}
+ 626 0002 84B0     		sub	sp, sp, #16
+ 627 0004 00AF     		add	r7, sp, #0
+ 628 0006 7860     		str	r0, [r7, #4]
+ 629 0008 1A4B     		ldr	r3, .L59
+ 630 000a 5B68     		ldr	r3, [r3, #4]
+ 631 000c FB81     		strh	r3, [r7, #14]	@ movhi
+ 632 000e 1A4B     		ldr	r3, .L59+4
+ 633 0010 5B88     		ldrh	r3, [r3, #2]	@ movhi
+ 634 0012 9BB2     		uxth	r3, r3
+ 635 0014 3F2B     		cmp	r3, #63
+ 636 0016 09D9     		bls	.L55
+ 637 0018 174B     		ldr	r3, .L59+4
+ 638 001a 0022     		movs	r2, #0
+ 639 001c 1A80     		strh	r2, [r3]	@ movhi
+ 640 001e FB89     		ldrh	r3, [r7, #14]	@ movhi
+ 641 0020 C3F14003 		rsb	r3, r3, #64
+ 642 0024 9AB2     		uxth	r2, r3
+ 643 0026 144B     		ldr	r3, .L59+4
+ 644 0028 5A80     		strh	r2, [r3, #2]	@ movhi
+ 645 002a 0AE0     		b	.L56
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 12
+
+
+ 646              	.L55:
+ 647 002c 124B     		ldr	r3, .L59+4
+ 648 002e 5B88     		ldrh	r3, [r3, #2]	@ movhi
+ 649 0030 9AB2     		uxth	r2, r3
+ 650 0032 114B     		ldr	r3, .L59+4
+ 651 0034 1A80     		strh	r2, [r3]	@ movhi
+ 652 0036 FB89     		ldrh	r3, [r7, #14]	@ movhi
+ 653 0038 C3F14003 		rsb	r3, r3, #64
+ 654 003c 9AB2     		uxth	r2, r3
+ 655 003e 0E4B     		ldr	r3, .L59+4
+ 656 0040 5A80     		strh	r2, [r3, #2]	@ movhi
+ 657              	.L56:
+ 658 0042 0D4B     		ldr	r3, .L59+4
+ 659 0044 1B88     		ldrh	r3, [r3]	@ movhi
+ 660 0046 99B2     		uxth	r1, r3
+ 661 0048 0B4B     		ldr	r3, .L59+4
+ 662 004a 5B88     		ldrh	r3, [r3, #2]	@ movhi
+ 663 004c 9AB2     		uxth	r2, r3
+ 664 004e 4023     		movs	r3, #64
+ 665 0050 7868     		ldr	r0, [r7, #4]
+ 666 0052 FFF7FEFF 		bl	HandleDMAData
+ 667 0056 084B     		ldr	r3, .L59+4
+ 668 0058 1B88     		ldrh	r3, [r3]	@ movhi
+ 669 005a 9AB2     		uxth	r2, r3
+ 670 005c 064B     		ldr	r3, .L59+4
+ 671 005e 5B88     		ldrh	r3, [r3, #2]	@ movhi
+ 672 0060 9BB2     		uxth	r3, r3
+ 673 0062 9A42     		cmp	r2, r3
+ 674 0064 01D1     		bne	.L57
+ 675 0066 0023     		movs	r3, #0
+ 676 0068 00E0     		b	.L58
+ 677              	.L57:
+ 678 006a 0123     		movs	r3, #1
+ 679              	.L58:
+ 680 006c 1846     		mov	r0, r3
+ 681 006e 1037     		adds	r7, r7, #16
+ 682 0070 BD46     		mov	sp, r7
+ 683              		@ sp needed
+ 684 0072 80BD     		pop	{r7, pc}
+ 685              	.L60:
+ 686              		.align	2
+ 687              	.L59:
+ 688 0074 40640240 		.word	1073898560
+ 689 0078 00000000 		.word	_posdata
+ 691              		.section	.text.Uart1_Cancel_DMA2_Stream2,"ax",%progbits
+ 692              		.align	1
+ 693              		.global	Uart1_Cancel_DMA2_Stream2
+ 694              		.syntax unified
+ 695              		.thumb
+ 696              		.thumb_func
+ 698              	Uart1_Cancel_DMA2_Stream2:
+ 699              		@ args = 0, pretend = 0, frame = 8
+ 700              		@ frame_needed = 1, uses_anonymous_args = 0
+ 701 0000 80B5     		push	{r7, lr}
+ 702 0002 82B0     		sub	sp, sp, #8
+ 703 0004 00AF     		add	r7, sp, #0
+ 704 0006 FFF7FEFF 		bl	Get_Tick
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 13
+
+
+ 705 000a 7860     		str	r0, [r7, #4]
+ 706 000c 164B     		ldr	r3, .L67
+ 707 000e 1B68     		ldr	r3, [r3]
+ 708 0010 154A     		ldr	r2, .L67
+ 709 0012 23F01E03 		bic	r3, r3, #30
+ 710 0016 1360     		str	r3, [r2]
+ 711 0018 134B     		ldr	r3, .L67
+ 712 001a 5B69     		ldr	r3, [r3, #20]
+ 713 001c 124A     		ldr	r2, .L67
+ 714 001e 23F08003 		bic	r3, r3, #128
+ 715 0022 5361     		str	r3, [r2, #20]
+ 716 0024 114B     		ldr	r3, .L67+4
+ 717 0026 9B68     		ldr	r3, [r3, #8]
+ 718 0028 104A     		ldr	r2, .L67+4
+ 719 002a 43F47C13 		orr	r3, r3, #4128768
+ 720 002e 9360     		str	r3, [r2, #8]
+ 721 0030 0D4B     		ldr	r3, .L67
+ 722 0032 1B68     		ldr	r3, [r3]
+ 723 0034 0C4A     		ldr	r2, .L67
+ 724 0036 23F00103 		bic	r3, r3, #1
+ 725 003a 1360     		str	r3, [r2]
+ 726 003c 07E0     		b	.L62
+ 727              	.L64:
+ 728 003e FFF7FEFF 		bl	Get_Tick
+ 729 0042 0246     		mov	r2, r0
+ 730 0044 7B68     		ldr	r3, [r7, #4]
+ 731 0046 D31A     		subs	r3, r2, r3
+ 732 0048 B3F57A7F 		cmp	r3, #1000
+ 733 004c 06D8     		bhi	.L65
+ 734              	.L62:
+ 735 004e 064B     		ldr	r3, .L67
+ 736 0050 1B68     		ldr	r3, [r3]
+ 737 0052 03F00103 		and	r3, r3, #1
+ 738 0056 002B     		cmp	r3, #0
+ 739 0058 F1D1     		bne	.L64
+ 740 005a 00E0     		b	.L66
+ 741              	.L65:
+ 742 005c 00BF     		nop
+ 743              	.L66:
+ 744 005e 00BF     		nop
+ 745 0060 0837     		adds	r7, r7, #8
+ 746 0062 BD46     		mov	sp, r7
+ 747              		@ sp needed
+ 748 0064 80BD     		pop	{r7, pc}
+ 749              	.L68:
+ 750 0066 00BF     		.align	2
+ 751              	.L67:
+ 752 0068 40640240 		.word	1073898560
+ 753 006c 00640240 		.word	1073898496
+ 755              		.section	.text.Uart1_Transmit_DMA,"ax",%progbits
+ 756              		.align	1
+ 757              		.global	Uart1_Transmit_DMA
+ 758              		.syntax unified
+ 759              		.thumb
+ 760              		.thumb_func
+ 762              	Uart1_Transmit_DMA:
+ 763              		@ args = 0, pretend = 0, frame = 16
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 14
+
+
+ 764              		@ frame_needed = 1, uses_anonymous_args = 0
+ 765              		@ link register save eliminated.
+ 766 0000 80B4     		push	{r7}
+ 767 0002 85B0     		sub	sp, sp, #20
+ 768 0004 00AF     		add	r7, sp, #0
+ 769 0006 7860     		str	r0, [r7, #4]
+ 770 0008 0B46     		mov	r3, r1
+ 771 000a FB70     		strb	r3, [r7, #3]
+ 772 000c 3B1D     		adds	r3, r7, #4
+ 773 000e FB60     		str	r3, [r7, #12]
+ 774 0010 0F4A     		ldr	r2, .L70
+ 775 0012 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 776 0014 5360     		str	r3, [r2, #4]
+ 777 0016 0E4B     		ldr	r3, .L70
+ 778 0018 0E4A     		ldr	r2, .L70+4
+ 779 001a 9A60     		str	r2, [r3, #8]
+ 780 001c 0C4A     		ldr	r2, .L70
+ 781 001e FB68     		ldr	r3, [r7, #12]
+ 782 0020 1B68     		ldr	r3, [r3]
+ 783 0022 D360     		str	r3, [r2, #12]
+ 784 0024 0A4B     		ldr	r3, .L70
+ 785 0026 1B68     		ldr	r3, [r3]
+ 786 0028 094A     		ldr	r2, .L70
+ 787 002a 43F01803 		orr	r3, r3, #24
+ 788 002e 1360     		str	r3, [r2]
+ 789 0030 074B     		ldr	r3, .L70
+ 790 0032 1B68     		ldr	r3, [r3]
+ 791 0034 064A     		ldr	r2, .L70
+ 792 0036 43F00103 		orr	r3, r3, #1
+ 793 003a 1360     		str	r3, [r2]
+ 794 003c 064B     		ldr	r3, .L70+8
+ 795 003e 6FF04002 		mvn	r2, #64
+ 796 0042 1A60     		str	r2, [r3]
+ 797 0044 00BF     		nop
+ 798 0046 1437     		adds	r7, r7, #20
+ 799 0048 BD46     		mov	sp, r7
+ 800              		@ sp needed
+ 801 004a 5DF8047B 		ldr	r7, [sp], #4
+ 802 004e 7047     		bx	lr
+ 803              	.L71:
+ 804              		.align	2
+ 805              	.L70:
+ 806 0050 B8640240 		.word	1073898680
+ 807 0054 04100140 		.word	1073811460
+ 808 0058 00100140 		.word	1073811456
+ 810              		.section	.text.Uart1_Receive_DMA,"ax",%progbits
+ 811              		.align	1
+ 812              		.global	Uart1_Receive_DMA
+ 813              		.syntax unified
+ 814              		.thumb
+ 815              		.thumb_func
+ 817              	Uart1_Receive_DMA:
+ 818              		@ args = 0, pretend = 0, frame = 0
+ 819              		@ frame_needed = 1, uses_anonymous_args = 0
+ 820              		@ link register save eliminated.
+ 821 0000 80B4     		push	{r7}
+ 822 0002 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 15
+
+
+ 823 0004 0C4B     		ldr	r3, .L73
+ 824 0006 0D4A     		ldr	r2, .L73+4
+ 825 0008 9A60     		str	r2, [r3, #8]
+ 826 000a 0B4B     		ldr	r3, .L73
+ 827 000c 0C4A     		ldr	r2, .L73+8
+ 828 000e DA60     		str	r2, [r3, #12]
+ 829 0010 094B     		ldr	r3, .L73
+ 830 0012 4022     		movs	r2, #64
+ 831 0014 5A60     		str	r2, [r3, #4]
+ 832 0016 084B     		ldr	r3, .L73
+ 833 0018 1B68     		ldr	r3, [r3]
+ 834 001a 074A     		ldr	r2, .L73
+ 835 001c 43F01003 		orr	r3, r3, #16
+ 836 0020 1360     		str	r3, [r2]
+ 837 0022 054B     		ldr	r3, .L73
+ 838 0024 1B68     		ldr	r3, [r3]
+ 839 0026 044A     		ldr	r2, .L73
+ 840 0028 43F00103 		orr	r3, r3, #1
+ 841 002c 1360     		str	r3, [r2]
+ 842 002e 00BF     		nop
+ 843 0030 BD46     		mov	sp, r7
+ 844              		@ sp needed
+ 845 0032 5DF8047B 		ldr	r7, [sp], #4
+ 846 0036 7047     		bx	lr
+ 847              	.L74:
+ 848              		.align	2
+ 849              	.L73:
+ 850 0038 40640240 		.word	1073898560
+ 851 003c 04100140 		.word	1073811460
+ 852 0040 00000000 		.word	buff_rx_it
+ 854              		.section	.text.UART1_IRQHandlerRxCallback,"ax",%progbits
+ 855              		.align	1
+ 856              		.global	UART1_IRQHandlerRxCallback
+ 857              		.syntax unified
+ 858              		.thumb
+ 859              		.thumb_func
+ 861              	UART1_IRQHandlerRxCallback:
+ 862              		@ args = 0, pretend = 0, frame = 8
+ 863              		@ frame_needed = 1, uses_anonymous_args = 0
+ 864              		@ link register save eliminated.
+ 865 0000 80B4     		push	{r7}
+ 866 0002 83B0     		sub	sp, sp, #12
+ 867 0004 00AF     		add	r7, sp, #0
+ 868 0006 0A4B     		ldr	r3, .L78
+ 869 0008 1B68     		ldr	r3, [r3]
+ 870 000a 7B60     		str	r3, [r7, #4]
+ 871 000c 084B     		ldr	r3, .L78
+ 872 000e DB68     		ldr	r3, [r3, #12]
+ 873 0010 3B60     		str	r3, [r7]
+ 874 0012 7B68     		ldr	r3, [r7, #4]
+ 875 0014 03F02003 		and	r3, r3, #32
+ 876 0018 002B     		cmp	r3, #0
+ 877 001a 7B68     		ldr	r3, [r7, #4]
+ 878 001c 03F01003 		and	r3, r3, #16
+ 879 0020 002B     		cmp	r3, #0
+ 880 0022 00BF     		nop
+ 881 0024 0C37     		adds	r7, r7, #12
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 16
+
+
+ 882 0026 BD46     		mov	sp, r7
+ 883              		@ sp needed
+ 884 0028 5DF8047B 		ldr	r7, [sp], #4
+ 885 002c 7047     		bx	lr
+ 886              	.L79:
+ 887 002e 00BF     		.align	2
+ 888              	.L78:
+ 889 0030 00100140 		.word	1073811456
+ 891              		.section	.text.TranCompleteITCallback,"ax",%progbits
+ 892              		.align	1
+ 893              		.weak	TranCompleteITCallback
+ 894              		.syntax unified
+ 895              		.thumb
+ 896              		.thumb_func
+ 898              	TranCompleteITCallback:
+ 899              		@ args = 0, pretend = 0, frame = 0
+ 900              		@ frame_needed = 1, uses_anonymous_args = 0
+ 901              		@ link register save eliminated.
+ 902 0000 80B4     		push	{r7}
+ 903 0002 00AF     		add	r7, sp, #0
+ 904 0004 034B     		ldr	r3, .L81
+ 905 0006 0122     		movs	r2, #1
+ 906 0008 1A71     		strb	r2, [r3, #4]
+ 907 000a 00BF     		nop
+ 908 000c BD46     		mov	sp, r7
+ 909              		@ sp needed
+ 910 000e 5DF8047B 		ldr	r7, [sp], #4
+ 911 0012 7047     		bx	lr
+ 912              	.L82:
+ 913              		.align	2
+ 914              	.L81:
+ 915 0014 00000000 		.word	_posdata
+ 917              		.section	.text.UART1_DMA2_RX_IRQHandler,"ax",%progbits
+ 918              		.align	1
+ 919              		.weak	UART1_DMA2_RX_IRQHandler
+ 920              		.syntax unified
+ 921              		.thumb
+ 922              		.thumb_func
+ 924              	UART1_DMA2_RX_IRQHandler:
+ 925              		@ args = 0, pretend = 0, frame = 8
+ 926              		@ frame_needed = 1, uses_anonymous_args = 0
+ 927 0000 80B5     		push	{r7, lr}
+ 928 0002 82B0     		sub	sp, sp, #8
+ 929 0004 00AF     		add	r7, sp, #0
+ 930 0006 0F4B     		ldr	r3, .L87
+ 931 0008 1B68     		ldr	r3, [r3]
+ 932 000a 7B60     		str	r3, [r7, #4]
+ 933 000c 7B68     		ldr	r3, [r7, #4]
+ 934 000e 03F40013 		and	r3, r3, #2097152
+ 935 0012 002B     		cmp	r3, #0
+ 936 0014 07D0     		beq	.L84
+ 937 0016 0B4B     		ldr	r3, .L87
+ 938 0018 9B68     		ldr	r3, [r3, #8]
+ 939 001a 0A4A     		ldr	r2, .L87
+ 940 001c 43F47C13 		orr	r3, r3, #4128768
+ 941 0020 9360     		str	r3, [r2, #8]
+ 942 0022 FFF7FEFF 		bl	TranCompleteITCallback
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 17
+
+
+ 943              	.L84:
+ 944 0026 7B68     		ldr	r3, [r7, #4]
+ 945 0028 03F48013 		and	r3, r3, #1048576
+ 946 002c 002B     		cmp	r3, #0
+ 947 002e 05D0     		beq	.L86
+ 948 0030 044B     		ldr	r3, .L87
+ 949 0032 9B68     		ldr	r3, [r3, #8]
+ 950 0034 034A     		ldr	r2, .L87
+ 951 0036 43F48013 		orr	r3, r3, #1048576
+ 952 003a 9360     		str	r3, [r2, #8]
+ 953              	.L86:
+ 954 003c 00BF     		nop
+ 955 003e 0837     		adds	r7, r7, #8
+ 956 0040 BD46     		mov	sp, r7
+ 957              		@ sp needed
+ 958 0042 80BD     		pop	{r7, pc}
+ 959              	.L88:
+ 960              		.align	2
+ 961              	.L87:
+ 962 0044 00640240 		.word	1073898496
+ 964              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cccrXqua.s 			page 18
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 uart.c
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:18     .text.__NVIC_EnableIRQ:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:23     .text.__NVIC_EnableIRQ:00000000 __NVIC_EnableIRQ
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:53     .text.__NVIC_EnableIRQ:00000038 $d
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:56     .text.__NVIC_SetPriority:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:61     .text.__NVIC_SetPriority:00000000 __NVIC_SetPriority
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:104    .text.__NVIC_SetPriority:0000004c $d
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:108    .text.NVIC_EncodePriority:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:113    .text.NVIC_EncodePriority:00000000 NVIC_EncodePriority
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:170    .bss.buff_rx_it:00000000 buff_rx_it
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:167    .bss.buff_rx_it:00000000 $d
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:177    .bss._posdata:00000000 _posdata
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:174    .bss._posdata:00000000 $d
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:180    .text.USART1_Init:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:186    .text.USART1_Init:00000000 USART1_Init
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:328    .text.USART1_Init:0000013c $d
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:333    .text.Usart_Send_Char:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:339    .text.Usart_Send_Char:00000000 Usart_Send_Char
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:375    .text.Usart_Send_Char:0000003c $d
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:378    .text.Usart_Send_String:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:384    .text.Usart_Send_String:00000000 Usart_Send_String
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:419    .text.Usart_Transmit:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:425    .text.Usart_Transmit:00000000 Usart_Transmit
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:492    .text.Usart_Transmit:00000070 $d
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:495    .text.ProcessNewData:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:501    .text.ProcessNewData:00000000 ProcessNewData
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:554    .text.ProcessNewData:0000005c $d
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:557    .text.HandleDMAData:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:563    .text.HandleDMAData:00000000 HandleDMAData
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:616    .text.GetFromBuff_DMA:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:622    .text.GetFromBuff_DMA:00000000 GetFromBuff_DMA
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:688    .text.GetFromBuff_DMA:00000074 $d
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:692    .text.Uart1_Cancel_DMA2_Stream2:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:698    .text.Uart1_Cancel_DMA2_Stream2:00000000 Uart1_Cancel_DMA2_Stream2
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:752    .text.Uart1_Cancel_DMA2_Stream2:00000068 $d
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:756    .text.Uart1_Transmit_DMA:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:762    .text.Uart1_Transmit_DMA:00000000 Uart1_Transmit_DMA
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:806    .text.Uart1_Transmit_DMA:00000050 $d
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:811    .text.Uart1_Receive_DMA:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:817    .text.Uart1_Receive_DMA:00000000 Uart1_Receive_DMA
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:850    .text.Uart1_Receive_DMA:00000038 $d
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:855    .text.UART1_IRQHandlerRxCallback:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:861    .text.UART1_IRQHandlerRxCallback:00000000 UART1_IRQHandlerRxCallback
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:889    .text.UART1_IRQHandlerRxCallback:00000030 $d
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:892    .text.TranCompleteITCallback:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:898    .text.TranCompleteITCallback:00000000 TranCompleteITCallback
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:915    .text.TranCompleteITCallback:00000014 $d
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:918    .text.UART1_DMA2_RX_IRQHandler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:924    .text.UART1_DMA2_RX_IRQHandler:00000000 UART1_DMA2_RX_IRQHandler
+C:\Users\phamt\AppData\Local\Temp\cccrXqua.s:962    .text.UART1_DMA2_RX_IRQHandler:00000044 $d
+
+UNDEFINED SYMBOLS
+Get_Tick

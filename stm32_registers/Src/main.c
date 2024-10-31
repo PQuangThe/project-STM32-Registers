@@ -53,16 +53,23 @@ void vTask1 (void *pvParameters)
 */
 void vTaskFlash_W25(void *pvParameters)
 {
+  uint32_t Address=0;
   while(1)
 	{
-    uint8_t *Array = (uint8_t *)pvPortMalloc(40 * sizeof(uint8_t));
-    if (Array != NULL) {
-      W25Q_ReadID((char *)Array);
-      Usart_Transmit(Array,strlen((char *)Array),1000);
-      vPortFree(Array);
-    }
-    // W25Q_ReadID(buff);
-    // Usart_Transmit((uint8_t*)buff,strlen(buff),1000);
+    char *Array = (char *)pvPortMalloc(40 * sizeof(char));
+    uint8_t *rx = (uint8_t *)pvPortMalloc(16 * sizeof(uint8_t));
+    // if (Array != NULL) {
+    //   W25Q_ReadID((char *)Array);
+    //   Usart_Transmit(Array,strlen((char *)Array),1000);
+    //   vPortFree(Array);
+    // }
+    W25Q_Read_Byte(Address,rx,16,1000);
+
+    sprintf(Array," 0x%02X%02X%02X%02X \r\n", rx[0], rx[1], rx[2], rx[3]);
+    Usart_Transmit((uint8_t *)Array,strlen((char *)Array),1000);
+    Address += 16;
+    vPortFree(Array);
+    vPortFree(rx);
 		vTaskDelay(2000);
 	}
 }

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s 			page 1
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s 			page 1
   58 0012 00BF     		.align	2
   59              	.L3:
   60 0014 00040240 		.word	1073873920
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s 			page 2
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 2
 
 
   62              		.section	.text.csHIGH,"ax",%progbits
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s 			page 1
  121              		@ args = 0, pretend = 0, frame = 8
  122              		@ frame_needed = 1, uses_anonymous_args = 0
  123 0000 80B5     		push	{r7, lr}
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s 			page 3
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 3
 
 
  124 0002 82B0     		sub	sp, sp, #8
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s 			page 1
  177              		.align	1
  178              		.global	W25Q_ReadID
  179              		.syntax unified
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s 			page 4
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 4
 
 
  180              		.thumb
@@ -223,30 +223,83 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s 			page 1
  220              		.align	2
  221              	.L12:
  222 0050 00000000 		.word	.LC0
- 224              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s 			page 5
+ 224              		.section	.text.W25Q_Read_Byte,"ax",%progbits
+ 225              		.align	1
+ 226              		.global	W25Q_Read_Byte
+ 227              		.syntax unified
+ 228              		.thumb
+ 229              		.thumb_func
+ 231              	W25Q_Read_Byte:
+ 232              		@ args = 0, pretend = 0, frame = 24
+ 233              		@ frame_needed = 1, uses_anonymous_args = 0
+ 234 0000 80B5     		push	{r7, lr}
+ 235 0002 86B0     		sub	sp, sp, #24
+ 236 0004 00AF     		add	r7, sp, #0
+ 237 0006 F860     		str	r0, [r7, #12]
+ 238 0008 B960     		str	r1, [r7, #8]
+ 239 000a 7A60     		str	r2, [r7, #4]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 5
+
+
+ 240 000c 3B60     		str	r3, [r7]
+ 241 000e 0323     		movs	r3, #3
+ 242 0010 3B75     		strb	r3, [r7, #20]
+ 243 0012 FB68     		ldr	r3, [r7, #12]
+ 244 0014 1B0C     		lsrs	r3, r3, #16
+ 245 0016 DBB2     		uxtb	r3, r3
+ 246 0018 7B75     		strb	r3, [r7, #21]
+ 247 001a FB68     		ldr	r3, [r7, #12]
+ 248 001c 1B0A     		lsrs	r3, r3, #8
+ 249 001e DBB2     		uxtb	r3, r3
+ 250 0020 BB75     		strb	r3, [r7, #22]
+ 251 0022 FB68     		ldr	r3, [r7, #12]
+ 252 0024 DBB2     		uxtb	r3, r3
+ 253 0026 FB75     		strb	r3, [r7, #23]
+ 254 0028 FFF7FEFF 		bl	csLOW
+ 255 002c 07F11403 		add	r3, r7, #20
+ 256 0030 4FF4FA72 		mov	r2, #500
+ 257 0034 0421     		movs	r1, #4
+ 258 0036 1846     		mov	r0, r3
+ 259 0038 FFF7FEFF 		bl	SPI1_Transmit
+ 260 003c 7B68     		ldr	r3, [r7, #4]
+ 261 003e 9BB2     		uxth	r3, r3
+ 262 0040 3A68     		ldr	r2, [r7]
+ 263 0042 92B2     		uxth	r2, r2
+ 264 0044 1946     		mov	r1, r3
+ 265 0046 B868     		ldr	r0, [r7, #8]
+ 266 0048 FFF7FEFF 		bl	SPI1_Receive
+ 267 004c FFF7FEFF 		bl	csHIGH
+ 268 0050 00BF     		nop
+ 269 0052 1837     		adds	r7, r7, #24
+ 270 0054 BD46     		mov	sp, r7
+ 271              		@ sp needed
+ 272 0056 80BD     		pop	{r7, pc}
+ 274              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 6
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 w25qxx.c
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:18     .text.W25Q_Delay:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:24     .text.W25Q_Delay:00000000 W25Q_Delay
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:40     .text.csLOW:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:46     .text.csLOW:00000000 csLOW
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:60     .text.csLOW:00000014 $d
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:63     .text.csHIGH:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:69     .text.csHIGH:00000000 csHIGH
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:83     .text.csHIGH:00000014 $d
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:86     .text.SPI_Write:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:92     .text.SPI_Write:00000000 SPI_Write
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:114    .text.SPI_Read:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:120    .text.SPI_Read:00000000 SPI_Read
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:142    .text.W25Q_Reset:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:148    .text.W25Q_Reset:00000000 W25Q_Reset
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:173    .rodata:00000000 $d
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:177    .text.W25Q_ReadID:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:183    .text.W25Q_ReadID:00000000 W25Q_ReadID
-C:\Users\phamt\AppData\Local\Temp\ccm4e23w.s:222    .text.W25Q_ReadID:00000050 $d
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:18     .text.W25Q_Delay:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:24     .text.W25Q_Delay:00000000 W25Q_Delay
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:40     .text.csLOW:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:46     .text.csLOW:00000000 csLOW
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:60     .text.csLOW:00000014 $d
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:63     .text.csHIGH:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:69     .text.csHIGH:00000000 csHIGH
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:83     .text.csHIGH:00000014 $d
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:86     .text.SPI_Write:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:92     .text.SPI_Write:00000000 SPI_Write
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:114    .text.SPI_Read:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:120    .text.SPI_Read:00000000 SPI_Read
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:142    .text.W25Q_Reset:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:148    .text.W25Q_Reset:00000000 W25Q_Reset
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:173    .rodata:00000000 $d
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:177    .text.W25Q_ReadID:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:183    .text.W25Q_ReadID:00000000 W25Q_ReadID
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:222    .text.W25Q_ReadID:00000050 $d
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:225    .text.W25Q_Read_Byte:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:231    .text.W25Q_Read_Byte:00000000 W25Q_Read_Byte
 
 UNDEFINED SYMBOLS
 s_delay

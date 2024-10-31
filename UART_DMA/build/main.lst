@@ -1,0 +1,239 @@
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"main.c"
+  16              		.text
+  17              		.section	.rodata
+  18              		.align	2
+  19              	.LC0:
+  20 0000 D007     		.short	2000
+  21 0002 F401     		.short	500
+  22              		.section	.text.vTaskLED,"ax",%progbits
+  23              		.align	1
+  24              		.global	vTaskLED
+  25              		.syntax unified
+  26              		.thumb
+  27              		.thumb_func
+  29              	vTaskLED:
+  30              		@ args = 0, pretend = 0, frame = 16
+  31              		@ frame_needed = 1, uses_anonymous_args = 0
+  32 0000 80B5     		push	{r7, lr}
+  33 0002 84B0     		sub	sp, sp, #16
+  34 0004 00AF     		add	r7, sp, #0
+  35 0006 7860     		str	r0, [r7, #4]
+  36 0008 7B68     		ldr	r3, [r7, #4]
+  37 000a FB60     		str	r3, [r7, #12]
+  38 000c 0A4B     		ldr	r3, .L3
+  39 000e 1B68     		ldr	r3, [r3]
+  40 0010 BB60     		str	r3, [r7, #8]
+  41              	.L2:
+  42 0012 FB68     		ldr	r3, [r7, #12]
+  43 0014 9BB2     		uxth	r3, r3
+  44 0016 0633     		adds	r3, r3, #6
+  45 0018 9BB2     		uxth	r3, r3
+  46 001a 1946     		mov	r1, r3
+  47 001c 0748     		ldr	r0, .L3+4
+  48 001e FFF7FEFF 		bl	gpio_tog
+  49 0022 FB68     		ldr	r3, [r7, #12]
+  50 0024 5B00     		lsls	r3, r3, #1
+  51 0026 1033     		adds	r3, r3, #16
+  52 0028 3B44     		add	r3, r3, r7
+  53 002a 33F8083C 		ldrh	r3, [r3, #-8]
+  54 002e 1846     		mov	r0, r3
+  55 0030 FFF7FEFF 		bl	vTaskDelay
+  56 0034 EDE7     		b	.L2
+  57              	.L4:
+  58 0036 00BF     		.align	2
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s 			page 2
+
+
+  59              	.L3:
+  60 0038 00000000 		.word	.LC0
+  61 003c 00000240 		.word	1073872896
+  63              		.section	.text.vTask1,"ax",%progbits
+  64              		.align	1
+  65              		.global	vTask1
+  66              		.syntax unified
+  67              		.thumb
+  68              		.thumb_func
+  70              	vTask1:
+  71              		@ args = 0, pretend = 0, frame = 16
+  72              		@ frame_needed = 1, uses_anonymous_args = 0
+  73 0000 80B5     		push	{r7, lr}
+  74 0002 84B0     		sub	sp, sp, #16
+  75 0004 00AF     		add	r7, sp, #0
+  76 0006 7860     		str	r0, [r7, #4]
+  77              	.L8:
+  78 0008 1820     		movs	r0, #24
+  79 000a FFF7FEFF 		bl	pvPortMalloc
+  80 000e F860     		str	r0, [r7, #12]
+  81 0010 1822     		movs	r2, #24
+  82 0012 0021     		movs	r1, #0
+  83 0014 F868     		ldr	r0, [r7, #12]
+  84 0016 FFF7FEFF 		bl	memset
+  85 001a FB68     		ldr	r3, [r7, #12]
+  86 001c 002B     		cmp	r3, #0
+  87 001e 11D0     		beq	.L6
+  88 0020 F868     		ldr	r0, [r7, #12]
+  89 0022 FFF7FEFF 		bl	GetFromBuff_DMA
+  90 0026 0346     		mov	r3, r0
+  91 0028 002B     		cmp	r3, #0
+  92 002a 08D0     		beq	.L7
+  93 002c 2020     		movs	r0, #32
+  94 002e FFF7FEFF 		bl	Usart_Send_Char
+  95 0032 F868     		ldr	r0, [r7, #12]
+  96 0034 FFF7FEFF 		bl	Usart_Send_String
+  97 0038 0A20     		movs	r0, #10
+  98 003a FFF7FEFF 		bl	Usart_Send_Char
+  99              	.L7:
+ 100 003e F868     		ldr	r0, [r7, #12]
+ 101 0040 FFF7FEFF 		bl	vPortFree
+ 102              	.L6:
+ 103 0044 6420     		movs	r0, #100
+ 104 0046 FFF7FEFF 		bl	vTaskDelay
+ 105 004a DDE7     		b	.L8
+ 107              		.section	.rodata
+ 108              		.align	2
+ 109              	.LC1:
+ 110 0004 4C65645F 		.ascii	"Led_blink\000"
+ 110      626C696E 
+ 110      6B00
+ 111 000e 0000     		.align	2
+ 112              	.LC2:
+ 113 0010 4C65645F 		.ascii	"Led_blink1\000"
+ 113      626C696E 
+ 113      6B3100
+ 114 001b 00       		.align	2
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s 			page 3
+
+
+ 115              	.LC3:
+ 116 001c 5461736B 		.ascii	"Task_1\000"
+ 116      5F3100
+ 117              		.section	.text.main,"ax",%progbits
+ 118              		.align	1
+ 119              		.global	main
+ 120              		.syntax unified
+ 121              		.thumb
+ 122              		.thumb_func
+ 124              	main:
+ 125              		@ args = 0, pretend = 0, frame = 0
+ 126              		@ frame_needed = 1, uses_anonymous_args = 0
+ 127 0000 80B5     		push	{r7, lr}
+ 128 0002 82B0     		sub	sp, sp, #8
+ 129 0004 02AF     		add	r7, sp, #8
+ 130 0006 FFF7FEFF 		bl	SystemClock_Config
+ 131 000a FFF7FEFF 		bl	MX_GPIO_Init
+ 132 000e FFF7FEFF 		bl	USART1_Init
+ 133 0012 FFF7FEFF 		bl	SPI_Init
+ 134 0016 FFF7FEFF 		bl	Uart1_Receive_DMA
+ 135 001a 0023     		movs	r3, #0
+ 136 001c 0193     		str	r3, [sp, #4]
+ 137 001e 0023     		movs	r3, #0
+ 138 0020 0093     		str	r3, [sp]
+ 139 0022 0023     		movs	r3, #0
+ 140 0024 4022     		movs	r2, #64
+ 141 0026 0E49     		ldr	r1, .L11
+ 142 0028 0E48     		ldr	r0, .L11+4
+ 143 002a FFF7FEFF 		bl	xTaskCreate
+ 144 002e 0023     		movs	r3, #0
+ 145 0030 0193     		str	r3, [sp, #4]
+ 146 0032 0123     		movs	r3, #1
+ 147 0034 0093     		str	r3, [sp]
+ 148 0036 0123     		movs	r3, #1
+ 149 0038 4022     		movs	r2, #64
+ 150 003a 0B49     		ldr	r1, .L11+8
+ 151 003c 0948     		ldr	r0, .L11+4
+ 152 003e FFF7FEFF 		bl	xTaskCreate
+ 153 0042 0023     		movs	r3, #0
+ 154 0044 0193     		str	r3, [sp, #4]
+ 155 0046 0323     		movs	r3, #3
+ 156 0048 0093     		str	r3, [sp]
+ 157 004a 0023     		movs	r3, #0
+ 158 004c 4FF48062 		mov	r2, #1024
+ 159 0050 0649     		ldr	r1, .L11+12
+ 160 0052 0748     		ldr	r0, .L11+16
+ 161 0054 FFF7FEFF 		bl	xTaskCreate
+ 162 0058 FFF7FEFF 		bl	vTaskStartScheduler
+ 163              	.L10:
+ 164 005c FEE7     		b	.L10
+ 165              	.L12:
+ 166 005e 00BF     		.align	2
+ 167              	.L11:
+ 168 0060 04000000 		.word	.LC1
+ 169 0064 00000000 		.word	vTaskLED
+ 170 0068 10000000 		.word	.LC2
+ 171 006c 1C000000 		.word	.LC3
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s 			page 4
+
+
+ 172 0070 00000000 		.word	vTask1
+ 174              		.section	.text.Error_Handler,"ax",%progbits
+ 175              		.align	1
+ 176              		.global	Error_Handler
+ 177              		.syntax unified
+ 178              		.thumb
+ 179              		.thumb_func
+ 181              	Error_Handler:
+ 182              		@ args = 0, pretend = 0, frame = 0
+ 183              		@ frame_needed = 1, uses_anonymous_args = 0
+ 184              		@ link register save eliminated.
+ 185 0000 80B4     		push	{r7}
+ 186 0002 00AF     		add	r7, sp, #0
+ 187              		.syntax unified
+ 188              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 189 0004 72B6     		cpsid i
+ 190              	@ 0 "" 2
+ 191              		.thumb
+ 192              		.syntax unified
+ 193 0006 00BF     		nop
+ 194              	.L14:
+ 195 0008 FEE7     		b	.L14
+ 197              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s:18     .rodata:00000000 $d
+C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s:23     .text.vTaskLED:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s:29     .text.vTaskLED:00000000 vTaskLED
+C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s:60     .text.vTaskLED:00000038 $d
+C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s:64     .text.vTask1:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s:70     .text.vTask1:00000000 vTask1
+C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s:118    .text.main:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s:124    .text.main:00000000 main
+C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s:168    .text.main:00000060 $d
+C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s:175    .text.Error_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccX9Bza9.s:181    .text.Error_Handler:00000000 Error_Handler
+
+UNDEFINED SYMBOLS
+gpio_tog
+vTaskDelay
+pvPortMalloc
+memset
+GetFromBuff_DMA
+Usart_Send_Char
+Usart_Send_String
+vPortFree
+SystemClock_Config
+MX_GPIO_Init
+USART1_Init
+SPI_Init
+Uart1_Receive_DMA
+xTaskCreate
+vTaskStartScheduler
