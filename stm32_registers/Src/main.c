@@ -53,25 +53,52 @@ void vTask1 (void *pvParameters)
 */
 void vTaskFlash_W25(void *pvParameters)
 {
-  uint32_t Address=0;
+  uint8_t pd1[]={0xaa,0xbb,0xcc};
   while(1)
 	{
     char *Array = (char *)pvPortMalloc(40 * sizeof(char));
-    uint8_t *rx = (uint8_t *)pvPortMalloc(16 * sizeof(uint8_t));
-    // if (Array != NULL) {
-    //   W25Q_ReadID((char *)Array);
-    //   Usart_Transmit(Array,strlen((char *)Array),1000);
-    //   vPortFree(Array);
-    // }
-    W25Q_Read_Byte(Address,rx,16,1000);
+    uint8_t *rx = (uint8_t *)pvPortMalloc(10 * sizeof(uint8_t));
+    if ((Array != NULL) && (rx != NULL)) {
+      W25Q_ReadID(Array);
+      Usart_Transmit((uint8_t*)Array,strlen(Array),100);
 
-    sprintf(Array," 0x%02X%02X%02X%02X \r\n", rx[0], rx[1], rx[2], rx[3]);
-    Usart_Transmit((uint8_t *)Array,strlen((char *)Array),1000);
-    Address += 16;
-    vPortFree(Array);
-    vPortFree(rx);
-		vTaskDelay(2000);
+      W25Q_Read_Byte(508,rx,6,1000);
+      sprintf(Array,"%02X %02X %02X %02X %02X %02X\n", rx[0], rx[1], rx[2], rx[3],rx[4],rx[5]);
+      Usart_Transmit((uint8_t*)Array,strlen(Array),100);
+
+      W25Q_Erase_Sector(0);
+
+      W25Q_Read_Byte(508,rx,6,1000);
+      sprintf(Array,"%02X %02X %02X %02X %02X %02X\n", rx[0], rx[1], rx[2], rx[3],rx[4],rx[5]);
+      Usart_Transmit((uint8_t*)Array,strlen(Array),100); 
+
+      W25Q_Write_Byte(509,pd1,3);
+
+      sprintf(Array,"Da ghi thanh cong\n");
+      Usart_Transmit((uint8_t*)Array,strlen(Array),100);
+
+      W25Q_Read_Byte(508,rx,6,1000);
+      sprintf(Array,"%02X %02X %02X %02X %02X %02X\n", rx[0], rx[1], rx[2], rx[3],rx[4],rx[5]);
+      Usart_Transmit((uint8_t*)Array,strlen(Array),100);
+
+      W25Q_Read_Byte(508,rx,6,1000);
+      sprintf(Array,"%02X %02X %02X %02X %02X %02X\n", rx[0], rx[1], rx[2], rx[3],rx[4],rx[5]);
+      Usart_Transmit((uint8_t*)Array,strlen(Array),100);
+
+      vPortFree(Array);
+      vPortFree(rx);
+    }
+		vTaskDelay(5000);
 	}
+}
+
+void vTaskFlash_W25Q2 (void *pvParameters)
+{
+  while(1)
+  {
+    
+    vTaskDelay(5000);
+  }
 }
 
 /**
@@ -96,6 +123,7 @@ int main(void)
   //xTaskCreate(vTask1  , "Task_1"    , 1024, NULL     , 3, NULL);
 
   xTaskCreate(vTaskFlash_W25,"Task_flash_w25", 2048 , NULL, 2, NULL);
+  //xTaskCreate(vTaskFlash_W25Q2,"Task_flash_w25q2", 2048 , NULL, 3, NULL);
 	// Start the Scheduler
 	vTaskStartScheduler();
   

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 1
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -53,12 +53,12 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 1
   51 0036 1B68     		ldr	r3, [r3]
   52 0038 23F03803 		bic	r3, r3, #56
   53 003c 134A     		ldr	r2, .L2
-  54 003e 43F01803 		orr	r3, r3, #24
+  54 003e 43F01003 		orr	r3, r3, #16
   55 0042 1360     		str	r3, [r2]
   56 0044 114B     		ldr	r3, .L2
   57 0046 1B68     		ldr	r3, [r3]
   58 0048 104A     		ldr	r2, .L2
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 2
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s 			page 2
 
 
   59 004a 23F08003 		bic	r3, r3, #128
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 1
  115 001e 8BB2     		uxth	r3, r1
  116 0020 0022     		movs	r2, #0
  117 0022 9846     		mov	r8, r3
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 3
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s 			page 3
 
 
  118 0024 9146     		mov	r9, r2
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 1
  174 0012 6B46     		mov	r3, sp
  175 0014 1E46     		mov	r6, r3
  176 0016 7988     		ldrh	r1, [r7, #2]
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 4
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s 			page 4
 
 
  177 0018 0B46     		mov	r3, r1
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 1
  233              	SPI1_TransmitReceive:
  234              		@ args = 4, pretend = 0, frame = 40
  235              		@ frame_needed = 1, uses_anonymous_args = 0
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 5
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s 			page 5
 
 
  236 0000 80B5     		push	{r7, lr}
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 1
  290 006e 7B8B     		ldrh	r3, [r7, #26]
  291 0070 002B     		cmp	r3, #0
  292 0072 0BD0     		beq	.L9
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 6
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s 			page 6
 
 
  293 0074 104B     		ldr	r3, .L14+4
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 1
  349 0006 0346     		mov	r3, r0
  350 0008 FB71     		strb	r3, [r7, #7]
  351 000a 0F4B     		ldr	r3, .L20
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 7
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s 			page 7
 
 
  352 000c DB68     		ldr	r3, [r3, #12]
@@ -395,24 +395,24 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 1
  383              	.L20:
  384 0048 00300140 		.word	1073819648
  386              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s 			page 8
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s 			page 8
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 spi.c
-C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s:18     .text.SPI_Init:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s:24     .text.SPI_Init:00000000 SPI_Init
-C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s:89     .text.SPI_Init:0000008c $d
-C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s:92     .text.SPI1_Transmit:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s:98     .text.SPI1_Transmit:00000000 SPI1_Transmit
-C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s:233    .text.SPI1_TransmitReceive:00000000 SPI1_TransmitReceive
-C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s:157    .text.SPI1_Receive:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s:163    .text.SPI1_Receive:00000000 SPI1_Receive
-C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s:227    .text.SPI1_TransmitReceive:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s:332    .text.SPI1_TransmitReceive:000000b4 $d
-C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s:336    .text.SPI1_Receive_Byte:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s:342    .text.SPI1_Receive_Byte:00000000 SPI1_Receive_Byte
-C:\Users\phamt\AppData\Local\Temp\ccULxqE2.s:384    .text.SPI1_Receive_Byte:00000048 $d
+C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s:18     .text.SPI_Init:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s:24     .text.SPI_Init:00000000 SPI_Init
+C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s:89     .text.SPI_Init:0000008c $d
+C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s:92     .text.SPI1_Transmit:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s:98     .text.SPI1_Transmit:00000000 SPI1_Transmit
+C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s:233    .text.SPI1_TransmitReceive:00000000 SPI1_TransmitReceive
+C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s:157    .text.SPI1_Receive:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s:163    .text.SPI1_Receive:00000000 SPI1_Receive
+C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s:227    .text.SPI1_TransmitReceive:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s:332    .text.SPI1_TransmitReceive:000000b4 $d
+C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s:336    .text.SPI1_Receive_Byte:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s:342    .text.SPI1_Receive_Byte:00000000 SPI1_Receive_Byte
+C:\Users\phamt\AppData\Local\Temp\ccMA6zyZ.s:384    .text.SPI1_Receive_Byte:00000048 $d
 
 UNDEFINED SYMBOLS
 memset

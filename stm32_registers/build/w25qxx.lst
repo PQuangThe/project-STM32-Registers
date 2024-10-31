@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 1
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 1
   58 0012 00BF     		.align	2
   59              	.L3:
   60 0014 00040240 		.word	1073873920
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 2
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s 			page 2
 
 
   62              		.section	.text.csHIGH,"ax",%progbits
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 1
  121              		@ args = 0, pretend = 0, frame = 8
  122              		@ frame_needed = 1, uses_anonymous_args = 0
  123 0000 80B5     		push	{r7, lr}
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 3
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s 			page 3
 
 
  124 0002 82B0     		sub	sp, sp, #8
@@ -169,16 +169,16 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 1
  172              		.section	.rodata
  173              		.align	2
  174              	.LC0:
- 175 0000 49443A20 		.ascii	"ID: 0x%02X%02X%02X%02X\015\012\000"
+ 175 0000 49443A20 		.ascii	"ID: 0x%02X%02X%02X\015\012\000"
  175      30782530 
  175      32582530 
  175      32582530 
- 175      32582530 
+ 175      32580D0A 
  176              		.section	.text.W25Q_ReadID,"ax",%progbits
  177              		.align	1
  178              		.global	W25Q_ReadID
  179              		.syntax unified
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 4
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s 			page 4
 
 
  180              		.thumb
@@ -190,121 +190,282 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 1
  187 0002 86B0     		sub	sp, sp, #24
  188 0004 02AF     		add	r7, sp, #8
  189 0006 7860     		str	r0, [r7, #4]
- 190 0008 6FF06003 		mvn	r3, #96
- 191 000c FB60     		str	r3, [r7, #12]
- 192 000e FFF7FEFF 		bl	csLOW
- 193 0012 07F10801 		add	r1, r7, #8
- 194 0016 07F10C00 		add	r0, r7, #12
- 195 001a 4FF47A73 		mov	r3, #1000
- 196 001e 0093     		str	r3, [sp]
- 197 0020 0423     		movs	r3, #4
- 198 0022 0422     		movs	r2, #4
- 199 0024 FFF7FEFF 		bl	SPI1_TransmitReceive
- 200 0028 FFF7FEFF 		bl	csHIGH
- 201 002c 3B7A     		ldrb	r3, [r7, #8]	@ zero_extendqisi2
- 202 002e 1946     		mov	r1, r3
- 203 0030 7B7A     		ldrb	r3, [r7, #9]	@ zero_extendqisi2
- 204 0032 1846     		mov	r0, r3
- 205 0034 BB7A     		ldrb	r3, [r7, #10]	@ zero_extendqisi2
- 206 0036 FA7A     		ldrb	r2, [r7, #11]	@ zero_extendqisi2
- 207 0038 0192     		str	r2, [sp, #4]
- 208 003a 0093     		str	r3, [sp]
- 209 003c 0346     		mov	r3, r0
- 210 003e 0A46     		mov	r2, r1
- 211 0040 0349     		ldr	r1, .L12
- 212 0042 7868     		ldr	r0, [r7, #4]
- 213 0044 FFF7FEFF 		bl	sprintf
- 214 0048 00BF     		nop
- 215 004a 1037     		adds	r7, r7, #16
- 216 004c BD46     		mov	sp, r7
- 217              		@ sp needed
- 218 004e 80BD     		pop	{r7, pc}
- 219              	.L13:
- 220              		.align	2
- 221              	.L12:
- 222 0050 00000000 		.word	.LC0
- 224              		.section	.text.W25Q_Read_Byte,"ax",%progbits
- 225              		.align	1
- 226              		.global	W25Q_Read_Byte
- 227              		.syntax unified
- 228              		.thumb
- 229              		.thumb_func
- 231              	W25Q_Read_Byte:
- 232              		@ args = 0, pretend = 0, frame = 24
- 233              		@ frame_needed = 1, uses_anonymous_args = 0
- 234 0000 80B5     		push	{r7, lr}
- 235 0002 86B0     		sub	sp, sp, #24
- 236 0004 00AF     		add	r7, sp, #0
- 237 0006 F860     		str	r0, [r7, #12]
- 238 0008 B960     		str	r1, [r7, #8]
- 239 000a 7A60     		str	r2, [r7, #4]
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 5
+ 190 0008 9F23     		movs	r3, #159
+ 191 000a FB73     		strb	r3, [r7, #15]
+ 192 000c FFF7FEFF 		bl	csLOW
+ 193 0010 07F10F03 		add	r3, r7, #15
+ 194 0014 0121     		movs	r1, #1
+ 195 0016 1846     		mov	r0, r3
+ 196 0018 FFF7FEFF 		bl	SPI_Write
+ 197 001c 07F10C03 		add	r3, r7, #12
+ 198 0020 0321     		movs	r1, #3
+ 199 0022 1846     		mov	r0, r3
+ 200 0024 FFF7FEFF 		bl	SPI_Read
+ 201 0028 FFF7FEFF 		bl	csHIGH
+ 202 002c 3B7B     		ldrb	r3, [r7, #12]	@ zero_extendqisi2
+ 203 002e 1A46     		mov	r2, r3
+ 204 0030 7B7B     		ldrb	r3, [r7, #13]	@ zero_extendqisi2
+ 205 0032 1946     		mov	r1, r3
+ 206 0034 BB7B     		ldrb	r3, [r7, #14]	@ zero_extendqisi2
+ 207 0036 0093     		str	r3, [sp]
+ 208 0038 0B46     		mov	r3, r1
+ 209 003a 0449     		ldr	r1, .L12
+ 210 003c 7868     		ldr	r0, [r7, #4]
+ 211 003e FFF7FEFF 		bl	sprintf
+ 212 0042 00BF     		nop
+ 213 0044 1037     		adds	r7, r7, #16
+ 214 0046 BD46     		mov	sp, r7
+ 215              		@ sp needed
+ 216 0048 80BD     		pop	{r7, pc}
+ 217              	.L13:
+ 218 004a 00BF     		.align	2
+ 219              	.L12:
+ 220 004c 00000000 		.word	.LC0
+ 222              		.section	.text.W25Q_Read_Byte,"ax",%progbits
+ 223              		.align	1
+ 224              		.global	W25Q_Read_Byte
+ 225              		.syntax unified
+ 226              		.thumb
+ 227              		.thumb_func
+ 229              	W25Q_Read_Byte:
+ 230              		@ args = 0, pretend = 0, frame = 24
+ 231              		@ frame_needed = 1, uses_anonymous_args = 0
+ 232 0000 80B5     		push	{r7, lr}
+ 233 0002 86B0     		sub	sp, sp, #24
+ 234 0004 00AF     		add	r7, sp, #0
+ 235 0006 F860     		str	r0, [r7, #12]
+ 236 0008 B960     		str	r1, [r7, #8]
+ 237 000a 7A60     		str	r2, [r7, #4]
+ 238 000c 3B60     		str	r3, [r7]
+ 239 000e 0323     		movs	r3, #3
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s 			page 5
 
 
- 240 000c 3B60     		str	r3, [r7]
- 241 000e 0323     		movs	r3, #3
- 242 0010 3B75     		strb	r3, [r7, #20]
- 243 0012 FB68     		ldr	r3, [r7, #12]
- 244 0014 1B0C     		lsrs	r3, r3, #16
- 245 0016 DBB2     		uxtb	r3, r3
- 246 0018 7B75     		strb	r3, [r7, #21]
- 247 001a FB68     		ldr	r3, [r7, #12]
- 248 001c 1B0A     		lsrs	r3, r3, #8
- 249 001e DBB2     		uxtb	r3, r3
- 250 0020 BB75     		strb	r3, [r7, #22]
- 251 0022 FB68     		ldr	r3, [r7, #12]
- 252 0024 DBB2     		uxtb	r3, r3
- 253 0026 FB75     		strb	r3, [r7, #23]
- 254 0028 FFF7FEFF 		bl	csLOW
- 255 002c 07F11403 		add	r3, r7, #20
- 256 0030 4FF4FA72 		mov	r2, #500
- 257 0034 0421     		movs	r1, #4
- 258 0036 1846     		mov	r0, r3
- 259 0038 FFF7FEFF 		bl	SPI1_Transmit
- 260 003c 7B68     		ldr	r3, [r7, #4]
- 261 003e 9BB2     		uxth	r3, r3
- 262 0040 3A68     		ldr	r2, [r7]
- 263 0042 92B2     		uxth	r2, r2
- 264 0044 1946     		mov	r1, r3
- 265 0046 B868     		ldr	r0, [r7, #8]
- 266 0048 FFF7FEFF 		bl	SPI1_Receive
- 267 004c FFF7FEFF 		bl	csHIGH
- 268 0050 00BF     		nop
- 269 0052 1837     		adds	r7, r7, #24
- 270 0054 BD46     		mov	sp, r7
- 271              		@ sp needed
- 272 0056 80BD     		pop	{r7, pc}
- 274              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\cc310qCg.s 			page 6
+ 240 0010 3B75     		strb	r3, [r7, #20]
+ 241 0012 FB68     		ldr	r3, [r7, #12]
+ 242 0014 1B0C     		lsrs	r3, r3, #16
+ 243 0016 DBB2     		uxtb	r3, r3
+ 244 0018 7B75     		strb	r3, [r7, #21]
+ 245 001a FB68     		ldr	r3, [r7, #12]
+ 246 001c 1B0A     		lsrs	r3, r3, #8
+ 247 001e DBB2     		uxtb	r3, r3
+ 248 0020 BB75     		strb	r3, [r7, #22]
+ 249 0022 FB68     		ldr	r3, [r7, #12]
+ 250 0024 DBB2     		uxtb	r3, r3
+ 251 0026 FB75     		strb	r3, [r7, #23]
+ 252 0028 FFF7FEFF 		bl	csLOW
+ 253 002c 07F11403 		add	r3, r7, #20
+ 254 0030 4FF4FA72 		mov	r2, #500
+ 255 0034 0421     		movs	r1, #4
+ 256 0036 1846     		mov	r0, r3
+ 257 0038 FFF7FEFF 		bl	SPI1_Transmit
+ 258 003c 7B68     		ldr	r3, [r7, #4]
+ 259 003e 9BB2     		uxth	r3, r3
+ 260 0040 3A68     		ldr	r2, [r7]
+ 261 0042 92B2     		uxth	r2, r2
+ 262 0044 1946     		mov	r1, r3
+ 263 0046 B868     		ldr	r0, [r7, #8]
+ 264 0048 FFF7FEFF 		bl	SPI1_Receive
+ 265 004c FFF7FEFF 		bl	csHIGH
+ 266 0050 00BF     		nop
+ 267 0052 1837     		adds	r7, r7, #24
+ 268 0054 BD46     		mov	sp, r7
+ 269              		@ sp needed
+ 270 0056 80BD     		pop	{r7, pc}
+ 272              		.section	.text.W25Q_Enable_Write,"ax",%progbits
+ 273              		.align	1
+ 274              		.global	W25Q_Enable_Write
+ 275              		.syntax unified
+ 276              		.thumb
+ 277              		.thumb_func
+ 279              	W25Q_Enable_Write:
+ 280              		@ args = 0, pretend = 0, frame = 8
+ 281              		@ frame_needed = 1, uses_anonymous_args = 0
+ 282 0000 80B5     		push	{r7, lr}
+ 283 0002 82B0     		sub	sp, sp, #8
+ 284 0004 00AF     		add	r7, sp, #0
+ 285 0006 0623     		movs	r3, #6
+ 286 0008 FB71     		strb	r3, [r7, #7]
+ 287 000a FFF7FEFF 		bl	csLOW
+ 288 000e FB1D     		adds	r3, r7, #7
+ 289 0010 0121     		movs	r1, #1
+ 290 0012 1846     		mov	r0, r3
+ 291 0014 FFF7FEFF 		bl	SPI_Write
+ 292 0018 FFF7FEFF 		bl	csHIGH
+ 293 001c 0520     		movs	r0, #5
+ 294 001e FFF7FEFF 		bl	W25Q_Delay
+ 295 0022 00BF     		nop
+ 296 0024 0837     		adds	r7, r7, #8
+ 297 0026 BD46     		mov	sp, r7
+ 298              		@ sp needed
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s 			page 6
+
+
+ 299 0028 80BD     		pop	{r7, pc}
+ 301              		.section	.text.W25Q_Disable_Write,"ax",%progbits
+ 302              		.align	1
+ 303              		.global	W25Q_Disable_Write
+ 304              		.syntax unified
+ 305              		.thumb
+ 306              		.thumb_func
+ 308              	W25Q_Disable_Write:
+ 309              		@ args = 0, pretend = 0, frame = 8
+ 310              		@ frame_needed = 1, uses_anonymous_args = 0
+ 311 0000 80B5     		push	{r7, lr}
+ 312 0002 82B0     		sub	sp, sp, #8
+ 313 0004 00AF     		add	r7, sp, #0
+ 314 0006 0423     		movs	r3, #4
+ 315 0008 FB71     		strb	r3, [r7, #7]
+ 316 000a FFF7FEFF 		bl	csLOW
+ 317 000e FB1D     		adds	r3, r7, #7
+ 318 0010 0121     		movs	r1, #1
+ 319 0012 1846     		mov	r0, r3
+ 320 0014 FFF7FEFF 		bl	SPI_Write
+ 321 0018 FFF7FEFF 		bl	csHIGH
+ 322 001c 0520     		movs	r0, #5
+ 323 001e FFF7FEFF 		bl	W25Q_Delay
+ 324 0022 00BF     		nop
+ 325 0024 0837     		adds	r7, r7, #8
+ 326 0026 BD46     		mov	sp, r7
+ 327              		@ sp needed
+ 328 0028 80BD     		pop	{r7, pc}
+ 330              		.section	.text.W25Q_Erase_Sector,"ax",%progbits
+ 331              		.align	1
+ 332              		.global	W25Q_Erase_Sector
+ 333              		.syntax unified
+ 334              		.thumb
+ 335              		.thumb_func
+ 337              	W25Q_Erase_Sector:
+ 338              		@ args = 0, pretend = 0, frame = 24
+ 339              		@ frame_needed = 1, uses_anonymous_args = 0
+ 340 0000 80B5     		push	{r7, lr}
+ 341 0002 86B0     		sub	sp, sp, #24
+ 342 0004 00AF     		add	r7, sp, #0
+ 343 0006 0346     		mov	r3, r0
+ 344 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 345 000a FB88     		ldrh	r3, [r7, #6]
+ 346 000c 1B03     		lsls	r3, r3, #12
+ 347 000e 7B61     		str	r3, [r7, #20]
+ 348 0010 FFF7FEFF 		bl	W25Q_Enable_Write
+ 349 0014 2023     		movs	r3, #32
+ 350 0016 3B73     		strb	r3, [r7, #12]
+ 351 0018 7B69     		ldr	r3, [r7, #20]
+ 352 001a 1B0C     		lsrs	r3, r3, #16
+ 353 001c DBB2     		uxtb	r3, r3
+ 354 001e 7B73     		strb	r3, [r7, #13]
+ 355 0020 7B69     		ldr	r3, [r7, #20]
+ 356 0022 1B0A     		lsrs	r3, r3, #8
+ 357 0024 DBB2     		uxtb	r3, r3
+ 358 0026 BB73     		strb	r3, [r7, #14]
+ 359 0028 7B69     		ldr	r3, [r7, #20]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s 			page 7
+
+
+ 360 002a DBB2     		uxtb	r3, r3
+ 361 002c FB73     		strb	r3, [r7, #15]
+ 362 002e FFF7FEFF 		bl	csLOW
+ 363 0032 07F10C03 		add	r3, r7, #12
+ 364 0036 0421     		movs	r1, #4
+ 365 0038 1846     		mov	r0, r3
+ 366 003a FFF7FEFF 		bl	SPI_Write
+ 367 003e FFF7FEFF 		bl	csHIGH
+ 368 0042 4FF4FA70 		mov	r0, #500
+ 369 0046 FFF7FEFF 		bl	W25Q_Delay
+ 370 004a FFF7FEFF 		bl	W25Q_Disable_Write
+ 371 004e 00BF     		nop
+ 372 0050 1837     		adds	r7, r7, #24
+ 373 0052 BD46     		mov	sp, r7
+ 374              		@ sp needed
+ 375 0054 80BD     		pop	{r7, pc}
+ 377              		.section	.text.W25Q_Write_Byte,"ax",%progbits
+ 378              		.align	1
+ 379              		.global	W25Q_Write_Byte
+ 380              		.syntax unified
+ 381              		.thumb
+ 382              		.thumb_func
+ 384              	W25Q_Write_Byte:
+ 385              		@ args = 0, pretend = 0, frame = 24
+ 386              		@ frame_needed = 1, uses_anonymous_args = 0
+ 387 0000 80B5     		push	{r7, lr}
+ 388 0002 86B0     		sub	sp, sp, #24
+ 389 0004 00AF     		add	r7, sp, #0
+ 390 0006 F860     		str	r0, [r7, #12]
+ 391 0008 B960     		str	r1, [r7, #8]
+ 392 000a 7A60     		str	r2, [r7, #4]
+ 393 000c FFF7FEFF 		bl	W25Q_Enable_Write
+ 394 0010 0223     		movs	r3, #2
+ 395 0012 3B74     		strb	r3, [r7, #16]
+ 396 0014 FB68     		ldr	r3, [r7, #12]
+ 397 0016 1B0C     		lsrs	r3, r3, #16
+ 398 0018 DBB2     		uxtb	r3, r3
+ 399 001a 7B74     		strb	r3, [r7, #17]
+ 400 001c FB68     		ldr	r3, [r7, #12]
+ 401 001e 1B0A     		lsrs	r3, r3, #8
+ 402 0020 DBB2     		uxtb	r3, r3
+ 403 0022 BB74     		strb	r3, [r7, #18]
+ 404 0024 FB68     		ldr	r3, [r7, #12]
+ 405 0026 DBB2     		uxtb	r3, r3
+ 406 0028 FB74     		strb	r3, [r7, #19]
+ 407 002a FFF7FEFF 		bl	csLOW
+ 408 002e 07F11003 		add	r3, r7, #16
+ 409 0032 0421     		movs	r1, #4
+ 410 0034 1846     		mov	r0, r3
+ 411 0036 FFF7FEFF 		bl	SPI_Write
+ 412 003a 7B68     		ldr	r3, [r7, #4]
+ 413 003c DBB2     		uxtb	r3, r3
+ 414 003e 1946     		mov	r1, r3
+ 415 0040 B868     		ldr	r0, [r7, #8]
+ 416 0042 FFF7FEFF 		bl	SPI_Write
+ 417 0046 FFF7FEFF 		bl	csHIGH
+ 418 004a 0520     		movs	r0, #5
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s 			page 8
+
+
+ 419 004c FFF7FEFF 		bl	W25Q_Delay
+ 420 0050 FFF7FEFF 		bl	W25Q_Disable_Write
+ 421 0054 00BF     		nop
+ 422 0056 1837     		adds	r7, r7, #24
+ 423 0058 BD46     		mov	sp, r7
+ 424              		@ sp needed
+ 425 005a 80BD     		pop	{r7, pc}
+ 427              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 w25qxx.c
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:18     .text.W25Q_Delay:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:24     .text.W25Q_Delay:00000000 W25Q_Delay
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:40     .text.csLOW:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:46     .text.csLOW:00000000 csLOW
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:60     .text.csLOW:00000014 $d
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:63     .text.csHIGH:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:69     .text.csHIGH:00000000 csHIGH
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:83     .text.csHIGH:00000014 $d
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:86     .text.SPI_Write:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:92     .text.SPI_Write:00000000 SPI_Write
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:114    .text.SPI_Read:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:120    .text.SPI_Read:00000000 SPI_Read
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:142    .text.W25Q_Reset:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:148    .text.W25Q_Reset:00000000 W25Q_Reset
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:173    .rodata:00000000 $d
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:177    .text.W25Q_ReadID:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:183    .text.W25Q_ReadID:00000000 W25Q_ReadID
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:222    .text.W25Q_ReadID:00000050 $d
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:225    .text.W25Q_Read_Byte:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\cc310qCg.s:231    .text.W25Q_Read_Byte:00000000 W25Q_Read_Byte
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:18     .text.W25Q_Delay:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:24     .text.W25Q_Delay:00000000 W25Q_Delay
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:40     .text.csLOW:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:46     .text.csLOW:00000000 csLOW
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:60     .text.csLOW:00000014 $d
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:63     .text.csHIGH:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:69     .text.csHIGH:00000000 csHIGH
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:83     .text.csHIGH:00000014 $d
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:86     .text.SPI_Write:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:92     .text.SPI_Write:00000000 SPI_Write
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:114    .text.SPI_Read:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:120    .text.SPI_Read:00000000 SPI_Read
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:142    .text.W25Q_Reset:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:148    .text.W25Q_Reset:00000000 W25Q_Reset
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:173    .rodata:00000000 $d
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:177    .text.W25Q_ReadID:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:183    .text.W25Q_ReadID:00000000 W25Q_ReadID
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:220    .text.W25Q_ReadID:0000004c $d
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:223    .text.W25Q_Read_Byte:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:229    .text.W25Q_Read_Byte:00000000 W25Q_Read_Byte
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:273    .text.W25Q_Enable_Write:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:279    .text.W25Q_Enable_Write:00000000 W25Q_Enable_Write
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:302    .text.W25Q_Disable_Write:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:308    .text.W25Q_Disable_Write:00000000 W25Q_Disable_Write
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:331    .text.W25Q_Erase_Sector:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:337    .text.W25Q_Erase_Sector:00000000 W25Q_Erase_Sector
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:378    .text.W25Q_Write_Byte:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccleuXrf.s:384    .text.W25Q_Write_Byte:00000000 W25Q_Write_Byte
 
 UNDEFINED SYMBOLS
 s_delay
 gpio_write
 SPI1_Transmit
 SPI1_Receive
-SPI1_TransmitReceive
 sprintf

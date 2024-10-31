@@ -43,32 +43,17 @@ void W25Q_Reset (void)
 
 void W25Q_ReadID (char *rData)
 {
-	//uint8_t tData = 0x9F;  // Read JEDEC ID
-	uint8_t tx[4] = {0x9F, 0xff, 0xff, 0xff};
-	uint8_t rx[4];
+	uint8_t tData = W25Q_READ_JEDEC;  // Read JEDEC ID
+	//uint8_t tx[4] = {0x9F, 0xff, 0xff, 0xff};
+	uint8_t rx[3];
 	//uint8_t rData[3];
 	csLOW();
-	//SPI_Write(&tData, 1);
-	SPI1_TransmitReceive(tx, rx, 4,4, 1000);
-	// SPI1_Receive_Byte(0x4B);
-	// SPI1_Receive_Byte(0xFF);
-	// SPI1_Receive_Byte(0xFF);
-	// SPI1_Receive_Byte(0xFF);
-
-	// rx[0]=SPI1_Receive_Byte(0x9F);
-	// rx[1]=SPI1_Receive_Byte(0xFF);
-	// rx[2]=SPI1_Receive_Byte(0xFF);
-	// rx[3]=SPI1_Receive_Byte(0xFF);
-	// rx[4]=SPI1_Receive_Byte(0x9F);
-	// rx[5]=SPI1_Receive_Byte(0xFF);
-	// rx[6]=SPI1_Receive_Byte(0xFF);
-	// rx[7]=SPI1_Receive_Byte(0xFF);
-
-	//SPI_Read(rx,3);
+	SPI_Write(&tData, 1);
+	//SPI1_TransmitReceive(tx, rx, 4,4, 1000);
+	SPI_Read(rx,3);
 
 	csHIGH();
-	sprintf(rData,"ID: 0x%02X%02X%02X%02X\r\n", rx[0], rx[1], rx[2], rx[3]);
-	// sprintf(rData,"ID: 0x%02X%02X%02X%02X%02X%02X%02X%02X\r\n", rx[0], rx[1], rx[2], rx[3], rx[4], rx[5], rx[6], rx[7]);
+	sprintf(rData,"ID: 0x%02X%02X%02X\r\n", rx[0], rx[1], rx[2]);
 }
 
 /*
@@ -84,4 +69,74 @@ void W25Q_Read_Byte (uint32_t Address, uint8_t *pData, uint32_t size,uint32_t ti
 	SPI1_Transmit(cmd,4,500);
 	SPI1_Receive(pData,size,timeout_);
 	csHIGH();
+}
+
+/*
+	Enable write 
+*/
+void W25Q_Enable_Write(void)
+{
+	uint8_t data=W25Q_WRITE_ENABLE;
+	csLOW();
+	SPI_Write(&data,1);
+	csHIGH();
+	W25Q_Delay(5);
+}
+
+/*
+
+*/
+void W25Q_Disable_Write(void)
+{
+	uint8_t data=W25Q_WRITE_DISABLE;
+	csLOW();
+	SPI_Write(&data,1);
+	csHIGH();
+	W25Q_Delay(5);
+}
+
+/*
+	Erase sectors
+*/
+void W25Q_Erase_Sector (uint16_t numsector)
+{
+	uint8_t tData[6];
+	uint32_t memAddr = numsector*16*256;   // Each sector contains 16 pages * 256 bytes
+
+	W25Q_Enable_Write();
+	tData[0] = W25Q_SECTOR_ERASE;  // Erase sector
+
+	tData[1] = (memAddr>>16)&0xFF;  // MSB of the memory Address
+	tData[2] = (memAddr>>8)&0xFF;
+	tData[3] = (memAddr)&0xFF; // LSB of the memory Address
+
+	csLOW();
+	SPI_Write(tData, 4);
+	csHIGH();
+
+	W25Q_Delay(500);  // 450ms delay for sector erase
+
+	W25Q_Disable_Write();
+
+}
+void W25Q_Write_Byte (uint32_t Address, uint8_t *pData, uint32_t size)
+{
+	uint8_t cmd[6];
+	//uint32_t memAddr = numsector*16*256;   // Each sector contains 16 pages * 256 bytes
+
+	W25Q_Enable_Write();
+    cmd[0] = W25Q_PAGE_PROGRAM; // Page Program command
+    cmd[1] = (Address >> 16) & 0xFF;
+    cmd[2] = (Address >> 8) & 0xFF;
+    cmd[3] = Address & 0xFF;
+
+	csLOW();
+	SPI_Write(cmd, 4);
+	SPI_Write(pData,size);
+
+	csHIGH();
+
+	W25Q_Delay(5);  // 450ms delay for sector erase
+
+	W25Q_Disable_Write();
 }

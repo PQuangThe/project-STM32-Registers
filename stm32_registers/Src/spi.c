@@ -11,7 +11,7 @@ void SPI_Init(void)
     //Master configuration
     SPI1->CR1 |= (0x1UL << 2U);
     //Baud rate control
-    SPI1->CR1  = ((SPI1->CR1 & ~(0x7UL << 3U)) | (0x3UL << 3U));
+    SPI1->CR1  = ((SPI1->CR1 & ~(0x7UL << 3U)) | (0x2UL << 3U));
     //MSB FIRST
     SPI1->CR1 &= ~(0x1UL << 7U);
     //SSM

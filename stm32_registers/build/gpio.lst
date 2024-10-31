@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s 			page 1
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccC7SimE.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s 			page 1
   56 0042 DB68     		ldr	r3, [r3, #12]
   57 0044 6D4A     		ldr	r2, .L2+4
   58 0046 43F4A043 		orr	r3, r3, #20480
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s 			page 2
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccC7SimE.s 			page 2
 
 
   59 004a D360     		str	r3, [r2, #12]
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s 			page 1
  113 00d0 4A4A     		ldr	r2, .L2+4
  114 00d2 5362     		str	r3, [r2, #36]
  115 00d4 494B     		ldr	r3, .L2+4
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s 			page 3
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccC7SimE.s 			page 3
 
 
  116 00d6 5B6A     		ldr	r3, [r3, #36]
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s 			page 1
  170 015e DB68     		ldr	r3, [r3, #12]
  171 0160 274A     		ldr	r2, .L2+8
  172 0162 23F0C003 		bic	r3, r3, #192
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s 			page 4
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccC7SimE.s 			page 4
 
 
  173 0166 D360     		str	r3, [r2, #12]
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s 			page 1
  227 01ec 00BF     		nop
  228 01ee BD46     		mov	sp, r7
  229              		@ sp needed
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s 			page 5
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccC7SimE.s 			page 5
 
 
  230 01f0 5DF8047B 		ldr	r7, [sp], #4
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s 			page 1
  288              	gpio_write:
  289              		@ args = 0, pretend = 0, frame = 8
  290              		@ frame_needed = 1, uses_anonymous_args = 0
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s 			page 6
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccC7SimE.s 			page 6
 
 
  291              		@ link register save eliminated.
@@ -340,17 +340,17 @@ ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s 			page 1
  327 0044 5DF8047B 		ldr	r7, [sp], #4
  328 0048 7047     		bx	lr
  330              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
-ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s 			page 7
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccC7SimE.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 gpio.c
-C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s:18     .text.MX_GPIO_Init:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s:24     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
-C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s:235    .text.MX_GPIO_Init:000001f8 $d
-C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s:240    .text.gpio_tog:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s:246    .text.gpio_tog:00000000 gpio_tog
-C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s:282    .text.gpio_write:00000000 $t
-C:\Users\phamt\AppData\Local\Temp\ccuuaGW0.s:288    .text.gpio_write:00000000 gpio_write
+C:\Users\phamt\AppData\Local\Temp\ccC7SimE.s:18     .text.MX_GPIO_Init:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccC7SimE.s:24     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+C:\Users\phamt\AppData\Local\Temp\ccC7SimE.s:235    .text.MX_GPIO_Init:000001f8 $d
+C:\Users\phamt\AppData\Local\Temp\ccC7SimE.s:240    .text.gpio_tog:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccC7SimE.s:246    .text.gpio_tog:00000000 gpio_tog
+C:\Users\phamt\AppData\Local\Temp\ccC7SimE.s:282    .text.gpio_write:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccC7SimE.s:288    .text.gpio_write:00000000 gpio_write
 
 NO UNDEFINED SYMBOLS
