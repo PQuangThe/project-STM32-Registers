@@ -137,23 +137,6 @@ void vTask1 (void *pvParameters)
 		vTaskDelay(100);
 	}
 }
-/*
-
-*/
-void vTaskFlash_W25(void *pvParameters)
-{
-  //uint8_t pd1[]={0xaa,0xbb,0xcc};
-  while(1)
-	{
-    char *Array = (char *)pvPortMalloc(40 * sizeof(char));
-    uint8_t *rx = (uint8_t *)pvPortMalloc(10 * sizeof(uint8_t));
-    if ((Array != NULL) && (rx != NULL)) {
-      vPortFree(Array);
-      vPortFree(rx);
-    }
-		vTaskDelay(5000);
-	}
-}
 
 
 
@@ -179,8 +162,6 @@ int main(void)
   xTaskCreate(vTaskLED, "Led_blink1", 64 , (void *)1, 1, NULL);
   xTaskCreate(vTask1  , "Task_1"    , 4096, NULL     , 3, NULL);
 
-  //xTaskCreate(vTaskFlash_W25,"Task_flash_w25", 2048 , NULL, 2, NULL);
-  //xTaskCreate(vTaskFlash_W25Q2,"Task_flash_w25q2", 2048 , NULL, 3, NULL);
 	// Start the Scheduler
 	vTaskStartScheduler();
   
