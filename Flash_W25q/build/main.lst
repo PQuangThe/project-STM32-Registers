@@ -1,0 +1,660 @@
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"main.c"
+  16              		.text
+  17              		.section	.text.__io_putchar,"ax",%progbits
+  18              		.align	1
+  19              		.global	__io_putchar
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	__io_putchar:
+  25              		@ args = 0, pretend = 0, frame = 8
+  26              		@ frame_needed = 1, uses_anonymous_args = 0
+  27 0000 80B5     		push	{r7, lr}
+  28 0002 82B0     		sub	sp, sp, #8
+  29 0004 00AF     		add	r7, sp, #0
+  30 0006 7860     		str	r0, [r7, #4]
+  31 0008 3B1D     		adds	r3, r7, #4
+  32 000a 4FF47A72 		mov	r2, #1000
+  33 000e 0121     		movs	r1, #1
+  34 0010 1846     		mov	r0, r3
+  35 0012 FFF7FEFF 		bl	Usart_Transmit
+  36 0016 7B68     		ldr	r3, [r7, #4]
+  37 0018 1846     		mov	r0, r3
+  38 001a 0837     		adds	r7, r7, #8
+  39 001c BD46     		mov	sp, r7
+  40              		@ sp needed
+  41 001e 80BD     		pop	{r7, pc}
+  43              		.section	.rodata
+  44              		.align	2
+  45              	.LC1:
+  46 0000 2000     		.ascii	" \000"
+  47              		.section	.text.ProcessString,"ax",%progbits
+  48              		.align	1
+  49              		.global	ProcessString
+  50              		.syntax unified
+  51              		.thumb
+  52              		.thumb_func
+  54              	ProcessString:
+  55              		@ args = 0, pretend = 0, frame = 24
+  56              		@ frame_needed = 1, uses_anonymous_args = 0
+  57 0000 80B5     		push	{r7, lr}
+  58 0002 86B0     		sub	sp, sp, #24
+  59 0004 00AF     		add	r7, sp, #0
+  60 0006 F860     		str	r0, [r7, #12]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s 			page 2
+
+
+  61 0008 B960     		str	r1, [r7, #8]
+  62 000a 7A60     		str	r2, [r7, #4]
+  63 000c 0023     		movs	r3, #0
+  64 000e FB75     		strb	r3, [r7, #23]
+  65 0010 1049     		ldr	r1, .L6
+  66 0012 F868     		ldr	r0, [r7, #12]
+  67 0014 FFF7FEFF 		bl	strtok
+  68 0018 3861     		str	r0, [r7, #16]
+  69 001a 11E0     		b	.L4
+  70              	.L5:
+  71 001c FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
+  72 001e 9B00     		lsls	r3, r3, #2
+  73 0020 7A68     		ldr	r2, [r7, #4]
+  74 0022 1344     		add	r3, r3, r2
+  75 0024 1B68     		ldr	r3, [r3]
+  76 0026 0A22     		movs	r2, #10
+  77 0028 3969     		ldr	r1, [r7, #16]
+  78 002a 1846     		mov	r0, r3
+  79 002c FFF7FEFF 		bl	strncpy
+  80 0030 FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
+  81 0032 0133     		adds	r3, r3, #1
+  82 0034 FB75     		strb	r3, [r7, #23]
+  83 0036 0749     		ldr	r1, .L6
+  84 0038 0020     		movs	r0, #0
+  85 003a FFF7FEFF 		bl	strtok
+  86 003e 3861     		str	r0, [r7, #16]
+  87              	.L4:
+  88 0040 3B69     		ldr	r3, [r7, #16]
+  89 0042 002B     		cmp	r3, #0
+  90 0044 EAD1     		bne	.L5
+  91 0046 BB68     		ldr	r3, [r7, #8]
+  92 0048 FA7D     		ldrb	r2, [r7, #23]
+  93 004a 1A70     		strb	r2, [r3]
+  94 004c 00BF     		nop
+  95 004e 1837     		adds	r7, r7, #24
+  96 0050 BD46     		mov	sp, r7
+  97              		@ sp needed
+  98 0052 80BD     		pop	{r7, pc}
+  99              	.L7:
+ 100              		.align	2
+ 101              	.L6:
+ 102 0054 00000000 		.word	.LC1
+ 104              		.section	.rodata
+ 105 0002 0000     		.align	2
+ 106              	.LC2:
+ 107 0004 723000   		.ascii	"r0\000"
+ 108 0007 00       		.align	2
+ 109              	.LC3:
+ 110 0008 0A526561 		.ascii	"\012Read flash w25q address: %ld, len: %ld\012\000"
+ 110      6420666C 
+ 110      61736820 
+ 110      77323571 
+ 110      20616464 
+ 111 0031 000000   		.align	2
+ 112              	.LC4:
+ 113 0034 25303258 		.ascii	"%02X \000"
+ 113      2000
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s 			page 3
+
+
+ 114 003a 0000     		.align	2
+ 115              	.LC5:
+ 116 003c 726900   		.ascii	"ri\000"
+ 117 003f 00       		.align	2
+ 118              	.LC6:
+ 119 0040 777000   		.ascii	"wp\000"
+ 120 0043 00       		.align	2
+ 121              	.LC7:
+ 122 0044 0A44656C 		.ascii	"\012Deleting the sector to be write\000"
+ 122      6574696E 
+ 122      67207468 
+ 122      65207365 
+ 122      63746F72 
+ 123 0065 000000   		.align	2
+ 124              	.LC8:
+ 125 0068 50726F67 		.ascii	"Programing...\000"
+ 125      72616D69 
+ 125      6E672E2E 
+ 125      2E00
+ 126 0076 0000     		.align	2
+ 127              	.LC9:
+ 128 0078 50726F67 		.ascii	"Programing successly\000"
+ 128      72616D69 
+ 128      6E672073 
+ 128      75636365 
+ 128      73736C79 
+ 129 008d 000000   		.align	2
+ 130              	.LC10:
+ 131 0090 0A57726F 		.ascii	"\012Wrong data\000"
+ 131      6E672064 
+ 131      61746100 
+ 132              		.section	.text.PerformW25q,"ax",%progbits
+ 133              		.align	1
+ 134              		.global	PerformW25q
+ 135              		.syntax unified
+ 136              		.thumb
+ 137              		.thumb_func
+ 139              	PerformW25q:
+ 140              		@ args = 0, pretend = 0, frame = 56
+ 141              		@ frame_needed = 1, uses_anonymous_args = 0
+ 142 0000 80B5     		push	{r7, lr}
+ 143 0002 8EB0     		sub	sp, sp, #56
+ 144 0004 00AF     		add	r7, sp, #0
+ 145 0006 F860     		str	r0, [r7, #12]
+ 146 0008 0B46     		mov	r3, r1
+ 147 000a 7A60     		str	r2, [r7, #4]
+ 148 000c FB72     		strb	r3, [r7, #11]
+ 149 000e 7B68     		ldr	r3, [r7, #4]
+ 150 0010 1B68     		ldr	r3, [r3]
+ 151 0012 4949     		ldr	r1, .L18
+ 152 0014 1846     		mov	r0, r3
+ 153 0016 FFF7FEFF 		bl	strcmp
+ 154 001a 0346     		mov	r3, r0
+ 155 001c 002B     		cmp	r3, #0
+ 156 001e 31D1     		bne	.L9
+ 157 0020 7B68     		ldr	r3, [r7, #4]
+ 158 0022 0433     		adds	r3, r3, #4
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s 			page 4
+
+
+ 159 0024 1B68     		ldr	r3, [r3]
+ 160 0026 1846     		mov	r0, r3
+ 161 0028 FFF7FEFF 		bl	atol
+ 162 002c 0346     		mov	r3, r0
+ 163 002e BB62     		str	r3, [r7, #40]
+ 164 0030 7B68     		ldr	r3, [r7, #4]
+ 165 0032 0833     		adds	r3, r3, #8
+ 166 0034 1B68     		ldr	r3, [r3]
+ 167 0036 1846     		mov	r0, r3
+ 168 0038 FFF7FEFF 		bl	atol
+ 169 003c 0346     		mov	r3, r0
+ 170 003e 7B62     		str	r3, [r7, #36]
+ 171 0040 7A6A     		ldr	r2, [r7, #36]
+ 172 0042 B96A     		ldr	r1, [r7, #40]
+ 173 0044 3D48     		ldr	r0, .L18+4
+ 174 0046 FFF7FEFF 		bl	printf
+ 175 004a 4FF47A73 		mov	r3, #1000
+ 176 004e 7A6A     		ldr	r2, [r7, #36]
+ 177 0050 F968     		ldr	r1, [r7, #12]
+ 178 0052 B86A     		ldr	r0, [r7, #40]
+ 179 0054 FFF7FEFF 		bl	W25Q_Read_Byte
+ 180 0058 0023     		movs	r3, #0
+ 181 005a 7B63     		str	r3, [r7, #52]
+ 182 005c 0AE0     		b	.L10
+ 183              	.L11:
+ 184 005e 7B6B     		ldr	r3, [r7, #52]
+ 185 0060 FA68     		ldr	r2, [r7, #12]
+ 186 0062 1344     		add	r3, r3, r2
+ 187 0064 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 188 0066 1946     		mov	r1, r3
+ 189 0068 3548     		ldr	r0, .L18+8
+ 190 006a FFF7FEFF 		bl	printf
+ 191 006e 7B6B     		ldr	r3, [r7, #52]
+ 192 0070 0133     		adds	r3, r3, #1
+ 193 0072 7B63     		str	r3, [r7, #52]
+ 194              	.L10:
+ 195 0074 7B6B     		ldr	r3, [r7, #52]
+ 196 0076 7A6A     		ldr	r2, [r7, #36]
+ 197 0078 9A42     		cmp	r2, r3
+ 198 007a F0D8     		bhi	.L11
+ 199 007c 0A20     		movs	r0, #10
+ 200 007e FFF7FEFF 		bl	putchar
+ 201 0082 54E0     		b	.L17
+ 202              	.L9:
+ 203 0084 7B68     		ldr	r3, [r7, #4]
+ 204 0086 1B68     		ldr	r3, [r3]
+ 205 0088 2E49     		ldr	r1, .L18+12
+ 206 008a 1846     		mov	r0, r3
+ 207 008c FFF7FEFF 		bl	strcmp
+ 208 0090 0346     		mov	r3, r0
+ 209 0092 002B     		cmp	r3, #0
+ 210 0094 02D1     		bne	.L13
+ 211 0096 FFF7FEFF 		bl	W25Q_ReadID
+ 212 009a 48E0     		b	.L17
+ 213              	.L13:
+ 214 009c 7B68     		ldr	r3, [r7, #4]
+ 215 009e 1B68     		ldr	r3, [r3]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s 			page 5
+
+
+ 216 00a0 2949     		ldr	r1, .L18+16
+ 217 00a2 1846     		mov	r0, r3
+ 218 00a4 FFF7FEFF 		bl	strcmp
+ 219 00a8 0346     		mov	r3, r0
+ 220 00aa 002B     		cmp	r3, #0
+ 221 00ac 3CD1     		bne	.L14
+ 222 00ae FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
+ 223 00b0 022B     		cmp	r3, #2
+ 224 00b2 3CD9     		bls	.L17
+ 225 00b4 7B68     		ldr	r3, [r7, #4]
+ 226 00b6 0433     		adds	r3, r3, #4
+ 227 00b8 1B68     		ldr	r3, [r3]
+ 228 00ba 1846     		mov	r0, r3
+ 229 00bc FFF7FEFF 		bl	atol
+ 230 00c0 0346     		mov	r3, r0
+ 231 00c2 FB62     		str	r3, [r7, #44]
+ 232 00c4 0023     		movs	r3, #0
+ 233 00c6 7B86     		strh	r3, [r7, #50]	@ movhi
+ 234 00c8 12E0     		b	.L15
+ 235              	.L16:
+ 236 00ca 7B8E     		ldrh	r3, [r7, #50]
+ 237 00cc 0233     		adds	r3, r3, #2
+ 238 00ce 9B00     		lsls	r3, r3, #2
+ 239 00d0 7A68     		ldr	r2, [r7, #4]
+ 240 00d2 1344     		add	r3, r3, r2
+ 241 00d4 1B68     		ldr	r3, [r3]
+ 242 00d6 1846     		mov	r0, r3
+ 243 00d8 FFF7FEFF 		bl	atol
+ 244 00dc 0246     		mov	r2, r0
+ 245 00de 7B8E     		ldrh	r3, [r7, #50]
+ 246 00e0 D2B2     		uxtb	r2, r2
+ 247 00e2 3833     		adds	r3, r3, #56
+ 248 00e4 3B44     		add	r3, r3, r7
+ 249 00e6 03F8242C 		strb	r2, [r3, #-36]
+ 250 00ea 7B8E     		ldrh	r3, [r7, #50]
+ 251 00ec 0133     		adds	r3, r3, #1
+ 252 00ee 7B86     		strh	r3, [r7, #50]	@ movhi
+ 253              	.L15:
+ 254 00f0 7A8E     		ldrh	r2, [r7, #50]
+ 255 00f2 FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
+ 256 00f4 023B     		subs	r3, r3, #2
+ 257 00f6 9A42     		cmp	r2, r3
+ 258 00f8 E7DB     		blt	.L16
+ 259 00fa 1448     		ldr	r0, .L18+20
+ 260 00fc FFF7FEFF 		bl	puts
+ 261 0100 FB6A     		ldr	r3, [r7, #44]
+ 262 0102 1B0B     		lsrs	r3, r3, #12
+ 263 0104 9BB2     		uxth	r3, r3
+ 264 0106 1846     		mov	r0, r3
+ 265 0108 FFF7FEFF 		bl	W25Q_Erase_Sector
+ 266 010c 1048     		ldr	r0, .L18+24
+ 267 010e FFF7FEFF 		bl	puts
+ 268 0112 7A8E     		ldrh	r2, [r7, #50]
+ 269 0114 07F11403 		add	r3, r7, #20
+ 270 0118 1946     		mov	r1, r3
+ 271 011a F86A     		ldr	r0, [r7, #44]
+ 272 011c FFF7FEFF 		bl	W25Q_Program_Page
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s 			page 6
+
+
+ 273 0120 0C48     		ldr	r0, .L18+28
+ 274 0122 FFF7FEFF 		bl	puts
+ 275 0126 02E0     		b	.L17
+ 276              	.L14:
+ 277 0128 0B48     		ldr	r0, .L18+32
+ 278 012a FFF7FEFF 		bl	puts
+ 279              	.L17:
+ 280 012e 00BF     		nop
+ 281 0130 3837     		adds	r7, r7, #56
+ 282 0132 BD46     		mov	sp, r7
+ 283              		@ sp needed
+ 284 0134 80BD     		pop	{r7, pc}
+ 285              	.L19:
+ 286 0136 00BF     		.align	2
+ 287              	.L18:
+ 288 0138 04000000 		.word	.LC2
+ 289 013c 08000000 		.word	.LC3
+ 290 0140 34000000 		.word	.LC4
+ 291 0144 3C000000 		.word	.LC5
+ 292 0148 40000000 		.word	.LC6
+ 293 014c 44000000 		.word	.LC7
+ 294 0150 68000000 		.word	.LC8
+ 295 0154 78000000 		.word	.LC9
+ 296 0158 90000000 		.word	.LC10
+ 298              		.section	.rodata
+ 299              		.align	2
+ 300              	.LC0:
+ 301 009c D007     		.short	2000
+ 302 009e F401     		.short	500
+ 303              		.section	.text.vTaskLED,"ax",%progbits
+ 304              		.align	1
+ 305              		.global	vTaskLED
+ 306              		.syntax unified
+ 307              		.thumb
+ 308              		.thumb_func
+ 310              	vTaskLED:
+ 311              		@ args = 0, pretend = 0, frame = 16
+ 312              		@ frame_needed = 1, uses_anonymous_args = 0
+ 313 0000 80B5     		push	{r7, lr}
+ 314 0002 84B0     		sub	sp, sp, #16
+ 315 0004 00AF     		add	r7, sp, #0
+ 316 0006 7860     		str	r0, [r7, #4]
+ 317 0008 7B68     		ldr	r3, [r7, #4]
+ 318 000a FB60     		str	r3, [r7, #12]
+ 319 000c 0A4B     		ldr	r3, .L22
+ 320 000e 1B68     		ldr	r3, [r3]
+ 321 0010 BB60     		str	r3, [r7, #8]
+ 322              	.L21:
+ 323 0012 FB68     		ldr	r3, [r7, #12]
+ 324 0014 9BB2     		uxth	r3, r3
+ 325 0016 0633     		adds	r3, r3, #6
+ 326 0018 9BB2     		uxth	r3, r3
+ 327 001a 1946     		mov	r1, r3
+ 328 001c 0748     		ldr	r0, .L22+4
+ 329 001e FFF7FEFF 		bl	gpio_tog
+ 330 0022 FB68     		ldr	r3, [r7, #12]
+ 331 0024 5B00     		lsls	r3, r3, #1
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s 			page 7
+
+
+ 332 0026 1033     		adds	r3, r3, #16
+ 333 0028 3B44     		add	r3, r3, r7
+ 334 002a 33F8083C 		ldrh	r3, [r3, #-8]
+ 335 002e 1846     		mov	r0, r3
+ 336 0030 FFF7FEFF 		bl	vTaskDelay
+ 337 0034 EDE7     		b	.L21
+ 338              	.L23:
+ 339 0036 00BF     		.align	2
+ 340              	.L22:
+ 341 0038 9C000000 		.word	.LC0
+ 342 003c 00000240 		.word	1073872896
+ 344              		.section	.text.vTask1,"ax",%progbits
+ 345              		.align	1
+ 346              		.global	vTask1
+ 347              		.syntax unified
+ 348              		.thumb
+ 349              		.thumb_func
+ 351              	vTask1:
+ 352              		@ args = 0, pretend = 0, frame = 32
+ 353              		@ frame_needed = 1, uses_anonymous_args = 0
+ 354 0000 90B5     		push	{r4, r7, lr}
+ 355 0002 89B0     		sub	sp, sp, #36
+ 356 0004 00AF     		add	r7, sp, #0
+ 357 0006 7860     		str	r0, [r7, #4]
+ 358              	.L31:
+ 359 0008 4020     		movs	r0, #64
+ 360 000a FFF7FEFF 		bl	pvPortMalloc
+ 361 000e 7861     		str	r0, [r7, #20]
+ 362 0010 4022     		movs	r2, #64
+ 363 0012 0021     		movs	r1, #0
+ 364 0014 7869     		ldr	r0, [r7, #20]
+ 365 0016 FFF7FEFF 		bl	memset
+ 366 001a 7B69     		ldr	r3, [r7, #20]
+ 367 001c 002B     		cmp	r3, #0
+ 368 001e 46D0     		beq	.L25
+ 369 0020 7869     		ldr	r0, [r7, #20]
+ 370 0022 FFF7FEFF 		bl	GetFromBuff_DMA
+ 371 0026 0346     		mov	r3, r0
+ 372 0028 002B     		cmp	r3, #0
+ 373 002a 3DD0     		beq	.L26
+ 374 002c 2820     		movs	r0, #40
+ 375 002e FFF7FEFF 		bl	pvPortMalloc
+ 376 0032 3861     		str	r0, [r7, #16]
+ 377 0034 0023     		movs	r3, #0
+ 378 0036 FB61     		str	r3, [r7, #28]
+ 379 0038 0BE0     		b	.L27
+ 380              	.L28:
+ 381 003a FB69     		ldr	r3, [r7, #28]
+ 382 003c 9B00     		lsls	r3, r3, #2
+ 383 003e 3A69     		ldr	r2, [r7, #16]
+ 384 0040 D418     		adds	r4, r2, r3
+ 385 0042 0A20     		movs	r0, #10
+ 386 0044 FFF7FEFF 		bl	pvPortMalloc
+ 387 0048 0346     		mov	r3, r0
+ 388 004a 2360     		str	r3, [r4]
+ 389 004c FB69     		ldr	r3, [r7, #28]
+ 390 004e 0133     		adds	r3, r3, #1
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s 			page 8
+
+
+ 391 0050 FB61     		str	r3, [r7, #28]
+ 392              	.L27:
+ 393 0052 FB69     		ldr	r3, [r7, #28]
+ 394 0054 092B     		cmp	r3, #9
+ 395 0056 F0DD     		ble	.L28
+ 396 0058 07F10B03 		add	r3, r7, #11
+ 397 005c 3A69     		ldr	r2, [r7, #16]
+ 398 005e 1946     		mov	r1, r3
+ 399 0060 7869     		ldr	r0, [r7, #20]
+ 400 0062 FFF7FEFF 		bl	ProcessString
+ 401 0066 1020     		movs	r0, #16
+ 402 0068 FFF7FEFF 		bl	pvPortMalloc
+ 403 006c F860     		str	r0, [r7, #12]
+ 404 006e FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
+ 405 0070 3A69     		ldr	r2, [r7, #16]
+ 406 0072 1946     		mov	r1, r3
+ 407 0074 F868     		ldr	r0, [r7, #12]
+ 408 0076 FFF7FEFF 		bl	PerformW25q
+ 409 007a F868     		ldr	r0, [r7, #12]
+ 410 007c FFF7FEFF 		bl	vPortFree
+ 411 0080 0023     		movs	r3, #0
+ 412 0082 BB61     		str	r3, [r7, #24]
+ 413 0084 0AE0     		b	.L29
+ 414              	.L30:
+ 415 0086 BB69     		ldr	r3, [r7, #24]
+ 416 0088 9B00     		lsls	r3, r3, #2
+ 417 008a 3A69     		ldr	r2, [r7, #16]
+ 418 008c 1344     		add	r3, r3, r2
+ 419 008e 1B68     		ldr	r3, [r3]
+ 420 0090 1846     		mov	r0, r3
+ 421 0092 FFF7FEFF 		bl	vPortFree
+ 422 0096 BB69     		ldr	r3, [r7, #24]
+ 423 0098 0133     		adds	r3, r3, #1
+ 424 009a BB61     		str	r3, [r7, #24]
+ 425              	.L29:
+ 426 009c BB69     		ldr	r3, [r7, #24]
+ 427 009e 092B     		cmp	r3, #9
+ 428 00a0 F1DD     		ble	.L30
+ 429 00a2 3869     		ldr	r0, [r7, #16]
+ 430 00a4 FFF7FEFF 		bl	vPortFree
+ 431              	.L26:
+ 432 00a8 7869     		ldr	r0, [r7, #20]
+ 433 00aa FFF7FEFF 		bl	vPortFree
+ 434              	.L25:
+ 435 00ae 6420     		movs	r0, #100
+ 436 00b0 FFF7FEFF 		bl	vTaskDelay
+ 437 00b4 A8E7     		b	.L31
+ 439              		.section	.text.vTaskFlash_W25,"ax",%progbits
+ 440              		.align	1
+ 441              		.global	vTaskFlash_W25
+ 442              		.syntax unified
+ 443              		.thumb
+ 444              		.thumb_func
+ 446              	vTaskFlash_W25:
+ 447              		@ args = 0, pretend = 0, frame = 16
+ 448              		@ frame_needed = 1, uses_anonymous_args = 0
+ 449 0000 80B5     		push	{r7, lr}
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s 			page 9
+
+
+ 450 0002 84B0     		sub	sp, sp, #16
+ 451 0004 00AF     		add	r7, sp, #0
+ 452 0006 7860     		str	r0, [r7, #4]
+ 453              	.L34:
+ 454 0008 2820     		movs	r0, #40
+ 455 000a FFF7FEFF 		bl	pvPortMalloc
+ 456 000e F860     		str	r0, [r7, #12]
+ 457 0010 0A20     		movs	r0, #10
+ 458 0012 FFF7FEFF 		bl	pvPortMalloc
+ 459 0016 B860     		str	r0, [r7, #8]
+ 460 0018 FB68     		ldr	r3, [r7, #12]
+ 461 001a 002B     		cmp	r3, #0
+ 462 001c 08D0     		beq	.L33
+ 463 001e BB68     		ldr	r3, [r7, #8]
+ 464 0020 002B     		cmp	r3, #0
+ 465 0022 05D0     		beq	.L33
+ 466 0024 F868     		ldr	r0, [r7, #12]
+ 467 0026 FFF7FEFF 		bl	vPortFree
+ 468 002a B868     		ldr	r0, [r7, #8]
+ 469 002c FFF7FEFF 		bl	vPortFree
+ 470              	.L33:
+ 471 0030 41F28830 		movw	r0, #5000
+ 472 0034 FFF7FEFF 		bl	vTaskDelay
+ 473 0038 E6E7     		b	.L34
+ 475              		.section	.rodata
+ 476              		.align	2
+ 477              	.LC11:
+ 478 00a0 4C65645F 		.ascii	"Led_blink\000"
+ 478      626C696E 
+ 478      6B00
+ 479 00aa 0000     		.align	2
+ 480              	.LC12:
+ 481 00ac 4C65645F 		.ascii	"Led_blink1\000"
+ 481      626C696E 
+ 481      6B3100
+ 482 00b7 00       		.align	2
+ 483              	.LC13:
+ 484 00b8 5461736B 		.ascii	"Task_1\000"
+ 484      5F3100
+ 485              		.section	.text.main,"ax",%progbits
+ 486              		.align	1
+ 487              		.global	main
+ 488              		.syntax unified
+ 489              		.thumb
+ 490              		.thumb_func
+ 492              	main:
+ 493              		@ args = 0, pretend = 0, frame = 0
+ 494              		@ frame_needed = 1, uses_anonymous_args = 0
+ 495 0000 80B5     		push	{r7, lr}
+ 496 0002 82B0     		sub	sp, sp, #8
+ 497 0004 02AF     		add	r7, sp, #8
+ 498 0006 FFF7FEFF 		bl	SystemClock_Config
+ 499 000a FFF7FEFF 		bl	MX_GPIO_Init
+ 500 000e FFF7FEFF 		bl	USART1_Init
+ 501 0012 FFF7FEFF 		bl	SPI_Init
+ 502 0016 FFF7FEFF 		bl	Uart1_Receive_DMA
+ 503 001a FFF7FEFF 		bl	W25Q_Reset
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s 			page 10
+
+
+ 504 001e 0023     		movs	r3, #0
+ 505 0020 0193     		str	r3, [sp, #4]
+ 506 0022 0023     		movs	r3, #0
+ 507 0024 0093     		str	r3, [sp]
+ 508 0026 0023     		movs	r3, #0
+ 509 0028 4022     		movs	r2, #64
+ 510 002a 0E49     		ldr	r1, .L37
+ 511 002c 0E48     		ldr	r0, .L37+4
+ 512 002e FFF7FEFF 		bl	xTaskCreate
+ 513 0032 0023     		movs	r3, #0
+ 514 0034 0193     		str	r3, [sp, #4]
+ 515 0036 0123     		movs	r3, #1
+ 516 0038 0093     		str	r3, [sp]
+ 517 003a 0123     		movs	r3, #1
+ 518 003c 4022     		movs	r2, #64
+ 519 003e 0B49     		ldr	r1, .L37+8
+ 520 0040 0948     		ldr	r0, .L37+4
+ 521 0042 FFF7FEFF 		bl	xTaskCreate
+ 522 0046 0023     		movs	r3, #0
+ 523 0048 0193     		str	r3, [sp, #4]
+ 524 004a 0323     		movs	r3, #3
+ 525 004c 0093     		str	r3, [sp]
+ 526 004e 0023     		movs	r3, #0
+ 527 0050 4FF48052 		mov	r2, #4096
+ 528 0054 0649     		ldr	r1, .L37+12
+ 529 0056 0748     		ldr	r0, .L37+16
+ 530 0058 FFF7FEFF 		bl	xTaskCreate
+ 531 005c FFF7FEFF 		bl	vTaskStartScheduler
+ 532              	.L36:
+ 533 0060 FEE7     		b	.L36
+ 534              	.L38:
+ 535 0062 00BF     		.align	2
+ 536              	.L37:
+ 537 0064 A0000000 		.word	.LC11
+ 538 0068 00000000 		.word	vTaskLED
+ 539 006c AC000000 		.word	.LC12
+ 540 0070 B8000000 		.word	.LC13
+ 541 0074 00000000 		.word	vTask1
+ 543              		.section	.text.Error_Handler,"ax",%progbits
+ 544              		.align	1
+ 545              		.global	Error_Handler
+ 546              		.syntax unified
+ 547              		.thumb
+ 548              		.thumb_func
+ 550              	Error_Handler:
+ 551              		@ args = 0, pretend = 0, frame = 0
+ 552              		@ frame_needed = 1, uses_anonymous_args = 0
+ 553              		@ link register save eliminated.
+ 554 0000 80B4     		push	{r7}
+ 555 0002 00AF     		add	r7, sp, #0
+ 556              		.syntax unified
+ 557              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 558 0004 72B6     		cpsid i
+ 559              	@ 0 "" 2
+ 560              		.thumb
+ 561              		.syntax unified
+ 562 0006 00BF     		nop
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s 			page 11
+
+
+ 563              	.L40:
+ 564 0008 FEE7     		b	.L40
+ 566              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:18     .text.__io_putchar:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:24     .text.__io_putchar:00000000 __io_putchar
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:44     .rodata:00000000 $d
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:48     .text.ProcessString:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:54     .text.ProcessString:00000000 ProcessString
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:102    .text.ProcessString:00000054 $d
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:133    .text.PerformW25q:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:139    .text.PerformW25q:00000000 PerformW25q
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:288    .text.PerformW25q:00000138 $d
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:304    .text.vTaskLED:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:310    .text.vTaskLED:00000000 vTaskLED
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:341    .text.vTaskLED:00000038 $d
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:345    .text.vTask1:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:351    .text.vTask1:00000000 vTask1
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:440    .text.vTaskFlash_W25:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:446    .text.vTaskFlash_W25:00000000 vTaskFlash_W25
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:486    .text.main:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:492    .text.main:00000000 main
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:537    .text.main:00000064 $d
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:544    .text.Error_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccgPR8I1.s:550    .text.Error_Handler:00000000 Error_Handler
+
+UNDEFINED SYMBOLS
+Usart_Transmit
+strtok
+strncpy
+strcmp
+atol
+printf
+W25Q_Read_Byte
+putchar
+W25Q_ReadID
+puts
+W25Q_Erase_Sector
+W25Q_Program_Page
+gpio_tog
+vTaskDelay
+pvPortMalloc
+memset
+GetFromBuff_DMA
+vPortFree
+SystemClock_Config
+MX_GPIO_Init
+USART1_Init
+SPI_Init
+Uart1_Receive_DMA
+W25Q_Reset
+xTaskCreate
+vTaskStartScheduler

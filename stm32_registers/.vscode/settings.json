@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "sys_clock.h": "c",
-        "main.h": "c",
-        "stddef.h": "c",
-        "uart.h": "c",
-        "event_groups.h": "c"
-    }
-}

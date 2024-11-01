@@ -1,0 +1,2575 @@
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stream_buffer.c"
+  16              		.text
+  17              		.section	.text.xStreamBufferGenericCreate,"ax",%progbits
+  18              		.align	1
+  19              		.global	xStreamBufferGenericCreate
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	xStreamBufferGenericCreate:
+  25              		@ args = 4, pretend = 0, frame = 40
+  26              		@ frame_needed = 1, uses_anonymous_args = 0
+  27 0000 80B5     		push	{r7, lr}
+  28 0002 8EB0     		sub	sp, sp, #56
+  29 0004 04AF     		add	r7, sp, #16
+  30 0006 F860     		str	r0, [r7, #12]
+  31 0008 B960     		str	r1, [r7, #8]
+  32 000a 7A60     		str	r2, [r7, #4]
+  33 000c 3B60     		str	r3, [r7]
+  34 000e 7B68     		ldr	r3, [r7, #4]
+  35 0010 012B     		cmp	r3, #1
+  36 0012 10D1     		bne	.L2
+  37 0014 0123     		movs	r3, #1
+  38 0016 87F82330 		strb	r3, [r7, #35]
+  39 001a FB68     		ldr	r3, [r7, #12]
+  40 001c 042B     		cmp	r3, #4
+  41 001e 2FD8     		bhi	.L3
+  42              		.syntax unified
+  43              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+  44 0020 4FF05003 		   mov r3, #80                                              
+  45 0024 83F31188 	   msr basepri, r3                                         
+  46 0028 BFF36F8F 	   isb                                                     
+  47 002c BFF34F8F 	   dsb                                                     
+  48              	
+  49              	@ 0 "" 2
+  50              		.thumb
+  51              		.syntax unified
+  52 0030 FB61     		str	r3, [r7, #28]
+  53 0032 00BF     		nop
+  54              	.L4:
+  55 0034 FEE7     		b	.L4
+  56              	.L2:
+  57 0036 7B68     		ldr	r3, [r7, #4]
+  58 0038 022B     		cmp	r3, #2
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 2
+
+
+  59 003a 10D1     		bne	.L5
+  60 003c 0423     		movs	r3, #4
+  61 003e 87F82330 		strb	r3, [r7, #35]
+  62 0042 FB68     		ldr	r3, [r7, #12]
+  63 0044 002B     		cmp	r3, #0
+  64 0046 1BD1     		bne	.L3
+  65              		.syntax unified
+  66              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+  67 0048 4FF05003 		   mov r3, #80                                              
+  68 004c 83F31188 	   msr basepri, r3                                         
+  69 0050 BFF36F8F 	   isb                                                     
+  70 0054 BFF34F8F 	   dsb                                                     
+  71              	
+  72              	@ 0 "" 2
+  73              		.thumb
+  74              		.syntax unified
+  75 0058 BB61     		str	r3, [r7, #24]
+  76 005a 00BF     		nop
+  77              	.L6:
+  78 005c FEE7     		b	.L6
+  79              	.L5:
+  80 005e 0023     		movs	r3, #0
+  81 0060 87F82330 		strb	r3, [r7, #35]
+  82 0064 FB68     		ldr	r3, [r7, #12]
+  83 0066 002B     		cmp	r3, #0
+  84 0068 0AD1     		bne	.L3
+  85              		.syntax unified
+  86              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+  87 006a 4FF05003 		   mov r3, #80                                              
+  88 006e 83F31188 	   msr basepri, r3                                         
+  89 0072 BFF36F8F 	   isb                                                     
+  90 0076 BFF34F8F 	   dsb                                                     
+  91              	
+  92              	@ 0 "" 2
+  93              		.thumb
+  94              		.syntax unified
+  95 007a 7B61     		str	r3, [r7, #20]
+  96 007c 00BF     		nop
+  97              	.L7:
+  98 007e FEE7     		b	.L7
+  99              	.L3:
+ 100 0080 BA68     		ldr	r2, [r7, #8]
+ 101 0082 FB68     		ldr	r3, [r7, #12]
+ 102 0084 9A42     		cmp	r2, r3
+ 103 0086 0AD9     		bls	.L8
+ 104              		.syntax unified
+ 105              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 106 0088 4FF05003 		   mov r3, #80                                              
+ 107 008c 83F31188 	   msr basepri, r3                                         
+ 108 0090 BFF36F8F 	   isb                                                     
+ 109 0094 BFF34F8F 	   dsb                                                     
+ 110              	
+ 111              	@ 0 "" 2
+ 112              		.thumb
+ 113              		.syntax unified
+ 114 0098 3B61     		str	r3, [r7, #16]
+ 115 009a 00BF     		nop
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 3
+
+
+ 116              	.L9:
+ 117 009c FEE7     		b	.L9
+ 118              	.L8:
+ 119 009e BB68     		ldr	r3, [r7, #8]
+ 120 00a0 002B     		cmp	r3, #0
+ 121 00a2 01D1     		bne	.L10
+ 122 00a4 0123     		movs	r3, #1
+ 123 00a6 BB60     		str	r3, [r7, #8]
+ 124              	.L10:
+ 125 00a8 FB68     		ldr	r3, [r7, #12]
+ 126 00aa 13F12A0F 		cmn	r3, #42
+ 127 00ae 09D8     		bhi	.L11
+ 128 00b0 FB68     		ldr	r3, [r7, #12]
+ 129 00b2 0133     		adds	r3, r3, #1
+ 130 00b4 FB60     		str	r3, [r7, #12]
+ 131 00b6 FB68     		ldr	r3, [r7, #12]
+ 132 00b8 2833     		adds	r3, r3, #40
+ 133 00ba 1846     		mov	r0, r3
+ 134 00bc FFF7FEFF 		bl	pvPortMalloc
+ 135 00c0 7862     		str	r0, [r7, #36]
+ 136 00c2 01E0     		b	.L12
+ 137              	.L11:
+ 138 00c4 0023     		movs	r3, #0
+ 139 00c6 7B62     		str	r3, [r7, #36]
+ 140              	.L12:
+ 141 00c8 7B6A     		ldr	r3, [r7, #36]
+ 142 00ca 002B     		cmp	r3, #0
+ 143 00cc 0ED0     		beq	.L13
+ 144 00ce 7B6A     		ldr	r3, [r7, #36]
+ 145 00d0 03F12801 		add	r1, r3, #40
+ 146 00d4 3B6B     		ldr	r3, [r7, #48]
+ 147 00d6 0293     		str	r3, [sp, #8]
+ 148 00d8 3B68     		ldr	r3, [r7]
+ 149 00da 0193     		str	r3, [sp, #4]
+ 150 00dc 97F82330 		ldrb	r3, [r7, #35]	@ zero_extendqisi2
+ 151 00e0 0093     		str	r3, [sp]
+ 152 00e2 BB68     		ldr	r3, [r7, #8]
+ 153 00e4 FA68     		ldr	r2, [r7, #12]
+ 154 00e6 786A     		ldr	r0, [r7, #36]
+ 155 00e8 FFF7FEFF 		bl	prvInitialiseNewStreamBuffer
+ 156              	.L13:
+ 157 00ec 7B6A     		ldr	r3, [r7, #36]
+ 158 00ee 1846     		mov	r0, r3
+ 159 00f0 2837     		adds	r7, r7, #40
+ 160 00f2 BD46     		mov	sp, r7
+ 161              		@ sp needed
+ 162 00f4 80BD     		pop	{r7, pc}
+ 164              		.section	.text.vStreamBufferDelete,"ax",%progbits
+ 165              		.align	1
+ 166              		.global	vStreamBufferDelete
+ 167              		.syntax unified
+ 168              		.thumb
+ 169              		.thumb_func
+ 171              	vStreamBufferDelete:
+ 172              		@ args = 0, pretend = 0, frame = 16
+ 173              		@ frame_needed = 1, uses_anonymous_args = 0
+ 174 0000 80B5     		push	{r7, lr}
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 4
+
+
+ 175 0002 84B0     		sub	sp, sp, #16
+ 176 0004 00AF     		add	r7, sp, #0
+ 177 0006 7860     		str	r0, [r7, #4]
+ 178 0008 7B68     		ldr	r3, [r7, #4]
+ 179 000a FB60     		str	r3, [r7, #12]
+ 180 000c FB68     		ldr	r3, [r7, #12]
+ 181 000e 002B     		cmp	r3, #0
+ 182 0010 0AD1     		bne	.L16
+ 183              		.syntax unified
+ 184              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 185 0012 4FF05003 		   mov r3, #80                                              
+ 186 0016 83F31188 	   msr basepri, r3                                         
+ 187 001a BFF36F8F 	   isb                                                     
+ 188 001e BFF34F8F 	   dsb                                                     
+ 189              	
+ 190              	@ 0 "" 2
+ 191              		.thumb
+ 192              		.syntax unified
+ 193 0022 BB60     		str	r3, [r7, #8]
+ 194 0024 00BF     		nop
+ 195              	.L17:
+ 196 0026 FEE7     		b	.L17
+ 197              	.L16:
+ 198 0028 FB68     		ldr	r3, [r7, #12]
+ 199 002a 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 200 002c 03F00203 		and	r3, r3, #2
+ 201 0030 002B     		cmp	r3, #0
+ 202 0032 03D1     		bne	.L18
+ 203 0034 F868     		ldr	r0, [r7, #12]
+ 204 0036 FFF7FEFF 		bl	vPortFree
+ 205 003a 04E0     		b	.L20
+ 206              	.L18:
+ 207 003c 2822     		movs	r2, #40
+ 208 003e 0021     		movs	r1, #0
+ 209 0040 F868     		ldr	r0, [r7, #12]
+ 210 0042 FFF7FEFF 		bl	memset
+ 211              	.L20:
+ 212 0046 00BF     		nop
+ 213 0048 1037     		adds	r7, r7, #16
+ 214 004a BD46     		mov	sp, r7
+ 215              		@ sp needed
+ 216 004c 80BD     		pop	{r7, pc}
+ 218              		.section	.text.xStreamBufferReset,"ax",%progbits
+ 219              		.align	1
+ 220              		.global	xStreamBufferReset
+ 221              		.syntax unified
+ 222              		.thumb
+ 223              		.thumb_func
+ 225              	xStreamBufferReset:
+ 226              		@ args = 0, pretend = 0, frame = 32
+ 227              		@ frame_needed = 1, uses_anonymous_args = 0
+ 228 0000 90B5     		push	{r4, r7, lr}
+ 229 0002 8DB0     		sub	sp, sp, #52
+ 230 0004 04AF     		add	r7, sp, #16
+ 231 0006 7860     		str	r0, [r7, #4]
+ 232 0008 7B68     		ldr	r3, [r7, #4]
+ 233 000a BB61     		str	r3, [r7, #24]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 5
+
+
+ 234 000c 0023     		movs	r3, #0
+ 235 000e FB61     		str	r3, [r7, #28]
+ 236 0010 0023     		movs	r3, #0
+ 237 0012 7B61     		str	r3, [r7, #20]
+ 238 0014 0023     		movs	r3, #0
+ 239 0016 3B61     		str	r3, [r7, #16]
+ 240 0018 BB69     		ldr	r3, [r7, #24]
+ 241 001a 002B     		cmp	r3, #0
+ 242 001c 0AD1     		bne	.L22
+ 243              		.syntax unified
+ 244              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 245 001e 4FF05003 		   mov r3, #80                                              
+ 246 0022 83F31188 	   msr basepri, r3                                         
+ 247 0026 BFF36F8F 	   isb                                                     
+ 248 002a BFF34F8F 	   dsb                                                     
+ 249              	
+ 250              	@ 0 "" 2
+ 251              		.thumb
+ 252              		.syntax unified
+ 253 002e BB60     		str	r3, [r7, #8]
+ 254 0030 00BF     		nop
+ 255              	.L23:
+ 256 0032 FEE7     		b	.L23
+ 257              	.L22:
+ 258 0034 BB69     		ldr	r3, [r7, #24]
+ 259 0036 1B6A     		ldr	r3, [r3, #32]
+ 260 0038 FB60     		str	r3, [r7, #12]
+ 261 003a FFF7FEFF 		bl	vPortEnterCritical
+ 262 003e BB69     		ldr	r3, [r7, #24]
+ 263 0040 1B69     		ldr	r3, [r3, #16]
+ 264 0042 002B     		cmp	r3, #0
+ 265 0044 1AD1     		bne	.L24
+ 266 0046 BB69     		ldr	r3, [r7, #24]
+ 267 0048 5B69     		ldr	r3, [r3, #20]
+ 268 004a 002B     		cmp	r3, #0
+ 269 004c 16D1     		bne	.L24
+ 270 004e BB69     		ldr	r3, [r7, #24]
+ 271 0050 9969     		ldr	r1, [r3, #24]
+ 272 0052 BB69     		ldr	r3, [r7, #24]
+ 273 0054 9868     		ldr	r0, [r3, #8]
+ 274 0056 BB69     		ldr	r3, [r7, #24]
+ 275 0058 DC68     		ldr	r4, [r3, #12]
+ 276 005a BB69     		ldr	r3, [r7, #24]
+ 277 005c 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 278 005e 3A69     		ldr	r2, [r7, #16]
+ 279 0060 0292     		str	r2, [sp, #8]
+ 280 0062 7A69     		ldr	r2, [r7, #20]
+ 281 0064 0192     		str	r2, [sp, #4]
+ 282 0066 0093     		str	r3, [sp]
+ 283 0068 2346     		mov	r3, r4
+ 284 006a 0246     		mov	r2, r0
+ 285 006c B869     		ldr	r0, [r7, #24]
+ 286 006e FFF7FEFF 		bl	prvInitialiseNewStreamBuffer
+ 287 0072 BB69     		ldr	r3, [r7, #24]
+ 288 0074 FA68     		ldr	r2, [r7, #12]
+ 289 0076 1A62     		str	r2, [r3, #32]
+ 290 0078 0123     		movs	r3, #1
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 6
+
+
+ 291 007a FB61     		str	r3, [r7, #28]
+ 292              	.L24:
+ 293 007c FFF7FEFF 		bl	vPortExitCritical
+ 294 0080 FB69     		ldr	r3, [r7, #28]
+ 295 0082 1846     		mov	r0, r3
+ 296 0084 2437     		adds	r7, r7, #36
+ 297 0086 BD46     		mov	sp, r7
+ 298              		@ sp needed
+ 299 0088 90BD     		pop	{r4, r7, pc}
+ 301              		.section	.text.xStreamBufferResetFromISR,"ax",%progbits
+ 302              		.align	1
+ 303              		.global	xStreamBufferResetFromISR
+ 304              		.syntax unified
+ 305              		.thumb
+ 306              		.thumb_func
+ 308              	xStreamBufferResetFromISR:
+ 309              		@ args = 0, pretend = 0, frame = 48
+ 310              		@ frame_needed = 1, uses_anonymous_args = 0
+ 311 0000 90B5     		push	{r4, r7, lr}
+ 312 0002 91B0     		sub	sp, sp, #68
+ 313 0004 04AF     		add	r7, sp, #16
+ 314 0006 7860     		str	r0, [r7, #4]
+ 315 0008 7B68     		ldr	r3, [r7, #4]
+ 316 000a BB62     		str	r3, [r7, #40]
+ 317 000c 0023     		movs	r3, #0
+ 318 000e FB62     		str	r3, [r7, #44]
+ 319 0010 0023     		movs	r3, #0
+ 320 0012 7B62     		str	r3, [r7, #36]
+ 321 0014 0023     		movs	r3, #0
+ 322 0016 3B62     		str	r3, [r7, #32]
+ 323 0018 BB6A     		ldr	r3, [r7, #40]
+ 324 001a 002B     		cmp	r3, #0
+ 325 001c 0AD1     		bne	.L27
+ 326              		.syntax unified
+ 327              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 328 001e 4FF05003 		   mov r3, #80                                              
+ 329 0022 83F31188 	   msr basepri, r3                                         
+ 330 0026 BFF36F8F 	   isb                                                     
+ 331 002a BFF34F8F 	   dsb                                                     
+ 332              	
+ 333              	@ 0 "" 2
+ 334              		.thumb
+ 335              		.syntax unified
+ 336 002e 7B61     		str	r3, [r7, #20]
+ 337 0030 00BF     		nop
+ 338              	.L28:
+ 339 0032 FEE7     		b	.L28
+ 340              	.L27:
+ 341 0034 BB6A     		ldr	r3, [r7, #40]
+ 342 0036 1B6A     		ldr	r3, [r3, #32]
+ 343 0038 FB61     		str	r3, [r7, #28]
+ 344              		.syntax unified
+ 345              	@ 233 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 346 003a EFF31182 		   mrs r2, basepri                                         
+ 347 003e 4FF05003 	   mov r3, #80                                              
+ 348 0042 83F31188 	   msr basepri, r3                                         
+ 349 0046 BFF36F8F 	   isb                                                     
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 7
+
+
+ 350 004a BFF34F8F 	   dsb                                                     
+ 351              	
+ 352              	@ 0 "" 2
+ 353              		.thumb
+ 354              		.syntax unified
+ 355 004e 3A61     		str	r2, [r7, #16]
+ 356 0050 FB60     		str	r3, [r7, #12]
+ 357 0052 3B69     		ldr	r3, [r7, #16]
+ 358 0054 BB61     		str	r3, [r7, #24]
+ 359 0056 BB6A     		ldr	r3, [r7, #40]
+ 360 0058 1B69     		ldr	r3, [r3, #16]
+ 361 005a 002B     		cmp	r3, #0
+ 362 005c 1AD1     		bne	.L30
+ 363 005e BB6A     		ldr	r3, [r7, #40]
+ 364 0060 5B69     		ldr	r3, [r3, #20]
+ 365 0062 002B     		cmp	r3, #0
+ 366 0064 16D1     		bne	.L30
+ 367 0066 BB6A     		ldr	r3, [r7, #40]
+ 368 0068 9969     		ldr	r1, [r3, #24]
+ 369 006a BB6A     		ldr	r3, [r7, #40]
+ 370 006c 9868     		ldr	r0, [r3, #8]
+ 371 006e BB6A     		ldr	r3, [r7, #40]
+ 372 0070 DC68     		ldr	r4, [r3, #12]
+ 373 0072 BB6A     		ldr	r3, [r7, #40]
+ 374 0074 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 375 0076 3A6A     		ldr	r2, [r7, #32]
+ 376 0078 0292     		str	r2, [sp, #8]
+ 377 007a 7A6A     		ldr	r2, [r7, #36]
+ 378 007c 0192     		str	r2, [sp, #4]
+ 379 007e 0093     		str	r3, [sp]
+ 380 0080 2346     		mov	r3, r4
+ 381 0082 0246     		mov	r2, r0
+ 382 0084 B86A     		ldr	r0, [r7, #40]
+ 383 0086 FFF7FEFF 		bl	prvInitialiseNewStreamBuffer
+ 384 008a BB6A     		ldr	r3, [r7, #40]
+ 385 008c FA69     		ldr	r2, [r7, #28]
+ 386 008e 1A62     		str	r2, [r3, #32]
+ 387 0090 0123     		movs	r3, #1
+ 388 0092 FB62     		str	r3, [r7, #44]
+ 389              	.L30:
+ 390 0094 BB69     		ldr	r3, [r7, #24]
+ 391 0096 BB60     		str	r3, [r7, #8]
+ 392 0098 BB68     		ldr	r3, [r7, #8]
+ 393              		.syntax unified
+ 394              	@ 251 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 395 009a 83F31188 		   msr basepri, r3 
+ 396              	@ 0 "" 2
+ 397              		.thumb
+ 398              		.syntax unified
+ 399 009e 00BF     		nop
+ 400 00a0 FB6A     		ldr	r3, [r7, #44]
+ 401 00a2 1846     		mov	r0, r3
+ 402 00a4 3437     		adds	r7, r7, #52
+ 403 00a6 BD46     		mov	sp, r7
+ 404              		@ sp needed
+ 405 00a8 90BD     		pop	{r4, r7, pc}
+ 407              		.section	.text.xStreamBufferSetTriggerLevel,"ax",%progbits
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 8
+
+
+ 408              		.align	1
+ 409              		.global	xStreamBufferSetTriggerLevel
+ 410              		.syntax unified
+ 411              		.thumb
+ 412              		.thumb_func
+ 414              	xStreamBufferSetTriggerLevel:
+ 415              		@ args = 0, pretend = 0, frame = 24
+ 416              		@ frame_needed = 1, uses_anonymous_args = 0
+ 417              		@ link register save eliminated.
+ 418 0000 80B4     		push	{r7}
+ 419 0002 87B0     		sub	sp, sp, #28
+ 420 0004 00AF     		add	r7, sp, #0
+ 421 0006 7860     		str	r0, [r7, #4]
+ 422 0008 3960     		str	r1, [r7]
+ 423 000a 7B68     		ldr	r3, [r7, #4]
+ 424 000c 3B61     		str	r3, [r7, #16]
+ 425 000e 3B69     		ldr	r3, [r7, #16]
+ 426 0010 002B     		cmp	r3, #0
+ 427 0012 0AD1     		bne	.L33
+ 428              		.syntax unified
+ 429              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 430 0014 4FF05003 		   mov r3, #80                                              
+ 431 0018 83F31188 	   msr basepri, r3                                         
+ 432 001c BFF36F8F 	   isb                                                     
+ 433 0020 BFF34F8F 	   dsb                                                     
+ 434              	
+ 435              	@ 0 "" 2
+ 436              		.thumb
+ 437              		.syntax unified
+ 438 0024 FB60     		str	r3, [r7, #12]
+ 439 0026 00BF     		nop
+ 440              	.L34:
+ 441 0028 FEE7     		b	.L34
+ 442              	.L33:
+ 443 002a 3B68     		ldr	r3, [r7]
+ 444 002c 002B     		cmp	r3, #0
+ 445 002e 01D1     		bne	.L35
+ 446 0030 0123     		movs	r3, #1
+ 447 0032 3B60     		str	r3, [r7]
+ 448              	.L35:
+ 449 0034 3B69     		ldr	r3, [r7, #16]
+ 450 0036 9B68     		ldr	r3, [r3, #8]
+ 451 0038 3A68     		ldr	r2, [r7]
+ 452 003a 9A42     		cmp	r2, r3
+ 453 003c 05D2     		bcs	.L36
+ 454 003e 3B69     		ldr	r3, [r7, #16]
+ 455 0040 3A68     		ldr	r2, [r7]
+ 456 0042 DA60     		str	r2, [r3, #12]
+ 457 0044 0123     		movs	r3, #1
+ 458 0046 7B61     		str	r3, [r7, #20]
+ 459 0048 01E0     		b	.L37
+ 460              	.L36:
+ 461 004a 0023     		movs	r3, #0
+ 462 004c 7B61     		str	r3, [r7, #20]
+ 463              	.L37:
+ 464 004e 7B69     		ldr	r3, [r7, #20]
+ 465 0050 1846     		mov	r0, r3
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 9
+
+
+ 466 0052 1C37     		adds	r7, r7, #28
+ 467 0054 BD46     		mov	sp, r7
+ 468              		@ sp needed
+ 469 0056 5DF8047B 		ldr	r7, [sp], #4
+ 470 005a 7047     		bx	lr
+ 472              		.section	.text.xStreamBufferSpacesAvailable,"ax",%progbits
+ 473              		.align	1
+ 474              		.global	xStreamBufferSpacesAvailable
+ 475              		.syntax unified
+ 476              		.thumb
+ 477              		.thumb_func
+ 479              	xStreamBufferSpacesAvailable:
+ 480              		@ args = 0, pretend = 0, frame = 24
+ 481              		@ frame_needed = 1, uses_anonymous_args = 0
+ 482              		@ link register save eliminated.
+ 483 0000 80B4     		push	{r7}
+ 484 0002 87B0     		sub	sp, sp, #28
+ 485 0004 00AF     		add	r7, sp, #0
+ 486 0006 7860     		str	r0, [r7, #4]
+ 487 0008 7B68     		ldr	r3, [r7, #4]
+ 488 000a 3B61     		str	r3, [r7, #16]
+ 489 000c 3B69     		ldr	r3, [r7, #16]
+ 490 000e 002B     		cmp	r3, #0
+ 491 0010 0AD1     		bne	.L40
+ 492              		.syntax unified
+ 493              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 494 0012 4FF05003 		   mov r3, #80                                              
+ 495 0016 83F31188 	   msr basepri, r3                                         
+ 496 001a BFF36F8F 	   isb                                                     
+ 497 001e BFF34F8F 	   dsb                                                     
+ 498              	
+ 499              	@ 0 "" 2
+ 500              		.thumb
+ 501              		.syntax unified
+ 502 0022 BB60     		str	r3, [r7, #8]
+ 503 0024 00BF     		nop
+ 504              	.L41:
+ 505 0026 FEE7     		b	.L41
+ 506              	.L40:
+ 507 0028 3B69     		ldr	r3, [r7, #16]
+ 508 002a 1B68     		ldr	r3, [r3]
+ 509 002c FB60     		str	r3, [r7, #12]
+ 510 002e 3B69     		ldr	r3, [r7, #16]
+ 511 0030 9A68     		ldr	r2, [r3, #8]
+ 512 0032 3B69     		ldr	r3, [r7, #16]
+ 513 0034 1B68     		ldr	r3, [r3]
+ 514 0036 1344     		add	r3, r3, r2
+ 515 0038 7B61     		str	r3, [r7, #20]
+ 516 003a 3B69     		ldr	r3, [r7, #16]
+ 517 003c 5B68     		ldr	r3, [r3, #4]
+ 518 003e 7A69     		ldr	r2, [r7, #20]
+ 519 0040 D31A     		subs	r3, r2, r3
+ 520 0042 7B61     		str	r3, [r7, #20]
+ 521 0044 3B69     		ldr	r3, [r7, #16]
+ 522 0046 1B68     		ldr	r3, [r3]
+ 523 0048 FA68     		ldr	r2, [r7, #12]
+ 524 004a 9A42     		cmp	r2, r3
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 10
+
+
+ 525 004c ECD1     		bne	.L40
+ 526 004e 7B69     		ldr	r3, [r7, #20]
+ 527 0050 013B     		subs	r3, r3, #1
+ 528 0052 7B61     		str	r3, [r7, #20]
+ 529 0054 3B69     		ldr	r3, [r7, #16]
+ 530 0056 9B68     		ldr	r3, [r3, #8]
+ 531 0058 7A69     		ldr	r2, [r7, #20]
+ 532 005a 9A42     		cmp	r2, r3
+ 533 005c 04D3     		bcc	.L42
+ 534 005e 3B69     		ldr	r3, [r7, #16]
+ 535 0060 9B68     		ldr	r3, [r3, #8]
+ 536 0062 7A69     		ldr	r2, [r7, #20]
+ 537 0064 D31A     		subs	r3, r2, r3
+ 538 0066 7B61     		str	r3, [r7, #20]
+ 539              	.L42:
+ 540 0068 7B69     		ldr	r3, [r7, #20]
+ 541 006a 1846     		mov	r0, r3
+ 542 006c 1C37     		adds	r7, r7, #28
+ 543 006e BD46     		mov	sp, r7
+ 544              		@ sp needed
+ 545 0070 5DF8047B 		ldr	r7, [sp], #4
+ 546 0074 7047     		bx	lr
+ 548              		.section	.text.xStreamBufferBytesAvailable,"ax",%progbits
+ 549              		.align	1
+ 550              		.global	xStreamBufferBytesAvailable
+ 551              		.syntax unified
+ 552              		.thumb
+ 553              		.thumb_func
+ 555              	xStreamBufferBytesAvailable:
+ 556              		@ args = 0, pretend = 0, frame = 24
+ 557              		@ frame_needed = 1, uses_anonymous_args = 0
+ 558 0000 80B5     		push	{r7, lr}
+ 559 0002 86B0     		sub	sp, sp, #24
+ 560 0004 00AF     		add	r7, sp, #0
+ 561 0006 7860     		str	r0, [r7, #4]
+ 562 0008 7B68     		ldr	r3, [r7, #4]
+ 563 000a 7B61     		str	r3, [r7, #20]
+ 564 000c 7B69     		ldr	r3, [r7, #20]
+ 565 000e 002B     		cmp	r3, #0
+ 566 0010 0AD1     		bne	.L45
+ 567              		.syntax unified
+ 568              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 569 0012 4FF05003 		   mov r3, #80                                              
+ 570 0016 83F31188 	   msr basepri, r3                                         
+ 571 001a BFF36F8F 	   isb                                                     
+ 572 001e BFF34F8F 	   dsb                                                     
+ 573              	
+ 574              	@ 0 "" 2
+ 575              		.thumb
+ 576              		.syntax unified
+ 577 0022 FB60     		str	r3, [r7, #12]
+ 578 0024 00BF     		nop
+ 579              	.L46:
+ 580 0026 FEE7     		b	.L46
+ 581              	.L45:
+ 582 0028 7869     		ldr	r0, [r7, #20]
+ 583 002a FFF7FEFF 		bl	prvBytesInBuffer
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 11
+
+
+ 584 002e 3861     		str	r0, [r7, #16]
+ 585 0030 3B69     		ldr	r3, [r7, #16]
+ 586 0032 1846     		mov	r0, r3
+ 587 0034 1837     		adds	r7, r7, #24
+ 588 0036 BD46     		mov	sp, r7
+ 589              		@ sp needed
+ 590 0038 80BD     		pop	{r7, pc}
+ 592              		.section	.text.xStreamBufferSend,"ax",%progbits
+ 593              		.align	1
+ 594              		.global	xStreamBufferSend
+ 595              		.syntax unified
+ 596              		.thumb
+ 597              		.thumb_func
+ 599              	xStreamBufferSend:
+ 600              		@ args = 0, pretend = 0, frame = 64
+ 601              		@ frame_needed = 1, uses_anonymous_args = 0
+ 602 0000 80B5     		push	{r7, lr}
+ 603 0002 92B0     		sub	sp, sp, #72
+ 604 0004 02AF     		add	r7, sp, #8
+ 605 0006 F860     		str	r0, [r7, #12]
+ 606 0008 B960     		str	r1, [r7, #8]
+ 607 000a 7A60     		str	r2, [r7, #4]
+ 608 000c 3B60     		str	r3, [r7]
+ 609 000e FB68     		ldr	r3, [r7, #12]
+ 610 0010 7B63     		str	r3, [r7, #52]
+ 611 0012 0023     		movs	r3, #0
+ 612 0014 FB63     		str	r3, [r7, #60]
+ 613 0016 7B68     		ldr	r3, [r7, #4]
+ 614 0018 BB63     		str	r3, [r7, #56]
+ 615 001a 0023     		movs	r3, #0
+ 616 001c 3B63     		str	r3, [r7, #48]
+ 617 001e BB68     		ldr	r3, [r7, #8]
+ 618 0020 002B     		cmp	r3, #0
+ 619 0022 0AD1     		bne	.L49
+ 620              		.syntax unified
+ 621              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 622 0024 4FF05003 		   mov r3, #80                                              
+ 623 0028 83F31188 	   msr basepri, r3                                         
+ 624 002c BFF36F8F 	   isb                                                     
+ 625 0030 BFF34F8F 	   dsb                                                     
+ 626              	
+ 627              	@ 0 "" 2
+ 628              		.thumb
+ 629              		.syntax unified
+ 630 0034 BB62     		str	r3, [r7, #40]
+ 631 0036 00BF     		nop
+ 632              	.L50:
+ 633 0038 FEE7     		b	.L50
+ 634              	.L49:
+ 635 003a 7B6B     		ldr	r3, [r7, #52]
+ 636 003c 002B     		cmp	r3, #0
+ 637 003e 0AD1     		bne	.L51
+ 638              		.syntax unified
+ 639              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 640 0040 4FF05003 		   mov r3, #80                                              
+ 641 0044 83F31188 	   msr basepri, r3                                         
+ 642 0048 BFF36F8F 	   isb                                                     
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 12
+
+
+ 643 004c BFF34F8F 	   dsb                                                     
+ 644              	
+ 645              	@ 0 "" 2
+ 646              		.thumb
+ 647              		.syntax unified
+ 648 0050 7B62     		str	r3, [r7, #36]
+ 649 0052 00BF     		nop
+ 650              	.L52:
+ 651 0054 FEE7     		b	.L52
+ 652              	.L51:
+ 653 0056 7B6B     		ldr	r3, [r7, #52]
+ 654 0058 9B68     		ldr	r3, [r3, #8]
+ 655 005a 013B     		subs	r3, r3, #1
+ 656 005c 3B63     		str	r3, [r7, #48]
+ 657 005e 7B6B     		ldr	r3, [r7, #52]
+ 658 0060 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 659 0062 03F00103 		and	r3, r3, #1
+ 660 0066 002B     		cmp	r3, #0
+ 661 0068 18D0     		beq	.L53
+ 662 006a BB6B     		ldr	r3, [r7, #56]
+ 663 006c 0433     		adds	r3, r3, #4
+ 664 006e BB63     		str	r3, [r7, #56]
+ 665 0070 BA6B     		ldr	r2, [r7, #56]
+ 666 0072 7B68     		ldr	r3, [r7, #4]
+ 667 0074 9A42     		cmp	r2, r3
+ 668 0076 0AD8     		bhi	.L54
+ 669              		.syntax unified
+ 670              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 671 0078 4FF05003 		   mov r3, #80                                              
+ 672 007c 83F31188 	   msr basepri, r3                                         
+ 673 0080 BFF36F8F 	   isb                                                     
+ 674 0084 BFF34F8F 	   dsb                                                     
+ 675              	
+ 676              	@ 0 "" 2
+ 677              		.thumb
+ 678              		.syntax unified
+ 679 0088 3B62     		str	r3, [r7, #32]
+ 680 008a 00BF     		nop
+ 681              	.L55:
+ 682 008c FEE7     		b	.L55
+ 683              	.L54:
+ 684 008e BA6B     		ldr	r2, [r7, #56]
+ 685 0090 3B6B     		ldr	r3, [r7, #48]
+ 686 0092 9A42     		cmp	r2, r3
+ 687 0094 08D9     		bls	.L56
+ 688 0096 0023     		movs	r3, #0
+ 689 0098 3B60     		str	r3, [r7]
+ 690 009a 05E0     		b	.L56
+ 691              	.L53:
+ 692 009c BA6B     		ldr	r2, [r7, #56]
+ 693 009e 3B6B     		ldr	r3, [r7, #48]
+ 694 00a0 9A42     		cmp	r2, r3
+ 695 00a2 01D9     		bls	.L56
+ 696 00a4 3B6B     		ldr	r3, [r7, #48]
+ 697 00a6 BB63     		str	r3, [r7, #56]
+ 698              	.L56:
+ 699 00a8 3B68     		ldr	r3, [r7]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 13
+
+
+ 700 00aa 002B     		cmp	r3, #0
+ 701 00ac 44D0     		beq	.L57
+ 702 00ae 07F11403 		add	r3, r7, #20
+ 703 00b2 1846     		mov	r0, r3
+ 704 00b4 FFF7FEFF 		bl	vTaskSetTimeOutState
+ 705              	.L63:
+ 706 00b8 FFF7FEFF 		bl	vPortEnterCritical
+ 707 00bc 786B     		ldr	r0, [r7, #52]
+ 708 00be FFF7FEFF 		bl	xStreamBufferSpacesAvailable
+ 709 00c2 F863     		str	r0, [r7, #60]
+ 710 00c4 FA6B     		ldr	r2, [r7, #60]
+ 711 00c6 BB6B     		ldr	r3, [r7, #56]
+ 712 00c8 9A42     		cmp	r2, r3
+ 713 00ca 1AD2     		bcs	.L58
+ 714 00cc 7B6B     		ldr	r3, [r7, #52]
+ 715 00ce 5B6A     		ldr	r3, [r3, #36]
+ 716 00d0 1946     		mov	r1, r3
+ 717 00d2 0020     		movs	r0, #0
+ 718 00d4 FFF7FEFF 		bl	xTaskGenericNotifyStateClear
+ 719 00d8 7B6B     		ldr	r3, [r7, #52]
+ 720 00da 5B69     		ldr	r3, [r3, #20]
+ 721 00dc 002B     		cmp	r3, #0
+ 722 00de 0AD0     		beq	.L59
+ 723              		.syntax unified
+ 724              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 725 00e0 4FF05003 		   mov r3, #80                                              
+ 726 00e4 83F31188 	   msr basepri, r3                                         
+ 727 00e8 BFF36F8F 	   isb                                                     
+ 728 00ec BFF34F8F 	   dsb                                                     
+ 729              	
+ 730              	@ 0 "" 2
+ 731              		.thumb
+ 732              		.syntax unified
+ 733 00f0 FB61     		str	r3, [r7, #28]
+ 734 00f2 00BF     		nop
+ 735              	.L60:
+ 736 00f4 FEE7     		b	.L60
+ 737              	.L59:
+ 738 00f6 FFF7FEFF 		bl	xTaskGetCurrentTaskHandle
+ 739 00fa 0246     		mov	r2, r0
+ 740 00fc 7B6B     		ldr	r3, [r7, #52]
+ 741 00fe 5A61     		str	r2, [r3, #20]
+ 742 0100 02E0     		b	.L68
+ 743              	.L58:
+ 744 0102 FFF7FEFF 		bl	vPortExitCritical
+ 745 0106 17E0     		b	.L57
+ 746              	.L68:
+ 747 0108 FFF7FEFF 		bl	vPortExitCritical
+ 748 010c 7B6B     		ldr	r3, [r7, #52]
+ 749 010e 586A     		ldr	r0, [r3, #36]
+ 750 0110 3B68     		ldr	r3, [r7]
+ 751 0112 0093     		str	r3, [sp]
+ 752 0114 0023     		movs	r3, #0
+ 753 0116 0022     		movs	r2, #0
+ 754 0118 0021     		movs	r1, #0
+ 755 011a FFF7FEFF 		bl	xTaskGenericNotifyWait
+ 756 011e 7B6B     		ldr	r3, [r7, #52]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 14
+
+
+ 757 0120 0022     		movs	r2, #0
+ 758 0122 5A61     		str	r2, [r3, #20]
+ 759 0124 3A46     		mov	r2, r7
+ 760 0126 07F11403 		add	r3, r7, #20
+ 761 012a 1146     		mov	r1, r2
+ 762 012c 1846     		mov	r0, r3
+ 763 012e FFF7FEFF 		bl	xTaskCheckForTimeOut
+ 764 0132 0346     		mov	r3, r0
+ 765 0134 002B     		cmp	r3, #0
+ 766 0136 BFD0     		beq	.L63
+ 767              	.L57:
+ 768 0138 FB6B     		ldr	r3, [r7, #60]
+ 769 013a 002B     		cmp	r3, #0
+ 770 013c 03D1     		bne	.L64
+ 771 013e 786B     		ldr	r0, [r7, #52]
+ 772 0140 FFF7FEFF 		bl	xStreamBufferSpacesAvailable
+ 773 0144 F863     		str	r0, [r7, #60]
+ 774              	.L64:
+ 775 0146 BB6B     		ldr	r3, [r7, #56]
+ 776 0148 0093     		str	r3, [sp]
+ 777 014a FB6B     		ldr	r3, [r7, #60]
+ 778 014c 7A68     		ldr	r2, [r7, #4]
+ 779 014e B968     		ldr	r1, [r7, #8]
+ 780 0150 786B     		ldr	r0, [r7, #52]
+ 781 0152 FFF7FEFF 		bl	prvWriteMessageToBuffer
+ 782 0156 F862     		str	r0, [r7, #44]
+ 783 0158 FB6A     		ldr	r3, [r7, #44]
+ 784 015a 002B     		cmp	r3, #0
+ 785 015c 1CD0     		beq	.L65
+ 786 015e 786B     		ldr	r0, [r7, #52]
+ 787 0160 FFF7FEFF 		bl	prvBytesInBuffer
+ 788 0164 0246     		mov	r2, r0
+ 789 0166 7B6B     		ldr	r3, [r7, #52]
+ 790 0168 DB68     		ldr	r3, [r3, #12]
+ 791 016a 9A42     		cmp	r2, r3
+ 792 016c 14D3     		bcc	.L65
+ 793 016e FFF7FEFF 		bl	vTaskSuspendAll
+ 794 0172 7B6B     		ldr	r3, [r7, #52]
+ 795 0174 1B69     		ldr	r3, [r3, #16]
+ 796 0176 002B     		cmp	r3, #0
+ 797 0178 0CD0     		beq	.L66
+ 798 017a 7B6B     		ldr	r3, [r7, #52]
+ 799 017c 1869     		ldr	r0, [r3, #16]
+ 800 017e 7B6B     		ldr	r3, [r7, #52]
+ 801 0180 596A     		ldr	r1, [r3, #36]
+ 802 0182 0023     		movs	r3, #0
+ 803 0184 0093     		str	r3, [sp]
+ 804 0186 0023     		movs	r3, #0
+ 805 0188 0022     		movs	r2, #0
+ 806 018a FFF7FEFF 		bl	xTaskGenericNotify
+ 807 018e 7B6B     		ldr	r3, [r7, #52]
+ 808 0190 0022     		movs	r2, #0
+ 809 0192 1A61     		str	r2, [r3, #16]
+ 810              	.L66:
+ 811 0194 FFF7FEFF 		bl	xTaskResumeAll
+ 812              	.L65:
+ 813 0198 FB6A     		ldr	r3, [r7, #44]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 15
+
+
+ 814 019a 1846     		mov	r0, r3
+ 815 019c 4037     		adds	r7, r7, #64
+ 816 019e BD46     		mov	sp, r7
+ 817              		@ sp needed
+ 818 01a0 80BD     		pop	{r7, pc}
+ 820              		.section	.text.xStreamBufferSendFromISR,"ax",%progbits
+ 821              		.align	1
+ 822              		.global	xStreamBufferSendFromISR
+ 823              		.syntax unified
+ 824              		.thumb
+ 825              		.thumb_func
+ 827              	xStreamBufferSendFromISR:
+ 828              		@ args = 0, pretend = 0, frame = 56
+ 829              		@ frame_needed = 1, uses_anonymous_args = 0
+ 830 0000 80B5     		push	{r7, lr}
+ 831 0002 90B0     		sub	sp, sp, #64
+ 832 0004 02AF     		add	r7, sp, #8
+ 833 0006 F860     		str	r0, [r7, #12]
+ 834 0008 B960     		str	r1, [r7, #8]
+ 835 000a 7A60     		str	r2, [r7, #4]
+ 836 000c 3B60     		str	r3, [r7]
+ 837 000e FB68     		ldr	r3, [r7, #12]
+ 838 0010 3B63     		str	r3, [r7, #48]
+ 839 0012 7B68     		ldr	r3, [r7, #4]
+ 840 0014 7B63     		str	r3, [r7, #52]
+ 841 0016 BB68     		ldr	r3, [r7, #8]
+ 842 0018 002B     		cmp	r3, #0
+ 843 001a 0AD1     		bne	.L70
+ 844              		.syntax unified
+ 845              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 846 001c 4FF05003 		   mov r3, #80                                              
+ 847 0020 83F31188 	   msr basepri, r3                                         
+ 848 0024 BFF36F8F 	   isb                                                     
+ 849 0028 BFF34F8F 	   dsb                                                     
+ 850              	
+ 851              	@ 0 "" 2
+ 852              		.thumb
+ 853              		.syntax unified
+ 854 002c 3B62     		str	r3, [r7, #32]
+ 855 002e 00BF     		nop
+ 856              	.L71:
+ 857 0030 FEE7     		b	.L71
+ 858              	.L70:
+ 859 0032 3B6B     		ldr	r3, [r7, #48]
+ 860 0034 002B     		cmp	r3, #0
+ 861 0036 0AD1     		bne	.L72
+ 862              		.syntax unified
+ 863              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 864 0038 4FF05003 		   mov r3, #80                                              
+ 865 003c 83F31188 	   msr basepri, r3                                         
+ 866 0040 BFF36F8F 	   isb                                                     
+ 867 0044 BFF34F8F 	   dsb                                                     
+ 868              	
+ 869              	@ 0 "" 2
+ 870              		.thumb
+ 871              		.syntax unified
+ 872 0048 FB61     		str	r3, [r7, #28]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 16
+
+
+ 873 004a 00BF     		nop
+ 874              	.L73:
+ 875 004c FEE7     		b	.L73
+ 876              	.L72:
+ 877 004e 3B6B     		ldr	r3, [r7, #48]
+ 878 0050 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 879 0052 03F00103 		and	r3, r3, #1
+ 880 0056 002B     		cmp	r3, #0
+ 881 0058 02D0     		beq	.L74
+ 882 005a 7B6B     		ldr	r3, [r7, #52]
+ 883 005c 0433     		adds	r3, r3, #4
+ 884 005e 7B63     		str	r3, [r7, #52]
+ 885              	.L74:
+ 886 0060 386B     		ldr	r0, [r7, #48]
+ 887 0062 FFF7FEFF 		bl	xStreamBufferSpacesAvailable
+ 888 0066 F862     		str	r0, [r7, #44]
+ 889 0068 7B6B     		ldr	r3, [r7, #52]
+ 890 006a 0093     		str	r3, [sp]
+ 891 006c FB6A     		ldr	r3, [r7, #44]
+ 892 006e 7A68     		ldr	r2, [r7, #4]
+ 893 0070 B968     		ldr	r1, [r7, #8]
+ 894 0072 386B     		ldr	r0, [r7, #48]
+ 895 0074 FFF7FEFF 		bl	prvWriteMessageToBuffer
+ 896 0078 B862     		str	r0, [r7, #40]
+ 897 007a BB6A     		ldr	r3, [r7, #40]
+ 898 007c 002B     		cmp	r3, #0
+ 899 007e 2ED0     		beq	.L75
+ 900 0080 386B     		ldr	r0, [r7, #48]
+ 901 0082 FFF7FEFF 		bl	prvBytesInBuffer
+ 902 0086 0246     		mov	r2, r0
+ 903 0088 3B6B     		ldr	r3, [r7, #48]
+ 904 008a DB68     		ldr	r3, [r3, #12]
+ 905 008c 9A42     		cmp	r2, r3
+ 906 008e 26D3     		bcc	.L75
+ 907              		.syntax unified
+ 908              	@ 233 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 909 0090 EFF31182 		   mrs r2, basepri                                         
+ 910 0094 4FF05003 	   mov r3, #80                                              
+ 911 0098 83F31188 	   msr basepri, r3                                         
+ 912 009c BFF36F8F 	   isb                                                     
+ 913 00a0 BFF34F8F 	   dsb                                                     
+ 914              	
+ 915              	@ 0 "" 2
+ 916              		.thumb
+ 917              		.syntax unified
+ 918 00a4 BA61     		str	r2, [r7, #24]
+ 919 00a6 7B61     		str	r3, [r7, #20]
+ 920 00a8 BB69     		ldr	r3, [r7, #24]
+ 921 00aa 7B62     		str	r3, [r7, #36]
+ 922 00ac 3B6B     		ldr	r3, [r7, #48]
+ 923 00ae 1B69     		ldr	r3, [r3, #16]
+ 924 00b0 002B     		cmp	r3, #0
+ 925 00b2 0ED0     		beq	.L77
+ 926 00b4 3B6B     		ldr	r3, [r7, #48]
+ 927 00b6 1869     		ldr	r0, [r3, #16]
+ 928 00b8 3B6B     		ldr	r3, [r7, #48]
+ 929 00ba 596A     		ldr	r1, [r3, #36]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 17
+
+
+ 930 00bc 3B68     		ldr	r3, [r7]
+ 931 00be 0193     		str	r3, [sp, #4]
+ 932 00c0 0023     		movs	r3, #0
+ 933 00c2 0093     		str	r3, [sp]
+ 934 00c4 0023     		movs	r3, #0
+ 935 00c6 0022     		movs	r2, #0
+ 936 00c8 FFF7FEFF 		bl	xTaskGenericNotifyFromISR
+ 937 00cc 3B6B     		ldr	r3, [r7, #48]
+ 938 00ce 0022     		movs	r2, #0
+ 939 00d0 1A61     		str	r2, [r3, #16]
+ 940              	.L77:
+ 941 00d2 7B6A     		ldr	r3, [r7, #36]
+ 942 00d4 3B61     		str	r3, [r7, #16]
+ 943 00d6 3B69     		ldr	r3, [r7, #16]
+ 944              		.syntax unified
+ 945              	@ 251 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 946 00d8 83F31188 		   msr basepri, r3 
+ 947              	@ 0 "" 2
+ 948              		.thumb
+ 949              		.syntax unified
+ 950 00dc 00BF     		nop
+ 951              	.L75:
+ 952 00de BB6A     		ldr	r3, [r7, #40]
+ 953 00e0 1846     		mov	r0, r3
+ 954 00e2 3837     		adds	r7, r7, #56
+ 955 00e4 BD46     		mov	sp, r7
+ 956              		@ sp needed
+ 957 00e6 80BD     		pop	{r7, pc}
+ 959              		.section	.text.prvWriteMessageToBuffer,"ax",%progbits
+ 960              		.align	1
+ 961              		.syntax unified
+ 962              		.thumb
+ 963              		.thumb_func
+ 965              	prvWriteMessageToBuffer:
+ 966              		@ args = 4, pretend = 0, frame = 32
+ 967              		@ frame_needed = 1, uses_anonymous_args = 0
+ 968 0000 80B5     		push	{r7, lr}
+ 969 0002 88B0     		sub	sp, sp, #32
+ 970 0004 00AF     		add	r7, sp, #0
+ 971 0006 F860     		str	r0, [r7, #12]
+ 972 0008 B960     		str	r1, [r7, #8]
+ 973 000a 7A60     		str	r2, [r7, #4]
+ 974 000c 3B60     		str	r3, [r7]
+ 975 000e FB68     		ldr	r3, [r7, #12]
+ 976 0010 5B68     		ldr	r3, [r3, #4]
+ 977 0012 FB61     		str	r3, [r7, #28]
+ 978 0014 FB68     		ldr	r3, [r7, #12]
+ 979 0016 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 980 0018 03F00103 		and	r3, r3, #1
+ 981 001c 002B     		cmp	r3, #0
+ 982 001e 20D0     		beq	.L80
+ 983 0020 7B68     		ldr	r3, [r7, #4]
+ 984 0022 7B61     		str	r3, [r7, #20]
+ 985 0024 7B69     		ldr	r3, [r7, #20]
+ 986 0026 7A68     		ldr	r2, [r7, #4]
+ 987 0028 9A42     		cmp	r2, r3
+ 988 002a 0AD0     		beq	.L81
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 18
+
+
+ 989              		.syntax unified
+ 990              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 991 002c 4FF05003 		   mov r3, #80                                              
+ 992 0030 83F31188 	   msr basepri, r3                                         
+ 993 0034 BFF36F8F 	   isb                                                     
+ 994 0038 BFF34F8F 	   dsb                                                     
+ 995              	
+ 996              	@ 0 "" 2
+ 997              		.thumb
+ 998              		.syntax unified
+ 999 003c BB61     		str	r3, [r7, #24]
+ 1000 003e 00BF     		nop
+ 1001              	.L82:
+ 1002 0040 FEE7     		b	.L82
+ 1003              	.L81:
+ 1004 0042 3A68     		ldr	r2, [r7]
+ 1005 0044 BB6A     		ldr	r3, [r7, #40]
+ 1006 0046 9A42     		cmp	r2, r3
+ 1007 0048 08D3     		bcc	.L83
+ 1008 004a 07F11401 		add	r1, r7, #20
+ 1009 004e FB69     		ldr	r3, [r7, #28]
+ 1010 0050 0422     		movs	r2, #4
+ 1011 0052 F868     		ldr	r0, [r7, #12]
+ 1012 0054 FFF7FEFF 		bl	prvWriteBytesToBuffer
+ 1013 0058 F861     		str	r0, [r7, #28]
+ 1014 005a 08E0     		b	.L84
+ 1015              	.L83:
+ 1016 005c 0023     		movs	r3, #0
+ 1017 005e 7B60     		str	r3, [r7, #4]
+ 1018 0060 05E0     		b	.L84
+ 1019              	.L80:
+ 1020 0062 7A68     		ldr	r2, [r7, #4]
+ 1021 0064 3B68     		ldr	r3, [r7]
+ 1022 0066 9342     		cmp	r3, r2
+ 1023 0068 28BF     		it	cs
+ 1024 006a 1346     		movcs	r3, r2
+ 1025 006c 7B60     		str	r3, [r7, #4]
+ 1026              	.L84:
+ 1027 006e 7B68     		ldr	r3, [r7, #4]
+ 1028 0070 002B     		cmp	r3, #0
+ 1029 0072 08D0     		beq	.L85
+ 1030 0074 FB69     		ldr	r3, [r7, #28]
+ 1031 0076 7A68     		ldr	r2, [r7, #4]
+ 1032 0078 B968     		ldr	r1, [r7, #8]
+ 1033 007a F868     		ldr	r0, [r7, #12]
+ 1034 007c FFF7FEFF 		bl	prvWriteBytesToBuffer
+ 1035 0080 0246     		mov	r2, r0
+ 1036 0082 FB68     		ldr	r3, [r7, #12]
+ 1037 0084 5A60     		str	r2, [r3, #4]
+ 1038              	.L85:
+ 1039 0086 7B68     		ldr	r3, [r7, #4]
+ 1040 0088 1846     		mov	r0, r3
+ 1041 008a 2037     		adds	r7, r7, #32
+ 1042 008c BD46     		mov	sp, r7
+ 1043              		@ sp needed
+ 1044 008e 80BD     		pop	{r7, pc}
+ 1046              		.section	.text.xStreamBufferReceive,"ax",%progbits
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 19
+
+
+ 1047              		.align	1
+ 1048              		.global	xStreamBufferReceive
+ 1049              		.syntax unified
+ 1050              		.thumb
+ 1051              		.thumb_func
+ 1053              	xStreamBufferReceive:
+ 1054              		@ args = 0, pretend = 0, frame = 48
+ 1055              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1056 0000 80B5     		push	{r7, lr}
+ 1057 0002 8EB0     		sub	sp, sp, #56
+ 1058 0004 02AF     		add	r7, sp, #8
+ 1059 0006 F860     		str	r0, [r7, #12]
+ 1060 0008 B960     		str	r1, [r7, #8]
+ 1061 000a 7A60     		str	r2, [r7, #4]
+ 1062 000c 3B60     		str	r3, [r7]
+ 1063 000e FB68     		ldr	r3, [r7, #12]
+ 1064 0010 3B62     		str	r3, [r7, #32]
+ 1065 0012 0023     		movs	r3, #0
+ 1066 0014 FB62     		str	r3, [r7, #44]
+ 1067 0016 BB68     		ldr	r3, [r7, #8]
+ 1068 0018 002B     		cmp	r3, #0
+ 1069 001a 0AD1     		bne	.L88
+ 1070              		.syntax unified
+ 1071              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1072 001c 4FF05003 		   mov r3, #80                                              
+ 1073 0020 83F31188 	   msr basepri, r3                                         
+ 1074 0024 BFF36F8F 	   isb                                                     
+ 1075 0028 BFF34F8F 	   dsb                                                     
+ 1076              	
+ 1077              	@ 0 "" 2
+ 1078              		.thumb
+ 1079              		.syntax unified
+ 1080 002c FB61     		str	r3, [r7, #28]
+ 1081 002e 00BF     		nop
+ 1082              	.L89:
+ 1083 0030 FEE7     		b	.L89
+ 1084              	.L88:
+ 1085 0032 3B6A     		ldr	r3, [r7, #32]
+ 1086 0034 002B     		cmp	r3, #0
+ 1087 0036 0AD1     		bne	.L90
+ 1088              		.syntax unified
+ 1089              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1090 0038 4FF05003 		   mov r3, #80                                              
+ 1091 003c 83F31188 	   msr basepri, r3                                         
+ 1092 0040 BFF36F8F 	   isb                                                     
+ 1093 0044 BFF34F8F 	   dsb                                                     
+ 1094              	
+ 1095              	@ 0 "" 2
+ 1096              		.thumb
+ 1097              		.syntax unified
+ 1098 0048 BB61     		str	r3, [r7, #24]
+ 1099 004a 00BF     		nop
+ 1100              	.L91:
+ 1101 004c FEE7     		b	.L91
+ 1102              	.L90:
+ 1103 004e 3B6A     		ldr	r3, [r7, #32]
+ 1104 0050 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 20
+
+
+ 1105 0052 03F00103 		and	r3, r3, #1
+ 1106 0056 002B     		cmp	r3, #0
+ 1107 0058 02D0     		beq	.L92
+ 1108 005a 0423     		movs	r3, #4
+ 1109 005c 7B62     		str	r3, [r7, #36]
+ 1110 005e 0BE0     		b	.L93
+ 1111              	.L92:
+ 1112 0060 3B6A     		ldr	r3, [r7, #32]
+ 1113 0062 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 1114 0064 03F00403 		and	r3, r3, #4
+ 1115 0068 002B     		cmp	r3, #0
+ 1116 006a 03D0     		beq	.L94
+ 1117 006c 3B6A     		ldr	r3, [r7, #32]
+ 1118 006e DB68     		ldr	r3, [r3, #12]
+ 1119 0070 7B62     		str	r3, [r7, #36]
+ 1120 0072 01E0     		b	.L93
+ 1121              	.L94:
+ 1122 0074 0023     		movs	r3, #0
+ 1123 0076 7B62     		str	r3, [r7, #36]
+ 1124              	.L93:
+ 1125 0078 3B68     		ldr	r3, [r7]
+ 1126 007a 002B     		cmp	r3, #0
+ 1127 007c 3AD0     		beq	.L95
+ 1128 007e FFF7FEFF 		bl	vPortEnterCritical
+ 1129 0082 386A     		ldr	r0, [r7, #32]
+ 1130 0084 FFF7FEFF 		bl	prvBytesInBuffer
+ 1131 0088 B862     		str	r0, [r7, #40]
+ 1132 008a BA6A     		ldr	r2, [r7, #40]
+ 1133 008c 7B6A     		ldr	r3, [r7, #36]
+ 1134 008e 9A42     		cmp	r2, r3
+ 1135 0090 19D8     		bhi	.L96
+ 1136 0092 3B6A     		ldr	r3, [r7, #32]
+ 1137 0094 5B6A     		ldr	r3, [r3, #36]
+ 1138 0096 1946     		mov	r1, r3
+ 1139 0098 0020     		movs	r0, #0
+ 1140 009a FFF7FEFF 		bl	xTaskGenericNotifyStateClear
+ 1141 009e 3B6A     		ldr	r3, [r7, #32]
+ 1142 00a0 1B69     		ldr	r3, [r3, #16]
+ 1143 00a2 002B     		cmp	r3, #0
+ 1144 00a4 0AD0     		beq	.L97
+ 1145              		.syntax unified
+ 1146              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1147 00a6 4FF05003 		   mov r3, #80                                              
+ 1148 00aa 83F31188 	   msr basepri, r3                                         
+ 1149 00ae BFF36F8F 	   isb                                                     
+ 1150 00b2 BFF34F8F 	   dsb                                                     
+ 1151              	
+ 1152              	@ 0 "" 2
+ 1153              		.thumb
+ 1154              		.syntax unified
+ 1155 00b6 7B61     		str	r3, [r7, #20]
+ 1156 00b8 00BF     		nop
+ 1157              	.L98:
+ 1158 00ba FEE7     		b	.L98
+ 1159              	.L97:
+ 1160 00bc FFF7FEFF 		bl	xTaskGetCurrentTaskHandle
+ 1161 00c0 0246     		mov	r2, r0
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 21
+
+
+ 1162 00c2 3B6A     		ldr	r3, [r7, #32]
+ 1163 00c4 1A61     		str	r2, [r3, #16]
+ 1164              	.L96:
+ 1165 00c6 FFF7FEFF 		bl	vPortExitCritical
+ 1166 00ca BA6A     		ldr	r2, [r7, #40]
+ 1167 00cc 7B6A     		ldr	r3, [r7, #36]
+ 1168 00ce 9A42     		cmp	r2, r3
+ 1169 00d0 14D8     		bhi	.L99
+ 1170 00d2 3B6A     		ldr	r3, [r7, #32]
+ 1171 00d4 586A     		ldr	r0, [r3, #36]
+ 1172 00d6 3B68     		ldr	r3, [r7]
+ 1173 00d8 0093     		str	r3, [sp]
+ 1174 00da 0023     		movs	r3, #0
+ 1175 00dc 0022     		movs	r2, #0
+ 1176 00de 0021     		movs	r1, #0
+ 1177 00e0 FFF7FEFF 		bl	xTaskGenericNotifyWait
+ 1178 00e4 3B6A     		ldr	r3, [r7, #32]
+ 1179 00e6 0022     		movs	r2, #0
+ 1180 00e8 1A61     		str	r2, [r3, #16]
+ 1181 00ea 386A     		ldr	r0, [r7, #32]
+ 1182 00ec FFF7FEFF 		bl	prvBytesInBuffer
+ 1183 00f0 B862     		str	r0, [r7, #40]
+ 1184 00f2 03E0     		b	.L99
+ 1185              	.L95:
+ 1186 00f4 386A     		ldr	r0, [r7, #32]
+ 1187 00f6 FFF7FEFF 		bl	prvBytesInBuffer
+ 1188 00fa B862     		str	r0, [r7, #40]
+ 1189              	.L99:
+ 1190 00fc BA6A     		ldr	r2, [r7, #40]
+ 1191 00fe 7B6A     		ldr	r3, [r7, #36]
+ 1192 0100 9A42     		cmp	r2, r3
+ 1193 0102 1ED9     		bls	.L100
+ 1194 0104 BB6A     		ldr	r3, [r7, #40]
+ 1195 0106 7A68     		ldr	r2, [r7, #4]
+ 1196 0108 B968     		ldr	r1, [r7, #8]
+ 1197 010a 386A     		ldr	r0, [r7, #32]
+ 1198 010c FFF7FEFF 		bl	prvReadMessageFromBuffer
+ 1199 0110 F862     		str	r0, [r7, #44]
+ 1200 0112 FB6A     		ldr	r3, [r7, #44]
+ 1201 0114 002B     		cmp	r3, #0
+ 1202 0116 14D0     		beq	.L100
+ 1203 0118 FFF7FEFF 		bl	vTaskSuspendAll
+ 1204 011c FB68     		ldr	r3, [r7, #12]
+ 1205 011e 5B69     		ldr	r3, [r3, #20]
+ 1206 0120 002B     		cmp	r3, #0
+ 1207 0122 0CD0     		beq	.L101
+ 1208 0124 FB68     		ldr	r3, [r7, #12]
+ 1209 0126 5869     		ldr	r0, [r3, #20]
+ 1210 0128 FB68     		ldr	r3, [r7, #12]
+ 1211 012a 596A     		ldr	r1, [r3, #36]
+ 1212 012c 0023     		movs	r3, #0
+ 1213 012e 0093     		str	r3, [sp]
+ 1214 0130 0023     		movs	r3, #0
+ 1215 0132 0022     		movs	r2, #0
+ 1216 0134 FFF7FEFF 		bl	xTaskGenericNotify
+ 1217 0138 FB68     		ldr	r3, [r7, #12]
+ 1218 013a 0022     		movs	r2, #0
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 22
+
+
+ 1219 013c 5A61     		str	r2, [r3, #20]
+ 1220              	.L101:
+ 1221 013e FFF7FEFF 		bl	xTaskResumeAll
+ 1222              	.L100:
+ 1223 0142 FB6A     		ldr	r3, [r7, #44]
+ 1224 0144 1846     		mov	r0, r3
+ 1225 0146 3037     		adds	r7, r7, #48
+ 1226 0148 BD46     		mov	sp, r7
+ 1227              		@ sp needed
+ 1228 014a 80BD     		pop	{r7, pc}
+ 1230              		.section	.text.xStreamBufferNextMessageLengthBytes,"ax",%progbits
+ 1231              		.align	1
+ 1232              		.global	xStreamBufferNextMessageLengthBytes
+ 1233              		.syntax unified
+ 1234              		.thumb
+ 1235              		.thumb_func
+ 1237              	xStreamBufferNextMessageLengthBytes:
+ 1238              		@ args = 0, pretend = 0, frame = 32
+ 1239              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1240 0000 80B5     		push	{r7, lr}
+ 1241 0002 88B0     		sub	sp, sp, #32
+ 1242 0004 00AF     		add	r7, sp, #0
+ 1243 0006 7860     		str	r0, [r7, #4]
+ 1244 0008 7B68     		ldr	r3, [r7, #4]
+ 1245 000a BB61     		str	r3, [r7, #24]
+ 1246 000c BB69     		ldr	r3, [r7, #24]
+ 1247 000e 002B     		cmp	r3, #0
+ 1248 0010 0AD1     		bne	.L104
+ 1249              		.syntax unified
+ 1250              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1251 0012 4FF05003 		   mov r3, #80                                              
+ 1252 0016 83F31188 	   msr basepri, r3                                         
+ 1253 001a BFF36F8F 	   isb                                                     
+ 1254 001e BFF34F8F 	   dsb                                                     
+ 1255              	
+ 1256              	@ 0 "" 2
+ 1257              		.thumb
+ 1258              		.syntax unified
+ 1259 0022 3B61     		str	r3, [r7, #16]
+ 1260 0024 00BF     		nop
+ 1261              	.L105:
+ 1262 0026 FEE7     		b	.L105
+ 1263              	.L104:
+ 1264 0028 BB69     		ldr	r3, [r7, #24]
+ 1265 002a 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 1266 002c 03F00103 		and	r3, r3, #1
+ 1267 0030 002B     		cmp	r3, #0
+ 1268 0032 22D0     		beq	.L106
+ 1269 0034 B869     		ldr	r0, [r7, #24]
+ 1270 0036 FFF7FEFF 		bl	prvBytesInBuffer
+ 1271 003a 7861     		str	r0, [r7, #20]
+ 1272 003c 7B69     		ldr	r3, [r7, #20]
+ 1273 003e 042B     		cmp	r3, #4
+ 1274 0040 0AD9     		bls	.L107
+ 1275 0042 BB69     		ldr	r3, [r7, #24]
+ 1276 0044 1B68     		ldr	r3, [r3]
+ 1277 0046 07F10801 		add	r1, r7, #8
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 23
+
+
+ 1278 004a 0422     		movs	r2, #4
+ 1279 004c B869     		ldr	r0, [r7, #24]
+ 1280 004e FFF7FEFF 		bl	prvReadBytesFromBuffer
+ 1281 0052 BB68     		ldr	r3, [r7, #8]
+ 1282 0054 FB61     		str	r3, [r7, #28]
+ 1283 0056 12E0     		b	.L108
+ 1284              	.L107:
+ 1285 0058 7B69     		ldr	r3, [r7, #20]
+ 1286 005a 002B     		cmp	r3, #0
+ 1287 005c 0AD0     		beq	.L109
+ 1288              		.syntax unified
+ 1289              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1290 005e 4FF05003 		   mov r3, #80                                              
+ 1291 0062 83F31188 	   msr basepri, r3                                         
+ 1292 0066 BFF36F8F 	   isb                                                     
+ 1293 006a BFF34F8F 	   dsb                                                     
+ 1294              	
+ 1295              	@ 0 "" 2
+ 1296              		.thumb
+ 1297              		.syntax unified
+ 1298 006e FB60     		str	r3, [r7, #12]
+ 1299 0070 00BF     		nop
+ 1300              	.L110:
+ 1301 0072 FEE7     		b	.L110
+ 1302              	.L109:
+ 1303 0074 0023     		movs	r3, #0
+ 1304 0076 FB61     		str	r3, [r7, #28]
+ 1305 0078 01E0     		b	.L108
+ 1306              	.L106:
+ 1307 007a 0023     		movs	r3, #0
+ 1308 007c FB61     		str	r3, [r7, #28]
+ 1309              	.L108:
+ 1310 007e FB69     		ldr	r3, [r7, #28]
+ 1311 0080 1846     		mov	r0, r3
+ 1312 0082 2037     		adds	r7, r7, #32
+ 1313 0084 BD46     		mov	sp, r7
+ 1314              		@ sp needed
+ 1315 0086 80BD     		pop	{r7, pc}
+ 1317              		.section	.text.xStreamBufferReceiveFromISR,"ax",%progbits
+ 1318              		.align	1
+ 1319              		.global	xStreamBufferReceiveFromISR
+ 1320              		.syntax unified
+ 1321              		.thumb
+ 1322              		.thumb_func
+ 1324              	xStreamBufferReceiveFromISR:
+ 1325              		@ args = 0, pretend = 0, frame = 56
+ 1326              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1327 0000 80B5     		push	{r7, lr}
+ 1328 0002 90B0     		sub	sp, sp, #64
+ 1329 0004 02AF     		add	r7, sp, #8
+ 1330 0006 F860     		str	r0, [r7, #12]
+ 1331 0008 B960     		str	r1, [r7, #8]
+ 1332 000a 7A60     		str	r2, [r7, #4]
+ 1333 000c 3B60     		str	r3, [r7]
+ 1334 000e FB68     		ldr	r3, [r7, #12]
+ 1335 0010 FB62     		str	r3, [r7, #44]
+ 1336 0012 0023     		movs	r3, #0
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 24
+
+
+ 1337 0014 7B63     		str	r3, [r7, #52]
+ 1338 0016 BB68     		ldr	r3, [r7, #8]
+ 1339 0018 002B     		cmp	r3, #0
+ 1340 001a 0AD1     		bne	.L113
+ 1341              		.syntax unified
+ 1342              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1343 001c 4FF05003 		   mov r3, #80                                              
+ 1344 0020 83F31188 	   msr basepri, r3                                         
+ 1345 0024 BFF36F8F 	   isb                                                     
+ 1346 0028 BFF34F8F 	   dsb                                                     
+ 1347              	
+ 1348              	@ 0 "" 2
+ 1349              		.thumb
+ 1350              		.syntax unified
+ 1351 002c 3B62     		str	r3, [r7, #32]
+ 1352 002e 00BF     		nop
+ 1353              	.L114:
+ 1354 0030 FEE7     		b	.L114
+ 1355              	.L113:
+ 1356 0032 FB6A     		ldr	r3, [r7, #44]
+ 1357 0034 002B     		cmp	r3, #0
+ 1358 0036 0AD1     		bne	.L115
+ 1359              		.syntax unified
+ 1360              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1361 0038 4FF05003 		   mov r3, #80                                              
+ 1362 003c 83F31188 	   msr basepri, r3                                         
+ 1363 0040 BFF36F8F 	   isb                                                     
+ 1364 0044 BFF34F8F 	   dsb                                                     
+ 1365              	
+ 1366              	@ 0 "" 2
+ 1367              		.thumb
+ 1368              		.syntax unified
+ 1369 0048 FB61     		str	r3, [r7, #28]
+ 1370 004a 00BF     		nop
+ 1371              	.L116:
+ 1372 004c FEE7     		b	.L116
+ 1373              	.L115:
+ 1374 004e FB6A     		ldr	r3, [r7, #44]
+ 1375 0050 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 1376 0052 03F00103 		and	r3, r3, #1
+ 1377 0056 002B     		cmp	r3, #0
+ 1378 0058 02D0     		beq	.L117
+ 1379 005a 0423     		movs	r3, #4
+ 1380 005c 3B63     		str	r3, [r7, #48]
+ 1381 005e 01E0     		b	.L118
+ 1382              	.L117:
+ 1383 0060 0023     		movs	r3, #0
+ 1384 0062 3B63     		str	r3, [r7, #48]
+ 1385              	.L118:
+ 1386 0064 F86A     		ldr	r0, [r7, #44]
+ 1387 0066 FFF7FEFF 		bl	prvBytesInBuffer
+ 1388 006a B862     		str	r0, [r7, #40]
+ 1389 006c BA6A     		ldr	r2, [r7, #40]
+ 1390 006e 3B6B     		ldr	r3, [r7, #48]
+ 1391 0070 9A42     		cmp	r2, r3
+ 1392 0072 30D9     		bls	.L119
+ 1393 0074 BB6A     		ldr	r3, [r7, #40]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 25
+
+
+ 1394 0076 7A68     		ldr	r2, [r7, #4]
+ 1395 0078 B968     		ldr	r1, [r7, #8]
+ 1396 007a F86A     		ldr	r0, [r7, #44]
+ 1397 007c FFF7FEFF 		bl	prvReadMessageFromBuffer
+ 1398 0080 7863     		str	r0, [r7, #52]
+ 1399 0082 7B6B     		ldr	r3, [r7, #52]
+ 1400 0084 002B     		cmp	r3, #0
+ 1401 0086 26D0     		beq	.L119
+ 1402              		.syntax unified
+ 1403              	@ 233 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1404 0088 EFF31182 		   mrs r2, basepri                                         
+ 1405 008c 4FF05003 	   mov r3, #80                                              
+ 1406 0090 83F31188 	   msr basepri, r3                                         
+ 1407 0094 BFF36F8F 	   isb                                                     
+ 1408 0098 BFF34F8F 	   dsb                                                     
+ 1409              	
+ 1410              	@ 0 "" 2
+ 1411              		.thumb
+ 1412              		.syntax unified
+ 1413 009c BA61     		str	r2, [r7, #24]
+ 1414 009e 7B61     		str	r3, [r7, #20]
+ 1415 00a0 BB69     		ldr	r3, [r7, #24]
+ 1416 00a2 7B62     		str	r3, [r7, #36]
+ 1417 00a4 FB6A     		ldr	r3, [r7, #44]
+ 1418 00a6 5B69     		ldr	r3, [r3, #20]
+ 1419 00a8 002B     		cmp	r3, #0
+ 1420 00aa 0ED0     		beq	.L121
+ 1421 00ac FB6A     		ldr	r3, [r7, #44]
+ 1422 00ae 5869     		ldr	r0, [r3, #20]
+ 1423 00b0 FB6A     		ldr	r3, [r7, #44]
+ 1424 00b2 596A     		ldr	r1, [r3, #36]
+ 1425 00b4 3B68     		ldr	r3, [r7]
+ 1426 00b6 0193     		str	r3, [sp, #4]
+ 1427 00b8 0023     		movs	r3, #0
+ 1428 00ba 0093     		str	r3, [sp]
+ 1429 00bc 0023     		movs	r3, #0
+ 1430 00be 0022     		movs	r2, #0
+ 1431 00c0 FFF7FEFF 		bl	xTaskGenericNotifyFromISR
+ 1432 00c4 FB6A     		ldr	r3, [r7, #44]
+ 1433 00c6 0022     		movs	r2, #0
+ 1434 00c8 5A61     		str	r2, [r3, #20]
+ 1435              	.L121:
+ 1436 00ca 7B6A     		ldr	r3, [r7, #36]
+ 1437 00cc 3B61     		str	r3, [r7, #16]
+ 1438 00ce 3B69     		ldr	r3, [r7, #16]
+ 1439              		.syntax unified
+ 1440              	@ 251 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1441 00d0 83F31188 		   msr basepri, r3 
+ 1442              	@ 0 "" 2
+ 1443              		.thumb
+ 1444              		.syntax unified
+ 1445 00d4 00BF     		nop
+ 1446              	.L119:
+ 1447 00d6 7B6B     		ldr	r3, [r7, #52]
+ 1448 00d8 1846     		mov	r0, r3
+ 1449 00da 3837     		adds	r7, r7, #56
+ 1450 00dc BD46     		mov	sp, r7
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 26
+
+
+ 1451              		@ sp needed
+ 1452 00de 80BD     		pop	{r7, pc}
+ 1454              		.section	.text.prvReadMessageFromBuffer,"ax",%progbits
+ 1455              		.align	1
+ 1456              		.syntax unified
+ 1457              		.thumb
+ 1458              		.thumb_func
+ 1460              	prvReadMessageFromBuffer:
+ 1461              		@ args = 0, pretend = 0, frame = 32
+ 1462              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1463 0000 80B5     		push	{r7, lr}
+ 1464 0002 88B0     		sub	sp, sp, #32
+ 1465 0004 00AF     		add	r7, sp, #0
+ 1466 0006 F860     		str	r0, [r7, #12]
+ 1467 0008 B960     		str	r1, [r7, #8]
+ 1468 000a 7A60     		str	r2, [r7, #4]
+ 1469 000c 3B60     		str	r3, [r7]
+ 1470 000e FB68     		ldr	r3, [r7, #12]
+ 1471 0010 1B68     		ldr	r3, [r3]
+ 1472 0012 BB61     		str	r3, [r7, #24]
+ 1473 0014 FB68     		ldr	r3, [r7, #12]
+ 1474 0016 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 1475 0018 03F00103 		and	r3, r3, #1
+ 1476 001c 002B     		cmp	r3, #0
+ 1477 001e 13D0     		beq	.L124
+ 1478 0020 07F11001 		add	r1, r7, #16
+ 1479 0024 BB69     		ldr	r3, [r7, #24]
+ 1480 0026 0422     		movs	r2, #4
+ 1481 0028 F868     		ldr	r0, [r7, #12]
+ 1482 002a FFF7FEFF 		bl	prvReadBytesFromBuffer
+ 1483 002e B861     		str	r0, [r7, #24]
+ 1484 0030 3B69     		ldr	r3, [r7, #16]
+ 1485 0032 FB61     		str	r3, [r7, #28]
+ 1486 0034 3B68     		ldr	r3, [r7]
+ 1487 0036 043B     		subs	r3, r3, #4
+ 1488 0038 3B60     		str	r3, [r7]
+ 1489 003a FA69     		ldr	r2, [r7, #28]
+ 1490 003c 7B68     		ldr	r3, [r7, #4]
+ 1491 003e 9A42     		cmp	r2, r3
+ 1492 0040 04D9     		bls	.L125
+ 1493 0042 0023     		movs	r3, #0
+ 1494 0044 FB61     		str	r3, [r7, #28]
+ 1495 0046 01E0     		b	.L125
+ 1496              	.L124:
+ 1497 0048 7B68     		ldr	r3, [r7, #4]
+ 1498 004a FB61     		str	r3, [r7, #28]
+ 1499              	.L125:
+ 1500 004c 3A68     		ldr	r2, [r7]
+ 1501 004e FB69     		ldr	r3, [r7, #28]
+ 1502 0050 9342     		cmp	r3, r2
+ 1503 0052 28BF     		it	cs
+ 1504 0054 1346     		movcs	r3, r2
+ 1505 0056 7B61     		str	r3, [r7, #20]
+ 1506 0058 7B69     		ldr	r3, [r7, #20]
+ 1507 005a 002B     		cmp	r3, #0
+ 1508 005c 08D0     		beq	.L126
+ 1509 005e BB69     		ldr	r3, [r7, #24]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 27
+
+
+ 1510 0060 7A69     		ldr	r2, [r7, #20]
+ 1511 0062 B968     		ldr	r1, [r7, #8]
+ 1512 0064 F868     		ldr	r0, [r7, #12]
+ 1513 0066 FFF7FEFF 		bl	prvReadBytesFromBuffer
+ 1514 006a 0246     		mov	r2, r0
+ 1515 006c FB68     		ldr	r3, [r7, #12]
+ 1516 006e 1A60     		str	r2, [r3]
+ 1517              	.L126:
+ 1518 0070 7B69     		ldr	r3, [r7, #20]
+ 1519 0072 1846     		mov	r0, r3
+ 1520 0074 2037     		adds	r7, r7, #32
+ 1521 0076 BD46     		mov	sp, r7
+ 1522              		@ sp needed
+ 1523 0078 80BD     		pop	{r7, pc}
+ 1525              		.section	.text.xStreamBufferIsEmpty,"ax",%progbits
+ 1526              		.align	1
+ 1527              		.global	xStreamBufferIsEmpty
+ 1528              		.syntax unified
+ 1529              		.thumb
+ 1530              		.thumb_func
+ 1532              	xStreamBufferIsEmpty:
+ 1533              		@ args = 0, pretend = 0, frame = 24
+ 1534              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1535              		@ link register save eliminated.
+ 1536 0000 80B4     		push	{r7}
+ 1537 0002 87B0     		sub	sp, sp, #28
+ 1538 0004 00AF     		add	r7, sp, #0
+ 1539 0006 7860     		str	r0, [r7, #4]
+ 1540 0008 7B68     		ldr	r3, [r7, #4]
+ 1541 000a 3B61     		str	r3, [r7, #16]
+ 1542 000c 3B69     		ldr	r3, [r7, #16]
+ 1543 000e 002B     		cmp	r3, #0
+ 1544 0010 0AD1     		bne	.L129
+ 1545              		.syntax unified
+ 1546              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1547 0012 4FF05003 		   mov r3, #80                                              
+ 1548 0016 83F31188 	   msr basepri, r3                                         
+ 1549 001a BFF36F8F 	   isb                                                     
+ 1550 001e BFF34F8F 	   dsb                                                     
+ 1551              	
+ 1552              	@ 0 "" 2
+ 1553              		.thumb
+ 1554              		.syntax unified
+ 1555 0022 BB60     		str	r3, [r7, #8]
+ 1556 0024 00BF     		nop
+ 1557              	.L130:
+ 1558 0026 FEE7     		b	.L130
+ 1559              	.L129:
+ 1560 0028 3B69     		ldr	r3, [r7, #16]
+ 1561 002a 1B68     		ldr	r3, [r3]
+ 1562 002c FB60     		str	r3, [r7, #12]
+ 1563 002e 3B69     		ldr	r3, [r7, #16]
+ 1564 0030 5B68     		ldr	r3, [r3, #4]
+ 1565 0032 FA68     		ldr	r2, [r7, #12]
+ 1566 0034 9A42     		cmp	r2, r3
+ 1567 0036 02D1     		bne	.L131
+ 1568 0038 0123     		movs	r3, #1
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 28
+
+
+ 1569 003a 7B61     		str	r3, [r7, #20]
+ 1570 003c 01E0     		b	.L132
+ 1571              	.L131:
+ 1572 003e 0023     		movs	r3, #0
+ 1573 0040 7B61     		str	r3, [r7, #20]
+ 1574              	.L132:
+ 1575 0042 7B69     		ldr	r3, [r7, #20]
+ 1576 0044 1846     		mov	r0, r3
+ 1577 0046 1C37     		adds	r7, r7, #28
+ 1578 0048 BD46     		mov	sp, r7
+ 1579              		@ sp needed
+ 1580 004a 5DF8047B 		ldr	r7, [sp], #4
+ 1581 004e 7047     		bx	lr
+ 1583              		.section	.text.xStreamBufferIsFull,"ax",%progbits
+ 1584              		.align	1
+ 1585              		.global	xStreamBufferIsFull
+ 1586              		.syntax unified
+ 1587              		.thumb
+ 1588              		.thumb_func
+ 1590              	xStreamBufferIsFull:
+ 1591              		@ args = 0, pretend = 0, frame = 24
+ 1592              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1593 0000 80B5     		push	{r7, lr}
+ 1594 0002 86B0     		sub	sp, sp, #24
+ 1595 0004 00AF     		add	r7, sp, #0
+ 1596 0006 7860     		str	r0, [r7, #4]
+ 1597 0008 7B68     		ldr	r3, [r7, #4]
+ 1598 000a FB60     		str	r3, [r7, #12]
+ 1599 000c FB68     		ldr	r3, [r7, #12]
+ 1600 000e 002B     		cmp	r3, #0
+ 1601 0010 0AD1     		bne	.L135
+ 1602              		.syntax unified
+ 1603              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1604 0012 4FF05003 		   mov r3, #80                                              
+ 1605 0016 83F31188 	   msr basepri, r3                                         
+ 1606 001a BFF36F8F 	   isb                                                     
+ 1607 001e BFF34F8F 	   dsb                                                     
+ 1608              	
+ 1609              	@ 0 "" 2
+ 1610              		.thumb
+ 1611              		.syntax unified
+ 1612 0022 BB60     		str	r3, [r7, #8]
+ 1613 0024 00BF     		nop
+ 1614              	.L136:
+ 1615 0026 FEE7     		b	.L136
+ 1616              	.L135:
+ 1617 0028 FB68     		ldr	r3, [r7, #12]
+ 1618 002a 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 1619 002c 03F00103 		and	r3, r3, #1
+ 1620 0030 002B     		cmp	r3, #0
+ 1621 0032 02D0     		beq	.L137
+ 1622 0034 0423     		movs	r3, #4
+ 1623 0036 3B61     		str	r3, [r7, #16]
+ 1624 0038 01E0     		b	.L138
+ 1625              	.L137:
+ 1626 003a 0023     		movs	r3, #0
+ 1627 003c 3B61     		str	r3, [r7, #16]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 29
+
+
+ 1628              	.L138:
+ 1629 003e 7868     		ldr	r0, [r7, #4]
+ 1630 0040 FFF7FEFF 		bl	xStreamBufferSpacesAvailable
+ 1631 0044 0246     		mov	r2, r0
+ 1632 0046 3B69     		ldr	r3, [r7, #16]
+ 1633 0048 9342     		cmp	r3, r2
+ 1634 004a 02D3     		bcc	.L139
+ 1635 004c 0123     		movs	r3, #1
+ 1636 004e 7B61     		str	r3, [r7, #20]
+ 1637 0050 01E0     		b	.L140
+ 1638              	.L139:
+ 1639 0052 0023     		movs	r3, #0
+ 1640 0054 7B61     		str	r3, [r7, #20]
+ 1641              	.L140:
+ 1642 0056 7B69     		ldr	r3, [r7, #20]
+ 1643 0058 1846     		mov	r0, r3
+ 1644 005a 1837     		adds	r7, r7, #24
+ 1645 005c BD46     		mov	sp, r7
+ 1646              		@ sp needed
+ 1647 005e 80BD     		pop	{r7, pc}
+ 1649              		.section	.text.xStreamBufferSendCompletedFromISR,"ax",%progbits
+ 1650              		.align	1
+ 1651              		.global	xStreamBufferSendCompletedFromISR
+ 1652              		.syntax unified
+ 1653              		.thumb
+ 1654              		.thumb_func
+ 1656              	xStreamBufferSendCompletedFromISR:
+ 1657              		@ args = 0, pretend = 0, frame = 40
+ 1658              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1659 0000 80B5     		push	{r7, lr}
+ 1660 0002 8CB0     		sub	sp, sp, #48
+ 1661 0004 02AF     		add	r7, sp, #8
+ 1662 0006 7860     		str	r0, [r7, #4]
+ 1663 0008 3960     		str	r1, [r7]
+ 1664 000a 7B68     		ldr	r3, [r7, #4]
+ 1665 000c 3B62     		str	r3, [r7, #32]
+ 1666 000e 3B6A     		ldr	r3, [r7, #32]
+ 1667 0010 002B     		cmp	r3, #0
+ 1668 0012 0AD1     		bne	.L143
+ 1669              		.syntax unified
+ 1670              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1671 0014 4FF05003 		   mov r3, #80                                              
+ 1672 0018 83F31188 	   msr basepri, r3                                         
+ 1673 001c BFF36F8F 	   isb                                                     
+ 1674 0020 BFF34F8F 	   dsb                                                     
+ 1675              	
+ 1676              	@ 0 "" 2
+ 1677              		.thumb
+ 1678              		.syntax unified
+ 1679 0024 BB61     		str	r3, [r7, #24]
+ 1680 0026 00BF     		nop
+ 1681              	.L144:
+ 1682 0028 FEE7     		b	.L144
+ 1683              	.L143:
+ 1684              		.syntax unified
+ 1685              	@ 233 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1686 002a EFF31182 		   mrs r2, basepri                                         
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 30
+
+
+ 1687 002e 4FF05003 	   mov r3, #80                                              
+ 1688 0032 83F31188 	   msr basepri, r3                                         
+ 1689 0036 BFF36F8F 	   isb                                                     
+ 1690 003a BFF34F8F 	   dsb                                                     
+ 1691              	
+ 1692              	@ 0 "" 2
+ 1693              		.thumb
+ 1694              		.syntax unified
+ 1695 003e 7A61     		str	r2, [r7, #20]
+ 1696 0040 3B61     		str	r3, [r7, #16]
+ 1697 0042 7B69     		ldr	r3, [r7, #20]
+ 1698 0044 FB61     		str	r3, [r7, #28]
+ 1699 0046 3B6A     		ldr	r3, [r7, #32]
+ 1700 0048 1B69     		ldr	r3, [r3, #16]
+ 1701 004a 002B     		cmp	r3, #0
+ 1702 004c 11D0     		beq	.L146
+ 1703 004e 3B6A     		ldr	r3, [r7, #32]
+ 1704 0050 1869     		ldr	r0, [r3, #16]
+ 1705 0052 3B6A     		ldr	r3, [r7, #32]
+ 1706 0054 596A     		ldr	r1, [r3, #36]
+ 1707 0056 3B68     		ldr	r3, [r7]
+ 1708 0058 0193     		str	r3, [sp, #4]
+ 1709 005a 0023     		movs	r3, #0
+ 1710 005c 0093     		str	r3, [sp]
+ 1711 005e 0023     		movs	r3, #0
+ 1712 0060 0022     		movs	r2, #0
+ 1713 0062 FFF7FEFF 		bl	xTaskGenericNotifyFromISR
+ 1714 0066 3B6A     		ldr	r3, [r7, #32]
+ 1715 0068 0022     		movs	r2, #0
+ 1716 006a 1A61     		str	r2, [r3, #16]
+ 1717 006c 0123     		movs	r3, #1
+ 1718 006e 7B62     		str	r3, [r7, #36]
+ 1719 0070 01E0     		b	.L147
+ 1720              	.L146:
+ 1721 0072 0023     		movs	r3, #0
+ 1722 0074 7B62     		str	r3, [r7, #36]
+ 1723              	.L147:
+ 1724 0076 FB69     		ldr	r3, [r7, #28]
+ 1725 0078 FB60     		str	r3, [r7, #12]
+ 1726 007a FB68     		ldr	r3, [r7, #12]
+ 1727              		.syntax unified
+ 1728              	@ 251 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1729 007c 83F31188 		   msr basepri, r3 
+ 1730              	@ 0 "" 2
+ 1731              		.thumb
+ 1732              		.syntax unified
+ 1733 0080 00BF     		nop
+ 1734 0082 7B6A     		ldr	r3, [r7, #36]
+ 1735 0084 1846     		mov	r0, r3
+ 1736 0086 2837     		adds	r7, r7, #40
+ 1737 0088 BD46     		mov	sp, r7
+ 1738              		@ sp needed
+ 1739 008a 80BD     		pop	{r7, pc}
+ 1741              		.section	.text.xStreamBufferReceiveCompletedFromISR,"ax",%progbits
+ 1742              		.align	1
+ 1743              		.global	xStreamBufferReceiveCompletedFromISR
+ 1744              		.syntax unified
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 31
+
+
+ 1745              		.thumb
+ 1746              		.thumb_func
+ 1748              	xStreamBufferReceiveCompletedFromISR:
+ 1749              		@ args = 0, pretend = 0, frame = 40
+ 1750              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1751 0000 80B5     		push	{r7, lr}
+ 1752 0002 8CB0     		sub	sp, sp, #48
+ 1753 0004 02AF     		add	r7, sp, #8
+ 1754 0006 7860     		str	r0, [r7, #4]
+ 1755 0008 3960     		str	r1, [r7]
+ 1756 000a 7B68     		ldr	r3, [r7, #4]
+ 1757 000c 3B62     		str	r3, [r7, #32]
+ 1758 000e 3B6A     		ldr	r3, [r7, #32]
+ 1759 0010 002B     		cmp	r3, #0
+ 1760 0012 0AD1     		bne	.L150
+ 1761              		.syntax unified
+ 1762              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1763 0014 4FF05003 		   mov r3, #80                                              
+ 1764 0018 83F31188 	   msr basepri, r3                                         
+ 1765 001c BFF36F8F 	   isb                                                     
+ 1766 0020 BFF34F8F 	   dsb                                                     
+ 1767              	
+ 1768              	@ 0 "" 2
+ 1769              		.thumb
+ 1770              		.syntax unified
+ 1771 0024 BB61     		str	r3, [r7, #24]
+ 1772 0026 00BF     		nop
+ 1773              	.L151:
+ 1774 0028 FEE7     		b	.L151
+ 1775              	.L150:
+ 1776              		.syntax unified
+ 1777              	@ 233 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1778 002a EFF31182 		   mrs r2, basepri                                         
+ 1779 002e 4FF05003 	   mov r3, #80                                              
+ 1780 0032 83F31188 	   msr basepri, r3                                         
+ 1781 0036 BFF36F8F 	   isb                                                     
+ 1782 003a BFF34F8F 	   dsb                                                     
+ 1783              	
+ 1784              	@ 0 "" 2
+ 1785              		.thumb
+ 1786              		.syntax unified
+ 1787 003e 7A61     		str	r2, [r7, #20]
+ 1788 0040 3B61     		str	r3, [r7, #16]
+ 1789 0042 7B69     		ldr	r3, [r7, #20]
+ 1790 0044 FB61     		str	r3, [r7, #28]
+ 1791 0046 3B6A     		ldr	r3, [r7, #32]
+ 1792 0048 5B69     		ldr	r3, [r3, #20]
+ 1793 004a 002B     		cmp	r3, #0
+ 1794 004c 11D0     		beq	.L153
+ 1795 004e 3B6A     		ldr	r3, [r7, #32]
+ 1796 0050 5869     		ldr	r0, [r3, #20]
+ 1797 0052 3B6A     		ldr	r3, [r7, #32]
+ 1798 0054 596A     		ldr	r1, [r3, #36]
+ 1799 0056 3B68     		ldr	r3, [r7]
+ 1800 0058 0193     		str	r3, [sp, #4]
+ 1801 005a 0023     		movs	r3, #0
+ 1802 005c 0093     		str	r3, [sp]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 32
+
+
+ 1803 005e 0023     		movs	r3, #0
+ 1804 0060 0022     		movs	r2, #0
+ 1805 0062 FFF7FEFF 		bl	xTaskGenericNotifyFromISR
+ 1806 0066 3B6A     		ldr	r3, [r7, #32]
+ 1807 0068 0022     		movs	r2, #0
+ 1808 006a 5A61     		str	r2, [r3, #20]
+ 1809 006c 0123     		movs	r3, #1
+ 1810 006e 7B62     		str	r3, [r7, #36]
+ 1811 0070 01E0     		b	.L154
+ 1812              	.L153:
+ 1813 0072 0023     		movs	r3, #0
+ 1814 0074 7B62     		str	r3, [r7, #36]
+ 1815              	.L154:
+ 1816 0076 FB69     		ldr	r3, [r7, #28]
+ 1817 0078 FB60     		str	r3, [r7, #12]
+ 1818 007a FB68     		ldr	r3, [r7, #12]
+ 1819              		.syntax unified
+ 1820              	@ 251 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1821 007c 83F31188 		   msr basepri, r3 
+ 1822              	@ 0 "" 2
+ 1823              		.thumb
+ 1824              		.syntax unified
+ 1825 0080 00BF     		nop
+ 1826 0082 7B6A     		ldr	r3, [r7, #36]
+ 1827 0084 1846     		mov	r0, r3
+ 1828 0086 2837     		adds	r7, r7, #40
+ 1829 0088 BD46     		mov	sp, r7
+ 1830              		@ sp needed
+ 1831 008a 80BD     		pop	{r7, pc}
+ 1833              		.section	.text.prvWriteBytesToBuffer,"ax",%progbits
+ 1834              		.align	1
+ 1835              		.syntax unified
+ 1836              		.thumb
+ 1837              		.thumb_func
+ 1839              	prvWriteBytesToBuffer:
+ 1840              		@ args = 0, pretend = 0, frame = 32
+ 1841              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1842 0000 80B5     		push	{r7, lr}
+ 1843 0002 88B0     		sub	sp, sp, #32
+ 1844 0004 00AF     		add	r7, sp, #0
+ 1845 0006 F860     		str	r0, [r7, #12]
+ 1846 0008 B960     		str	r1, [r7, #8]
+ 1847 000a 7A60     		str	r2, [r7, #4]
+ 1848 000c 3B60     		str	r3, [r7]
+ 1849 000e 7B68     		ldr	r3, [r7, #4]
+ 1850 0010 002B     		cmp	r3, #0
+ 1851 0012 0AD1     		bne	.L157
+ 1852              		.syntax unified
+ 1853              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1854 0014 4FF05003 		   mov r3, #80                                              
+ 1855 0018 83F31188 	   msr basepri, r3                                         
+ 1856 001c BFF36F8F 	   isb                                                     
+ 1857 0020 BFF34F8F 	   dsb                                                     
+ 1858              	
+ 1859              	@ 0 "" 2
+ 1860              		.thumb
+ 1861              		.syntax unified
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 33
+
+
+ 1862 0024 BB61     		str	r3, [r7, #24]
+ 1863 0026 00BF     		nop
+ 1864              	.L158:
+ 1865 0028 FEE7     		b	.L158
+ 1866              	.L157:
+ 1867 002a FB68     		ldr	r3, [r7, #12]
+ 1868 002c 9A68     		ldr	r2, [r3, #8]
+ 1869 002e 3B68     		ldr	r3, [r7]
+ 1870 0030 D31A     		subs	r3, r2, r3
+ 1871 0032 7A68     		ldr	r2, [r7, #4]
+ 1872 0034 9342     		cmp	r3, r2
+ 1873 0036 28BF     		it	cs
+ 1874 0038 1346     		movcs	r3, r2
+ 1875 003a FB61     		str	r3, [r7, #28]
+ 1876 003c 3A68     		ldr	r2, [r7]
+ 1877 003e FB69     		ldr	r3, [r7, #28]
+ 1878 0040 1A44     		add	r2, r2, r3
+ 1879 0042 FB68     		ldr	r3, [r7, #12]
+ 1880 0044 9B68     		ldr	r3, [r3, #8]
+ 1881 0046 9A42     		cmp	r2, r3
+ 1882 0048 0AD9     		bls	.L159
+ 1883              		.syntax unified
+ 1884              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1885 004a 4FF05003 		   mov r3, #80                                              
+ 1886 004e 83F31188 	   msr basepri, r3                                         
+ 1887 0052 BFF36F8F 	   isb                                                     
+ 1888 0056 BFF34F8F 	   dsb                                                     
+ 1889              	
+ 1890              	@ 0 "" 2
+ 1891              		.thumb
+ 1892              		.syntax unified
+ 1893 005a 7B61     		str	r3, [r7, #20]
+ 1894 005c 00BF     		nop
+ 1895              	.L160:
+ 1896 005e FEE7     		b	.L160
+ 1897              	.L159:
+ 1898 0060 FB68     		ldr	r3, [r7, #12]
+ 1899 0062 9A69     		ldr	r2, [r3, #24]
+ 1900 0064 3B68     		ldr	r3, [r7]
+ 1901 0066 1344     		add	r3, r3, r2
+ 1902 0068 FA69     		ldr	r2, [r7, #28]
+ 1903 006a B968     		ldr	r1, [r7, #8]
+ 1904 006c 1846     		mov	r0, r3
+ 1905 006e FFF7FEFF 		bl	memcpy
+ 1906 0072 7A68     		ldr	r2, [r7, #4]
+ 1907 0074 FB69     		ldr	r3, [r7, #28]
+ 1908 0076 9A42     		cmp	r2, r3
+ 1909 0078 1CD9     		bls	.L161
+ 1910 007a 7A68     		ldr	r2, [r7, #4]
+ 1911 007c FB69     		ldr	r3, [r7, #28]
+ 1912 007e D21A     		subs	r2, r2, r3
+ 1913 0080 FB68     		ldr	r3, [r7, #12]
+ 1914 0082 9B68     		ldr	r3, [r3, #8]
+ 1915 0084 9A42     		cmp	r2, r3
+ 1916 0086 0AD9     		bls	.L162
+ 1917              		.syntax unified
+ 1918              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 34
+
+
+ 1919 0088 4FF05003 		   mov r3, #80                                              
+ 1920 008c 83F31188 	   msr basepri, r3                                         
+ 1921 0090 BFF36F8F 	   isb                                                     
+ 1922 0094 BFF34F8F 	   dsb                                                     
+ 1923              	
+ 1924              	@ 0 "" 2
+ 1925              		.thumb
+ 1926              		.syntax unified
+ 1927 0098 3B61     		str	r3, [r7, #16]
+ 1928 009a 00BF     		nop
+ 1929              	.L163:
+ 1930 009c FEE7     		b	.L163
+ 1931              	.L162:
+ 1932 009e FB68     		ldr	r3, [r7, #12]
+ 1933 00a0 9869     		ldr	r0, [r3, #24]
+ 1934 00a2 BA68     		ldr	r2, [r7, #8]
+ 1935 00a4 FB69     		ldr	r3, [r7, #28]
+ 1936 00a6 D118     		adds	r1, r2, r3
+ 1937 00a8 7A68     		ldr	r2, [r7, #4]
+ 1938 00aa FB69     		ldr	r3, [r7, #28]
+ 1939 00ac D31A     		subs	r3, r2, r3
+ 1940 00ae 1A46     		mov	r2, r3
+ 1941 00b0 FFF7FEFF 		bl	memcpy
+ 1942              	.L161:
+ 1943 00b4 3A68     		ldr	r2, [r7]
+ 1944 00b6 7B68     		ldr	r3, [r7, #4]
+ 1945 00b8 1344     		add	r3, r3, r2
+ 1946 00ba 3B60     		str	r3, [r7]
+ 1947 00bc FB68     		ldr	r3, [r7, #12]
+ 1948 00be 9B68     		ldr	r3, [r3, #8]
+ 1949 00c0 3A68     		ldr	r2, [r7]
+ 1950 00c2 9A42     		cmp	r2, r3
+ 1951 00c4 04D3     		bcc	.L164
+ 1952 00c6 FB68     		ldr	r3, [r7, #12]
+ 1953 00c8 9B68     		ldr	r3, [r3, #8]
+ 1954 00ca 3A68     		ldr	r2, [r7]
+ 1955 00cc D31A     		subs	r3, r2, r3
+ 1956 00ce 3B60     		str	r3, [r7]
+ 1957              	.L164:
+ 1958 00d0 3B68     		ldr	r3, [r7]
+ 1959 00d2 1846     		mov	r0, r3
+ 1960 00d4 2037     		adds	r7, r7, #32
+ 1961 00d6 BD46     		mov	sp, r7
+ 1962              		@ sp needed
+ 1963 00d8 80BD     		pop	{r7, pc}
+ 1965              		.section	.text.prvReadBytesFromBuffer,"ax",%progbits
+ 1966              		.align	1
+ 1967              		.syntax unified
+ 1968              		.thumb
+ 1969              		.thumb_func
+ 1971              	prvReadBytesFromBuffer:
+ 1972              		@ args = 0, pretend = 0, frame = 32
+ 1973              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1974 0000 80B5     		push	{r7, lr}
+ 1975 0002 88B0     		sub	sp, sp, #32
+ 1976 0004 00AF     		add	r7, sp, #0
+ 1977 0006 F860     		str	r0, [r7, #12]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 35
+
+
+ 1978 0008 B960     		str	r1, [r7, #8]
+ 1979 000a 7A60     		str	r2, [r7, #4]
+ 1980 000c 3B60     		str	r3, [r7]
+ 1981 000e 7B68     		ldr	r3, [r7, #4]
+ 1982 0010 002B     		cmp	r3, #0
+ 1983 0012 0AD1     		bne	.L167
+ 1984              		.syntax unified
+ 1985              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 1986 0014 4FF05003 		   mov r3, #80                                              
+ 1987 0018 83F31188 	   msr basepri, r3                                         
+ 1988 001c BFF36F8F 	   isb                                                     
+ 1989 0020 BFF34F8F 	   dsb                                                     
+ 1990              	
+ 1991              	@ 0 "" 2
+ 1992              		.thumb
+ 1993              		.syntax unified
+ 1994 0024 BB61     		str	r3, [r7, #24]
+ 1995 0026 00BF     		nop
+ 1996              	.L168:
+ 1997 0028 FEE7     		b	.L168
+ 1998              	.L167:
+ 1999 002a FB68     		ldr	r3, [r7, #12]
+ 2000 002c 9A68     		ldr	r2, [r3, #8]
+ 2001 002e 3B68     		ldr	r3, [r7]
+ 2002 0030 D31A     		subs	r3, r2, r3
+ 2003 0032 7A68     		ldr	r2, [r7, #4]
+ 2004 0034 9342     		cmp	r3, r2
+ 2005 0036 28BF     		it	cs
+ 2006 0038 1346     		movcs	r3, r2
+ 2007 003a FB61     		str	r3, [r7, #28]
+ 2008 003c FA69     		ldr	r2, [r7, #28]
+ 2009 003e 7B68     		ldr	r3, [r7, #4]
+ 2010 0040 9A42     		cmp	r2, r3
+ 2011 0042 0AD9     		bls	.L169
+ 2012              		.syntax unified
+ 2013              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 2014 0044 4FF05003 		   mov r3, #80                                              
+ 2015 0048 83F31188 	   msr basepri, r3                                         
+ 2016 004c BFF36F8F 	   isb                                                     
+ 2017 0050 BFF34F8F 	   dsb                                                     
+ 2018              	
+ 2019              	@ 0 "" 2
+ 2020              		.thumb
+ 2021              		.syntax unified
+ 2022 0054 7B61     		str	r3, [r7, #20]
+ 2023 0056 00BF     		nop
+ 2024              	.L170:
+ 2025 0058 FEE7     		b	.L170
+ 2026              	.L169:
+ 2027 005a 3A68     		ldr	r2, [r7]
+ 2028 005c FB69     		ldr	r3, [r7, #28]
+ 2029 005e 1A44     		add	r2, r2, r3
+ 2030 0060 FB68     		ldr	r3, [r7, #12]
+ 2031 0062 9B68     		ldr	r3, [r3, #8]
+ 2032 0064 9A42     		cmp	r2, r3
+ 2033 0066 0AD9     		bls	.L171
+ 2034              		.syntax unified
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 36
+
+
+ 2035              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 2036 0068 4FF05003 		   mov r3, #80                                              
+ 2037 006c 83F31188 	   msr basepri, r3                                         
+ 2038 0070 BFF36F8F 	   isb                                                     
+ 2039 0074 BFF34F8F 	   dsb                                                     
+ 2040              	
+ 2041              	@ 0 "" 2
+ 2042              		.thumb
+ 2043              		.syntax unified
+ 2044 0078 3B61     		str	r3, [r7, #16]
+ 2045 007a 00BF     		nop
+ 2046              	.L172:
+ 2047 007c FEE7     		b	.L172
+ 2048              	.L171:
+ 2049 007e FB68     		ldr	r3, [r7, #12]
+ 2050 0080 9A69     		ldr	r2, [r3, #24]
+ 2051 0082 3B68     		ldr	r3, [r7]
+ 2052 0084 1344     		add	r3, r3, r2
+ 2053 0086 FA69     		ldr	r2, [r7, #28]
+ 2054 0088 1946     		mov	r1, r3
+ 2055 008a B868     		ldr	r0, [r7, #8]
+ 2056 008c FFF7FEFF 		bl	memcpy
+ 2057 0090 7A68     		ldr	r2, [r7, #4]
+ 2058 0092 FB69     		ldr	r3, [r7, #28]
+ 2059 0094 9A42     		cmp	r2, r3
+ 2060 0096 0AD9     		bls	.L173
+ 2061 0098 BA68     		ldr	r2, [r7, #8]
+ 2062 009a FB69     		ldr	r3, [r7, #28]
+ 2063 009c D018     		adds	r0, r2, r3
+ 2064 009e FB68     		ldr	r3, [r7, #12]
+ 2065 00a0 9969     		ldr	r1, [r3, #24]
+ 2066 00a2 7A68     		ldr	r2, [r7, #4]
+ 2067 00a4 FB69     		ldr	r3, [r7, #28]
+ 2068 00a6 D31A     		subs	r3, r2, r3
+ 2069 00a8 1A46     		mov	r2, r3
+ 2070 00aa FFF7FEFF 		bl	memcpy
+ 2071              	.L173:
+ 2072 00ae 3A68     		ldr	r2, [r7]
+ 2073 00b0 7B68     		ldr	r3, [r7, #4]
+ 2074 00b2 1344     		add	r3, r3, r2
+ 2075 00b4 3B60     		str	r3, [r7]
+ 2076 00b6 FB68     		ldr	r3, [r7, #12]
+ 2077 00b8 9B68     		ldr	r3, [r3, #8]
+ 2078 00ba 3A68     		ldr	r2, [r7]
+ 2079 00bc 9A42     		cmp	r2, r3
+ 2080 00be 04D3     		bcc	.L174
+ 2081 00c0 FB68     		ldr	r3, [r7, #12]
+ 2082 00c2 9B68     		ldr	r3, [r3, #8]
+ 2083 00c4 3A68     		ldr	r2, [r7]
+ 2084 00c6 D31A     		subs	r3, r2, r3
+ 2085 00c8 3B60     		str	r3, [r7]
+ 2086              	.L174:
+ 2087 00ca 3B68     		ldr	r3, [r7]
+ 2088 00cc 1846     		mov	r0, r3
+ 2089 00ce 2037     		adds	r7, r7, #32
+ 2090 00d0 BD46     		mov	sp, r7
+ 2091              		@ sp needed
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 37
+
+
+ 2092 00d2 80BD     		pop	{r7, pc}
+ 2094              		.section	.text.prvBytesInBuffer,"ax",%progbits
+ 2095              		.align	1
+ 2096              		.syntax unified
+ 2097              		.thumb
+ 2098              		.thumb_func
+ 2100              	prvBytesInBuffer:
+ 2101              		@ args = 0, pretend = 0, frame = 16
+ 2102              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2103              		@ link register save eliminated.
+ 2104 0000 80B4     		push	{r7}
+ 2105 0002 85B0     		sub	sp, sp, #20
+ 2106 0004 00AF     		add	r7, sp, #0
+ 2107 0006 7860     		str	r0, [r7, #4]
+ 2108 0008 7B68     		ldr	r3, [r7, #4]
+ 2109 000a 9A68     		ldr	r2, [r3, #8]
+ 2110 000c 7B68     		ldr	r3, [r7, #4]
+ 2111 000e 5B68     		ldr	r3, [r3, #4]
+ 2112 0010 1344     		add	r3, r3, r2
+ 2113 0012 FB60     		str	r3, [r7, #12]
+ 2114 0014 7B68     		ldr	r3, [r7, #4]
+ 2115 0016 1B68     		ldr	r3, [r3]
+ 2116 0018 FA68     		ldr	r2, [r7, #12]
+ 2117 001a D31A     		subs	r3, r2, r3
+ 2118 001c FB60     		str	r3, [r7, #12]
+ 2119 001e 7B68     		ldr	r3, [r7, #4]
+ 2120 0020 9B68     		ldr	r3, [r3, #8]
+ 2121 0022 FA68     		ldr	r2, [r7, #12]
+ 2122 0024 9A42     		cmp	r2, r3
+ 2123 0026 04D3     		bcc	.L177
+ 2124 0028 7B68     		ldr	r3, [r7, #4]
+ 2125 002a 9B68     		ldr	r3, [r3, #8]
+ 2126 002c FA68     		ldr	r2, [r7, #12]
+ 2127 002e D31A     		subs	r3, r2, r3
+ 2128 0030 FB60     		str	r3, [r7, #12]
+ 2129              	.L177:
+ 2130 0032 FB68     		ldr	r3, [r7, #12]
+ 2131 0034 1846     		mov	r0, r3
+ 2132 0036 1437     		adds	r7, r7, #20
+ 2133 0038 BD46     		mov	sp, r7
+ 2134              		@ sp needed
+ 2135 003a 5DF8047B 		ldr	r7, [sp], #4
+ 2136 003e 7047     		bx	lr
+ 2138              		.section	.text.prvInitialiseNewStreamBuffer,"ax",%progbits
+ 2139              		.align	1
+ 2140              		.syntax unified
+ 2141              		.thumb
+ 2142              		.thumb_func
+ 2144              	prvInitialiseNewStreamBuffer:
+ 2145              		@ args = 12, pretend = 0, frame = 24
+ 2146              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2147 0000 80B5     		push	{r7, lr}
+ 2148 0002 86B0     		sub	sp, sp, #24
+ 2149 0004 00AF     		add	r7, sp, #0
+ 2150 0006 F860     		str	r0, [r7, #12]
+ 2151 0008 B960     		str	r1, [r7, #8]
+ 2152 000a 7A60     		str	r2, [r7, #4]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 38
+
+
+ 2153 000c 3B60     		str	r3, [r7]
+ 2154 000e 7A68     		ldr	r2, [r7, #4]
+ 2155 0010 5521     		movs	r1, #85
+ 2156 0012 B868     		ldr	r0, [r7, #8]
+ 2157 0014 FFF7FEFF 		bl	memset
+ 2158 0018 0246     		mov	r2, r0
+ 2159 001a BB68     		ldr	r3, [r7, #8]
+ 2160 001c 9342     		cmp	r3, r2
+ 2161 001e 0AD0     		beq	.L180
+ 2162              		.syntax unified
+ 2163              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 2164 0020 4FF05003 		   mov r3, #80                                              
+ 2165 0024 83F31188 	   msr basepri, r3                                         
+ 2166 0028 BFF36F8F 	   isb                                                     
+ 2167 002c BFF34F8F 	   dsb                                                     
+ 2168              	
+ 2169              	@ 0 "" 2
+ 2170              		.thumb
+ 2171              		.syntax unified
+ 2172 0030 7B61     		str	r3, [r7, #20]
+ 2173 0032 00BF     		nop
+ 2174              	.L181:
+ 2175 0034 FEE7     		b	.L181
+ 2176              	.L180:
+ 2177 0036 2822     		movs	r2, #40
+ 2178 0038 0021     		movs	r1, #0
+ 2179 003a F868     		ldr	r0, [r7, #12]
+ 2180 003c FFF7FEFF 		bl	memset
+ 2181 0040 FB68     		ldr	r3, [r7, #12]
+ 2182 0042 BA68     		ldr	r2, [r7, #8]
+ 2183 0044 9A61     		str	r2, [r3, #24]
+ 2184 0046 FB68     		ldr	r3, [r7, #12]
+ 2185 0048 7A68     		ldr	r2, [r7, #4]
+ 2186 004a 9A60     		str	r2, [r3, #8]
+ 2187 004c FB68     		ldr	r3, [r7, #12]
+ 2188 004e 3A68     		ldr	r2, [r7]
+ 2189 0050 DA60     		str	r2, [r3, #12]
+ 2190 0052 FB68     		ldr	r3, [r7, #12]
+ 2191 0054 97F82020 		ldrb	r2, [r7, #32]
+ 2192 0058 1A77     		strb	r2, [r3, #28]
+ 2193 005a FB68     		ldr	r3, [r7, #12]
+ 2194 005c 0022     		movs	r2, #0
+ 2195 005e 5A62     		str	r2, [r3, #36]
+ 2196 0060 00BF     		nop
+ 2197 0062 1837     		adds	r7, r7, #24
+ 2198 0064 BD46     		mov	sp, r7
+ 2199              		@ sp needed
+ 2200 0066 80BD     		pop	{r7, pc}
+ 2202              		.section	.text.uxStreamBufferGetStreamBufferNotificationIndex,"ax",%progbits
+ 2203              		.align	1
+ 2204              		.global	uxStreamBufferGetStreamBufferNotificationIndex
+ 2205              		.syntax unified
+ 2206              		.thumb
+ 2207              		.thumb_func
+ 2209              	uxStreamBufferGetStreamBufferNotificationIndex:
+ 2210              		@ args = 0, pretend = 0, frame = 16
+ 2211              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 39
+
+
+ 2212              		@ link register save eliminated.
+ 2213 0000 80B4     		push	{r7}
+ 2214 0002 85B0     		sub	sp, sp, #20
+ 2215 0004 00AF     		add	r7, sp, #0
+ 2216 0006 7860     		str	r0, [r7, #4]
+ 2217 0008 7B68     		ldr	r3, [r7, #4]
+ 2218 000a FB60     		str	r3, [r7, #12]
+ 2219 000c FB68     		ldr	r3, [r7, #12]
+ 2220 000e 002B     		cmp	r3, #0
+ 2221 0010 0AD1     		bne	.L183
+ 2222              		.syntax unified
+ 2223              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 2224 0012 4FF05003 		   mov r3, #80                                              
+ 2225 0016 83F31188 	   msr basepri, r3                                         
+ 2226 001a BFF36F8F 	   isb                                                     
+ 2227 001e BFF34F8F 	   dsb                                                     
+ 2228              	
+ 2229              	@ 0 "" 2
+ 2230              		.thumb
+ 2231              		.syntax unified
+ 2232 0022 BB60     		str	r3, [r7, #8]
+ 2233 0024 00BF     		nop
+ 2234              	.L184:
+ 2235 0026 FEE7     		b	.L184
+ 2236              	.L183:
+ 2237 0028 FB68     		ldr	r3, [r7, #12]
+ 2238 002a 5B6A     		ldr	r3, [r3, #36]
+ 2239 002c 1846     		mov	r0, r3
+ 2240 002e 1437     		adds	r7, r7, #20
+ 2241 0030 BD46     		mov	sp, r7
+ 2242              		@ sp needed
+ 2243 0032 5DF8047B 		ldr	r7, [sp], #4
+ 2244 0036 7047     		bx	lr
+ 2246              		.section	.text.vStreamBufferSetStreamBufferNotificationIndex,"ax",%progbits
+ 2247              		.align	1
+ 2248              		.global	vStreamBufferSetStreamBufferNotificationIndex
+ 2249              		.syntax unified
+ 2250              		.thumb
+ 2251              		.thumb_func
+ 2253              	vStreamBufferSetStreamBufferNotificationIndex:
+ 2254              		@ args = 0, pretend = 0, frame = 32
+ 2255              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2256              		@ link register save eliminated.
+ 2257 0000 80B4     		push	{r7}
+ 2258 0002 89B0     		sub	sp, sp, #36
+ 2259 0004 00AF     		add	r7, sp, #0
+ 2260 0006 7860     		str	r0, [r7, #4]
+ 2261 0008 3960     		str	r1, [r7]
+ 2262 000a 7B68     		ldr	r3, [r7, #4]
+ 2263 000c FB61     		str	r3, [r7, #28]
+ 2264 000e FB69     		ldr	r3, [r7, #28]
+ 2265 0010 002B     		cmp	r3, #0
+ 2266 0012 0AD1     		bne	.L187
+ 2267              		.syntax unified
+ 2268              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 2269 0014 4FF05003 		   mov r3, #80                                              
+ 2270 0018 83F31188 	   msr basepri, r3                                         
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 40
+
+
+ 2271 001c BFF36F8F 	   isb                                                     
+ 2272 0020 BFF34F8F 	   dsb                                                     
+ 2273              	
+ 2274              	@ 0 "" 2
+ 2275              		.thumb
+ 2276              		.syntax unified
+ 2277 0024 BB61     		str	r3, [r7, #24]
+ 2278 0026 00BF     		nop
+ 2279              	.L188:
+ 2280 0028 FEE7     		b	.L188
+ 2281              	.L187:
+ 2282 002a FB69     		ldr	r3, [r7, #28]
+ 2283 002c 1B69     		ldr	r3, [r3, #16]
+ 2284 002e 002B     		cmp	r3, #0
+ 2285 0030 0AD0     		beq	.L189
+ 2286              		.syntax unified
+ 2287              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 2288 0032 4FF05003 		   mov r3, #80                                              
+ 2289 0036 83F31188 	   msr basepri, r3                                         
+ 2290 003a BFF36F8F 	   isb                                                     
+ 2291 003e BFF34F8F 	   dsb                                                     
+ 2292              	
+ 2293              	@ 0 "" 2
+ 2294              		.thumb
+ 2295              		.syntax unified
+ 2296 0042 7B61     		str	r3, [r7, #20]
+ 2297 0044 00BF     		nop
+ 2298              	.L190:
+ 2299 0046 FEE7     		b	.L190
+ 2300              	.L189:
+ 2301 0048 FB69     		ldr	r3, [r7, #28]
+ 2302 004a 5B69     		ldr	r3, [r3, #20]
+ 2303 004c 002B     		cmp	r3, #0
+ 2304 004e 0AD0     		beq	.L191
+ 2305              		.syntax unified
+ 2306              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 2307 0050 4FF05003 		   mov r3, #80                                              
+ 2308 0054 83F31188 	   msr basepri, r3                                         
+ 2309 0058 BFF36F8F 	   isb                                                     
+ 2310 005c BFF34F8F 	   dsb                                                     
+ 2311              	
+ 2312              	@ 0 "" 2
+ 2313              		.thumb
+ 2314              		.syntax unified
+ 2315 0060 3B61     		str	r3, [r7, #16]
+ 2316 0062 00BF     		nop
+ 2317              	.L192:
+ 2318 0064 FEE7     		b	.L192
+ 2319              	.L191:
+ 2320 0066 3B68     		ldr	r3, [r7]
+ 2321 0068 002B     		cmp	r3, #0
+ 2322 006a 0AD0     		beq	.L193
+ 2323              		.syntax unified
+ 2324              	@ 217 "FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 2325 006c 4FF05003 		   mov r3, #80                                              
+ 2326 0070 83F31188 	   msr basepri, r3                                         
+ 2327 0074 BFF36F8F 	   isb                                                     
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 41
+
+
+ 2328 0078 BFF34F8F 	   dsb                                                     
+ 2329              	
+ 2330              	@ 0 "" 2
+ 2331              		.thumb
+ 2332              		.syntax unified
+ 2333 007c FB60     		str	r3, [r7, #12]
+ 2334 007e 00BF     		nop
+ 2335              	.L194:
+ 2336 0080 FEE7     		b	.L194
+ 2337              	.L193:
+ 2338 0082 FB69     		ldr	r3, [r7, #28]
+ 2339 0084 3A68     		ldr	r2, [r7]
+ 2340 0086 5A62     		str	r2, [r3, #36]
+ 2341 0088 00BF     		nop
+ 2342 008a 2437     		adds	r7, r7, #36
+ 2343 008c BD46     		mov	sp, r7
+ 2344              		@ sp needed
+ 2345 008e 5DF8047B 		ldr	r7, [sp], #4
+ 2346 0092 7047     		bx	lr
+ 2348              		.section	.text.uxStreamBufferGetStreamBufferNumber,"ax",%progbits
+ 2349              		.align	1
+ 2350              		.global	uxStreamBufferGetStreamBufferNumber
+ 2351              		.syntax unified
+ 2352              		.thumb
+ 2353              		.thumb_func
+ 2355              	uxStreamBufferGetStreamBufferNumber:
+ 2356              		@ args = 0, pretend = 0, frame = 8
+ 2357              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2358              		@ link register save eliminated.
+ 2359 0000 80B4     		push	{r7}
+ 2360 0002 83B0     		sub	sp, sp, #12
+ 2361 0004 00AF     		add	r7, sp, #0
+ 2362 0006 7860     		str	r0, [r7, #4]
+ 2363 0008 7B68     		ldr	r3, [r7, #4]
+ 2364 000a 1B6A     		ldr	r3, [r3, #32]
+ 2365 000c 1846     		mov	r0, r3
+ 2366 000e 0C37     		adds	r7, r7, #12
+ 2367 0010 BD46     		mov	sp, r7
+ 2368              		@ sp needed
+ 2369 0012 5DF8047B 		ldr	r7, [sp], #4
+ 2370 0016 7047     		bx	lr
+ 2372              		.section	.text.vStreamBufferSetStreamBufferNumber,"ax",%progbits
+ 2373              		.align	1
+ 2374              		.global	vStreamBufferSetStreamBufferNumber
+ 2375              		.syntax unified
+ 2376              		.thumb
+ 2377              		.thumb_func
+ 2379              	vStreamBufferSetStreamBufferNumber:
+ 2380              		@ args = 0, pretend = 0, frame = 8
+ 2381              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2382              		@ link register save eliminated.
+ 2383 0000 80B4     		push	{r7}
+ 2384 0002 83B0     		sub	sp, sp, #12
+ 2385 0004 00AF     		add	r7, sp, #0
+ 2386 0006 7860     		str	r0, [r7, #4]
+ 2387 0008 3960     		str	r1, [r7]
+ 2388 000a 7B68     		ldr	r3, [r7, #4]
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 42
+
+
+ 2389 000c 3A68     		ldr	r2, [r7]
+ 2390 000e 1A62     		str	r2, [r3, #32]
+ 2391 0010 00BF     		nop
+ 2392 0012 0C37     		adds	r7, r7, #12
+ 2393 0014 BD46     		mov	sp, r7
+ 2394              		@ sp needed
+ 2395 0016 5DF8047B 		ldr	r7, [sp], #4
+ 2396 001a 7047     		bx	lr
+ 2398              		.section	.text.ucStreamBufferGetStreamBufferType,"ax",%progbits
+ 2399              		.align	1
+ 2400              		.global	ucStreamBufferGetStreamBufferType
+ 2401              		.syntax unified
+ 2402              		.thumb
+ 2403              		.thumb_func
+ 2405              	ucStreamBufferGetStreamBufferType:
+ 2406              		@ args = 0, pretend = 0, frame = 8
+ 2407              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2408              		@ link register save eliminated.
+ 2409 0000 80B4     		push	{r7}
+ 2410 0002 83B0     		sub	sp, sp, #12
+ 2411 0004 00AF     		add	r7, sp, #0
+ 2412 0006 7860     		str	r0, [r7, #4]
+ 2413 0008 7B68     		ldr	r3, [r7, #4]
+ 2414 000a 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 2415 000c 03F00103 		and	r3, r3, #1
+ 2416 0010 DBB2     		uxtb	r3, r3
+ 2417 0012 1846     		mov	r0, r3
+ 2418 0014 0C37     		adds	r7, r7, #12
+ 2419 0016 BD46     		mov	sp, r7
+ 2420              		@ sp needed
+ 2421 0018 5DF8047B 		ldr	r7, [sp], #4
+ 2422 001c 7047     		bx	lr
+ 2424              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 43
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stream_buffer.c
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:18     .text.xStreamBufferGenericCreate:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:24     .text.xStreamBufferGenericCreate:00000000 xStreamBufferGenericCreate
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:2144   .text.prvInitialiseNewStreamBuffer:00000000 prvInitialiseNewStreamBuffer
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:165    .text.vStreamBufferDelete:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:171    .text.vStreamBufferDelete:00000000 vStreamBufferDelete
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:219    .text.xStreamBufferReset:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:225    .text.xStreamBufferReset:00000000 xStreamBufferReset
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:302    .text.xStreamBufferResetFromISR:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:308    .text.xStreamBufferResetFromISR:00000000 xStreamBufferResetFromISR
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:408    .text.xStreamBufferSetTriggerLevel:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:414    .text.xStreamBufferSetTriggerLevel:00000000 xStreamBufferSetTriggerLevel
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:473    .text.xStreamBufferSpacesAvailable:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:479    .text.xStreamBufferSpacesAvailable:00000000 xStreamBufferSpacesAvailable
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:549    .text.xStreamBufferBytesAvailable:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:555    .text.xStreamBufferBytesAvailable:00000000 xStreamBufferBytesAvailable
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:2100   .text.prvBytesInBuffer:00000000 prvBytesInBuffer
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:593    .text.xStreamBufferSend:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:599    .text.xStreamBufferSend:00000000 xStreamBufferSend
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:965    .text.prvWriteMessageToBuffer:00000000 prvWriteMessageToBuffer
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:821    .text.xStreamBufferSendFromISR:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:827    .text.xStreamBufferSendFromISR:00000000 xStreamBufferSendFromISR
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:960    .text.prvWriteMessageToBuffer:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1839   .text.prvWriteBytesToBuffer:00000000 prvWriteBytesToBuffer
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1047   .text.xStreamBufferReceive:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1053   .text.xStreamBufferReceive:00000000 xStreamBufferReceive
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1460   .text.prvReadMessageFromBuffer:00000000 prvReadMessageFromBuffer
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1231   .text.xStreamBufferNextMessageLengthBytes:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1237   .text.xStreamBufferNextMessageLengthBytes:00000000 xStreamBufferNextMessageLengthBytes
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1971   .text.prvReadBytesFromBuffer:00000000 prvReadBytesFromBuffer
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1318   .text.xStreamBufferReceiveFromISR:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1324   .text.xStreamBufferReceiveFromISR:00000000 xStreamBufferReceiveFromISR
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1455   .text.prvReadMessageFromBuffer:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1526   .text.xStreamBufferIsEmpty:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1532   .text.xStreamBufferIsEmpty:00000000 xStreamBufferIsEmpty
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1584   .text.xStreamBufferIsFull:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1590   .text.xStreamBufferIsFull:00000000 xStreamBufferIsFull
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1650   .text.xStreamBufferSendCompletedFromISR:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1656   .text.xStreamBufferSendCompletedFromISR:00000000 xStreamBufferSendCompletedFromISR
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1742   .text.xStreamBufferReceiveCompletedFromISR:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1748   .text.xStreamBufferReceiveCompletedFromISR:00000000 xStreamBufferReceiveCompletedFromISR
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1834   .text.prvWriteBytesToBuffer:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:1966   .text.prvReadBytesFromBuffer:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:2095   .text.prvBytesInBuffer:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:2139   .text.prvInitialiseNewStreamBuffer:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:2203   .text.uxStreamBufferGetStreamBufferNotificationIndex:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:2209   .text.uxStreamBufferGetStreamBufferNotificationIndex:00000000 uxStreamBufferGetStreamBufferNotificationIndex
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:2247   .text.vStreamBufferSetStreamBufferNotificationIndex:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:2253   .text.vStreamBufferSetStreamBufferNotificationIndex:00000000 vStreamBufferSetStreamBufferNotificationIndex
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:2349   .text.uxStreamBufferGetStreamBufferNumber:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:2355   .text.uxStreamBufferGetStreamBufferNumber:00000000 uxStreamBufferGetStreamBufferNumber
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:2373   .text.vStreamBufferSetStreamBufferNumber:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:2379   .text.vStreamBufferSetStreamBufferNumber:00000000 vStreamBufferSetStreamBufferNumber
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:2399   .text.ucStreamBufferGetStreamBufferType:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s:2405   .text.ucStreamBufferGetStreamBufferType:00000000 ucStreamBufferGetStreamBufferType
+
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccxXbRU8.s 			page 44
+
+
+UNDEFINED SYMBOLS
+pvPortMalloc
+vPortFree
+memset
+vPortEnterCritical
+vPortExitCritical
+vTaskSetTimeOutState
+xTaskGenericNotifyStateClear
+xTaskGetCurrentTaskHandle
+xTaskGenericNotifyWait
+xTaskCheckForTimeOut
+vTaskSuspendAll
+xTaskGenericNotify
+xTaskResumeAll
+xTaskGenericNotifyFromISR
+memcpy

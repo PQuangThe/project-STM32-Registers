@@ -1,0 +1,206 @@
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32f4xx_it.c"
+  16              		.text
+  17              		.section	.text.NMI_Handler,"ax",%progbits
+  18              		.align	1
+  19              		.global	NMI_Handler
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	NMI_Handler:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 1, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 80B4     		push	{r7}
+  29 0002 00AF     		add	r7, sp, #0
+  30              	.L2:
+  31 0004 FEE7     		b	.L2
+  33              		.section	.text.HardFault_Handler,"ax",%progbits
+  34              		.align	1
+  35              		.global	HardFault_Handler
+  36              		.syntax unified
+  37              		.thumb
+  38              		.thumb_func
+  40              	HardFault_Handler:
+  41              		@ args = 0, pretend = 0, frame = 0
+  42              		@ frame_needed = 1, uses_anonymous_args = 0
+  43              		@ link register save eliminated.
+  44 0000 80B4     		push	{r7}
+  45 0002 00AF     		add	r7, sp, #0
+  46              	.L4:
+  47 0004 FEE7     		b	.L4
+  49              		.section	.text.MemManage_Handler,"ax",%progbits
+  50              		.align	1
+  51              		.global	MemManage_Handler
+  52              		.syntax unified
+  53              		.thumb
+  54              		.thumb_func
+  56              	MemManage_Handler:
+  57              		@ args = 0, pretend = 0, frame = 0
+  58              		@ frame_needed = 1, uses_anonymous_args = 0
+  59              		@ link register save eliminated.
+  60 0000 80B4     		push	{r7}
+  61 0002 00AF     		add	r7, sp, #0
+  62              	.L6:
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s 			page 2
+
+
+  63 0004 FEE7     		b	.L6
+  65              		.section	.text.BusFault_Handler,"ax",%progbits
+  66              		.align	1
+  67              		.global	BusFault_Handler
+  68              		.syntax unified
+  69              		.thumb
+  70              		.thumb_func
+  72              	BusFault_Handler:
+  73              		@ args = 0, pretend = 0, frame = 0
+  74              		@ frame_needed = 1, uses_anonymous_args = 0
+  75              		@ link register save eliminated.
+  76 0000 80B4     		push	{r7}
+  77 0002 00AF     		add	r7, sp, #0
+  78              	.L8:
+  79 0004 FEE7     		b	.L8
+  81              		.section	.text.UsageFault_Handler,"ax",%progbits
+  82              		.align	1
+  83              		.global	UsageFault_Handler
+  84              		.syntax unified
+  85              		.thumb
+  86              		.thumb_func
+  88              	UsageFault_Handler:
+  89              		@ args = 0, pretend = 0, frame = 0
+  90              		@ frame_needed = 1, uses_anonymous_args = 0
+  91              		@ link register save eliminated.
+  92 0000 80B4     		push	{r7}
+  93 0002 00AF     		add	r7, sp, #0
+  94              	.L10:
+  95 0004 FEE7     		b	.L10
+  97              		.section	.text.DebugMon_Handler,"ax",%progbits
+  98              		.align	1
+  99              		.global	DebugMon_Handler
+ 100              		.syntax unified
+ 101              		.thumb
+ 102              		.thumb_func
+ 104              	DebugMon_Handler:
+ 105              		@ args = 0, pretend = 0, frame = 0
+ 106              		@ frame_needed = 1, uses_anonymous_args = 0
+ 107              		@ link register save eliminated.
+ 108 0000 80B4     		push	{r7}
+ 109 0002 00AF     		add	r7, sp, #0
+ 110 0004 00BF     		nop
+ 111 0006 BD46     		mov	sp, r7
+ 112              		@ sp needed
+ 113 0008 5DF8047B 		ldr	r7, [sp], #4
+ 114 000c 7047     		bx	lr
+ 116              		.section	.text.TIM2_IRQHandler,"ax",%progbits
+ 117              		.align	1
+ 118              		.global	TIM2_IRQHandler
+ 119              		.syntax unified
+ 120              		.thumb
+ 121              		.thumb_func
+ 123              	TIM2_IRQHandler:
+ 124              		@ args = 0, pretend = 0, frame = 0
+ 125              		@ frame_needed = 1, uses_anonymous_args = 0
+ 126 0000 80B5     		push	{r7, lr}
+ 127 0002 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s 			page 3
+
+
+ 128 0004 4FF08043 		mov	r3, #1073741824
+ 129 0008 1B69     		ldr	r3, [r3, #16]
+ 130 000a 4FF08042 		mov	r2, #1073741824
+ 131 000e 23F00103 		bic	r3, r3, #1
+ 132 0012 1361     		str	r3, [r2, #16]
+ 133 0014 FFF7FEFF 		bl	Inc_Tick
+ 134 0018 00BF     		nop
+ 135 001a 80BD     		pop	{r7, pc}
+ 137              		.section	.text.USART1_IRQHandler,"ax",%progbits
+ 138              		.align	1
+ 139              		.global	USART1_IRQHandler
+ 140              		.syntax unified
+ 141              		.thumb
+ 142              		.thumb_func
+ 144              	USART1_IRQHandler:
+ 145              		@ args = 0, pretend = 0, frame = 0
+ 146              		@ frame_needed = 1, uses_anonymous_args = 0
+ 147 0000 80B5     		push	{r7, lr}
+ 148 0002 00AF     		add	r7, sp, #0
+ 149 0004 FFF7FEFF 		bl	UART1_IRQHandlerRxCallback
+ 150 0008 00BF     		nop
+ 151 000a 80BD     		pop	{r7, pc}
+ 153              		.section	.text.DMA2_Stream2_IRQHandler,"ax",%progbits
+ 154              		.align	1
+ 155              		.global	DMA2_Stream2_IRQHandler
+ 156              		.syntax unified
+ 157              		.thumb
+ 158              		.thumb_func
+ 160              	DMA2_Stream2_IRQHandler:
+ 161              		@ args = 0, pretend = 0, frame = 0
+ 162              		@ frame_needed = 1, uses_anonymous_args = 0
+ 163 0000 80B5     		push	{r7, lr}
+ 164 0002 00AF     		add	r7, sp, #0
+ 165 0004 FFF7FEFF 		bl	UART1_DMA2_RX_IRQHandler
+ 166 0008 00BF     		nop
+ 167 000a 80BD     		pop	{r7, pc}
+ 169              		.section	.text.DMA2_Stream7_IRQHandler,"ax",%progbits
+ 170              		.align	1
+ 171              		.global	DMA2_Stream7_IRQHandler
+ 172              		.syntax unified
+ 173              		.thumb
+ 174              		.thumb_func
+ 176              	DMA2_Stream7_IRQHandler:
+ 177              		@ args = 0, pretend = 0, frame = 0
+ 178              		@ frame_needed = 1, uses_anonymous_args = 0
+ 179 0000 80B5     		push	{r7, lr}
+ 180 0002 00AF     		add	r7, sp, #0
+ 181 0004 FFF7FEFF 		bl	UART1_DMA2_Tx_IRQHandler
+ 182 0008 00BF     		nop
+ 183 000a 80BD     		pop	{r7, pc}
+ 185              		.weak	UART1_DMA2_Tx_IRQHandler
+ 186              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
+ARM GAS  C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_it.c
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:18     .text.NMI_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:24     .text.NMI_Handler:00000000 NMI_Handler
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:34     .text.HardFault_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:40     .text.HardFault_Handler:00000000 HardFault_Handler
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:50     .text.MemManage_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:56     .text.MemManage_Handler:00000000 MemManage_Handler
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:66     .text.BusFault_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:72     .text.BusFault_Handler:00000000 BusFault_Handler
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:82     .text.UsageFault_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:88     .text.UsageFault_Handler:00000000 UsageFault_Handler
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:98     .text.DebugMon_Handler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:104    .text.DebugMon_Handler:00000000 DebugMon_Handler
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:117    .text.TIM2_IRQHandler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:123    .text.TIM2_IRQHandler:00000000 TIM2_IRQHandler
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:138    .text.USART1_IRQHandler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:144    .text.USART1_IRQHandler:00000000 USART1_IRQHandler
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:154    .text.DMA2_Stream2_IRQHandler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:160    .text.DMA2_Stream2_IRQHandler:00000000 DMA2_Stream2_IRQHandler
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:170    .text.DMA2_Stream7_IRQHandler:00000000 $t
+C:\Users\phamt\AppData\Local\Temp\ccV07S9x.s:176    .text.DMA2_Stream7_IRQHandler:00000000 DMA2_Stream7_IRQHandler
+
+UNDEFINED SYMBOLS
+Inc_Tick
+UART1_IRQHandlerRxCallback
+UART1_DMA2_RX_IRQHandler
+UART1_DMA2_Tx_IRQHandler
